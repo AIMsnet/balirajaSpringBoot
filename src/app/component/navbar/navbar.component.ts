@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild('supplierSignInModal') supplierSignInModal!: ModalDirective;
   @ViewChild('supplierSignUpModal') supplierSignUpModal! : ModalDirective;
   @ViewChild('customerSignInModal') customerSignInModal! : ModalDirective;
+  @ViewChild('customerSignUpModal') customerSignUpModal! : ModalDirective;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
