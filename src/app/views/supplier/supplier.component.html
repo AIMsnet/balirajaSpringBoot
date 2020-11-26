@@ -1,0 +1,892 @@
+<div class = "container-fluid p-0 mainFrame">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">     
+      <li class="nav-item">
+        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="txab" aria-controls="contact" aria-selected="false">Product</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Subscription</a>
+      </li>
+      <li class="nav-item ml-auto">
+        <a class="nav-link" style="color: #303A52;">Hello ! </a>
+
+    </li>
+  </ul>
+
+  <!-- ----------------------------List Visibled on incomplete Details -->
+  
+ 
+  
+  <div class="container-fluid">
+    <div class="container"  style="padding-bottom: 15%; padding-top: 15%; text-align: center;">
+      <h3>Your profile is incomplete please add following details</h3>
+      <ul style="list-style: none;">
+
+        
+        <li><button class="p-1 btn-primary" data-toggle="modal" data-target = ".editPersonalDetail" (click)="addPersonalDetail()">Add Personal Information</button>
+          <span class = "updateStatus" id = "personalUpdateStatus"></span>
+        </li>
+        
+        <li><button class=" p-1 mt-2 btn-primary" data-toggle="modal" data-target = ".editBusinessDetail" (click)="addBusinessDetail()">Add Business Information</button>
+          <span class = "updateStatus" id = "businessUpdateStatus"></span>
+        </li>
+      
+
+      </ul>
+    </div>
+  </div>
+
+  
+  
+  <!-- --------------------------  --Tab Content -->
+  <div class="tab-content" id="myTabContent">
+    
+      <!-- Tab One -->
+      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">    
+        <!-- Comapny  Card -->
+        <div class="container comapnyCard">
+          <div class="row comapnyCardParent">
+            <div class="col-md-3 companyLogo">
+              <img src="https://5.imimg.com/data5/HK/QU/MY-47419749/agriconic-machineries-private-limited-120x120.png" alt="Comapny Logo">
+            </div>
+            <div class="col-md-9 comapnyDescription">
+              <h4 class="text-center"></h4>
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!-- Identification Information -->
+
+        <div class="container IdentificationInfo">
+          <h4 class="text-center">Identification Number</h4>
+
+          <div class="row">
+            <div class="col-sm col-md col-lg">
+              <h6 class="text-center">GST</h6>
+              <h6 class="text-center"></h6>
+            </div>
+            <div class="col-sm col-md col-lg">
+              <h6 class="text-center">PAN</h6>
+              <h6 class="text-center"></h6>
+            </div>
+            <div class="col-sm col-md col-lg">
+              <h6 class="text-center">CIN</h6>
+              <h6 class="text-center"></h6>
+            </div>
+            <div class="col-sm col-md col-lg">
+              <h6 class="text-center">DGFT</h6>
+              <h6 class="text-center"></h6>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Information -->
+        <div class="container-fluid organizationInfo mt-3">
+
+          <div class="text-center">
+            <span class="infomationTitle">
+              Business Details
+            </span>
+            <button class="float-right btn-primary" data-toggle="modal" data-target = ".updateBusinessDetail">Edit</button>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-sm col-md col-lg">
+              <table>
+                <tr>
+                  <td>Business Type</td>
+                  <td class="tableData" id = "BusinessType"></td>
+                </tr>
+
+                <tr>
+                  <td>Business Email</td>
+                  <td class="tableData" id = "BusinessEmail"></td>
+                </tr>
+
+                <tr>
+                  <td>Organization Type</td>
+                  <td class="tableData" id = "OrganisationType"></td>
+                </tr>
+
+                <tr>
+                  <td>Ownership Type</td>
+                  <td class="tableData" id = "OwnershipType"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm col-md col-lg">
+              <table>
+                <tr>
+                  <td>Website Link</td>
+                  <td class="tableData" id = "WebsiteLink"></td>
+                </tr>
+
+                <tr>
+                  <td>Address</td>
+                  <td class="tableData" id = "Address"></td>
+                </tr>
+
+                <tr>
+                  <td>Year Of Establishment</td>
+                  <td class="tableData"></td>
+                </tr>
+
+                <tr>
+                  <td>Description</td>
+                  <td class="tableData"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+         <!-- Personal Information -->
+        <div class="container-fluid personalInfo mt-3">
+          <div class="text-center">
+            <span class="infomationTitle">
+              Personal Details
+            </span>
+            <button class="float-right btn-primary" data-toggle="modal" data-target = ".updatePersonalDetail">Edit</button>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-sm col-md col-lg">
+             <table>
+               <tr>
+                 <td>Name</td>
+                 <td class="tableData" id = "supplierFullName"></td>
+               </tr>
+
+                <tr>
+                  <td>Phone Number</td>
+                  <td class="tableData"></td>
+                </tr>
+
+                <tr>
+                  <td>Mobile Number</td>
+                  <td class="tableData"></td>
+                </tr>
+
+                <tr>
+                  <td>Email</td>
+                  <td class="tableData"></td>
+                </tr>
+             </table>
+            </div>
+            <div class="col-sm col-md col-lg">
+              <table>
+                <tr>
+                  <td>Optional Email</td>
+                  <td id = "supplierEmailOptional"></td>
+                </tr>
+
+                <tr>
+                  <td>Address</td>
+                  <td id = "supplieraddress"></td>
+                </tr>
+
+                <tr>
+                  <td>Area</td>
+                  <td id = "supplierArea"></td>
+                </tr>
+
+                <tr>
+                  <td>City</td>
+                  <td id = "supplierCity"></td>
+                </tr>
+
+              </table>
+            </div>
+
+            <div class="col-sm col-md col-lg">
+              <table>
+                <tr>
+                  <td>District</td>
+                  <td id = "supplierDistrict"></td>
+                </tr>
+
+                <tr>
+                  <td>Taluka</td>
+                  <td id = "supplierTaluka"></td>
+                </tr>
+
+                <tr>
+                  <td>State</td>
+                  <td id = "supplierState"></td>
+                </tr>
+
+                <tr>
+                  <td>Pincode</td>
+                  <td id = "supplierPincode"></td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tab Two -->
+      <div class="tab-pane fade active show p-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="container-fluid dashboardMainFrame">
+          <h6>Application / Dashboard</h6>
+
+          <!-- Cards -->
+          <div class="container p-2">
+            <div class="row">
+              <div class="col-sm-12 col-md-3 col-lg-3">
+                <div class="card" style="background-color: #02ABC0">
+                  <div class="card-body">
+                    <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
+                    <h5></h5>
+                    <h5>Leads</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-3 col-lg-3">
+                <div class="card" style="background-color: #DC1B5E;">
+                  <div class="card-body">
+                    <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
+                    <h5></h5>
+                    <h5>Clicks</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-3 col-lg-3">
+                <div class="card" style="background-color: #FB8B0D;">
+                  <div class="card-body">
+                    <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
+                    <h5></h5>
+                    <h5>Total Prodcuts</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-3 col-lg-3">
+                <div class="card" style="background-color: #8E24A8;">
+                  <div class="card-body">
+                    <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
+                    <h5></h5>
+                    <h5>Profile Views</h5>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- Chart.js -->
+
+          <div class="container-fluid mt-5">
+            <div class="row">
+              <div class="col-sm -col-md col-lg clickChart">
+                <h5 class="p-3">Clicks</h5>
+                <!-- <img src="https://s3.amazonaws.com/assets.fullstack.io/n/20200309095518221_react-chartjs.png" alt="Graph Will be Here" style="padding: 12px;"> -->
+              </div>
+              <div class="col-sm -col-md col-lg quotesChart">
+                <h5 class="p-3">Quotes</h5>
+                <!-- <img src="https://cdn.october.codes/images/dataviz-1.png" alt="" style="height: 15vw;"> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Quotes Table -->
+          <div class="container-fluid quotesTable mt-5">
+            <h6 class="p-2">Quotes Requested By </h6>
+            <div class="table-responsive mt-2 mb-2 tabeleQuotes">
+              <table class = "table table-striped table-hover" id = "tabeleQuotes" data-toggle="table" data-pagination="true" data-search="true"
+              data-search-align="left" data-show-fullscreen="true" data-show-toggle="true">    
+                <thead>
+                  <tr>
+                      <th data-field = "name">Name</th>
+                      <th data-field = "contact">Contact</th>
+                      <th data-field = "productCode">Product Code</th>
+                      <th data-field = "product">Product</th>
+                      <th data-field = "quantity">Quantity</th>
+                      <th data-field = "description">Requirement</th>
+                  </tr>
+                </thead>  
+                <!-- <tbody>
+                  {% for q in quotes %}
+                    <td>{{q.customer.full_name}}</td>
+                    <td>{{q.customer.mobile_number}}</td>
+                    <td>{{q.product.code}}</td>
+                    <td>{{q.product.name}}</td>
+                    <td>{{q.quantity}}</td>
+                    <td>{{q.requirement}}</td>
+                  {% endfor %}
+                </tbody> -->
+              </table>
+            </div>
+      <!-- Tableeeeeeeeee End -->
+          </div>
+        </div>
+      </div>
+
+       <!-- Tab Three -->
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="container-fluid productManagement">
+          <h6>Product Management</h6>
+          <div class="container">
+            <button class="btn btn-primary" data-toggle = "modal" data-target=".addProduct" (click)="newproduct()"> New Product </button>
+          </div>
+          <div class="table-responsive mt-2 mb-2 productTable">
+            <table class = "table table-striped table-hover" id = "productTable" data-toggle="table" data-pagination="true" data-search="true"
+            data-search-align="left" data-show-fullscreen="true" data-show-toggle="true">    
+              <thead>
+                <tr>
+                  <th data-field="productcode">Code</th>
+                  <th data-field="productName">Product Name</th>
+                  <th data-field="brand">Brand</th>
+                  <th data-field="price">Price</th>
+                  <th data-field="category">Category</th>
+                  <th data-field="arrival">New Arrival</th>
+                  <th data-field="unit">Unit</th>
+                  <th data-field="clicks">Clicks</th>
+                  <th data-field="createddate">Created Date</th>
+                </tr>
+              </thead>  
+
+              <!-- <tbody>
+                {% for p in products %}
+                  <tr>
+                    <th>{{p.code}}</th>
+                    <td>{{p.name}}</td>
+                    <td>{{p.brand}}</td>
+                    <td>{{p.price}}</td>
+                    <td>{{p.category}}</td>
+                    <td>{{p.arrival}}</td>
+                    <td>{{p.unit}}</td>
+                    <td>{{p.clicks}}</td>
+                    <td>{{p.created_date}}</td>
+                  </tr>
+                {% endfor %}
+              </tbody> -->
+             
+
+            </table>
+          </div>
+
+        </div>
+      </div>  
+  </div>
+
+</div>
+
+<!-- Add Personal Details -->
+<div class="modal fade editPersonalDetail" bsModal #addPersonalDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Personal Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="addPersonalDetailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id = "personalDetail">
+          <!-- {% csrf_token %} -->
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.full_name}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.designation}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.phone_number}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.mobile_number}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.email}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.email_optional}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.address}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.area_street}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.city}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.district}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.taluka}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.state}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{supplierProfileForm.pincode}} -->
+          </div>
+
+          <div class="form-group text-center">
+            <input type="submit" value="Save" class="btn btn-primary">
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Edit Personal Details -->
+<div class="modal fade updatePersonalDetail" bsModal #editPersonalDetailModal="bs-modal" [config]="{backdrop: 'static'}" id = "updatePersonalDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Personal Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editPersonalDetailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id = "updatePersonalDetail">
+          <!-- {% csrf_token %} -->
+
+          <div class="form-group">
+            <label for="Full Name">Full Name</label>
+            <!-- {{supplierProfileForm.full_name}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="emailOptional">Email Optional</label>
+            <!-- {{supplierProfileForm.email_optional}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <!-- {{supplierProfileForm.address}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="area_street">Area/Street</label>
+            <!-- {{supplierProfileForm.area_street}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <!-- {{supplierProfileForm.city}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="district">District</label>
+            <!-- {{supplierProfileForm.district}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="taluka">Taluka</label>
+            <!-- {{supplierProfileForm.taluka}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="state">State</label>
+            <!-- {{supplierProfileForm.state}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="pincode">Pincode</label>
+            <!-- {{supplierProfileForm.pincode}} -->
+          </div>
+
+          <div class="form-group text-center">
+            <input type="submit" value="Save" class="btn btn-primary">
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Add Business Details -->
+<div class="modal fade editBusinessDetail" bsModal #addBusinessDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Business Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="addBusinessDetailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id = "businessDetail">
+          <!-- {% csrf_token %} -->
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.name}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.organisation_type}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.ownership_type}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.business_type}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{ businessProfileForm.business_email}} -->
+          </div>
+
+          <div class="form-group">  
+            <!-- {{businessProfileForm.website_link}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.address}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.year_of_establishment}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.description}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.GST}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.PAN}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.CIN}} -->
+          </div>
+
+          <div class="form-group">
+            <!-- {{businessProfileForm.DGFT}} -->
+          </div>
+
+          <div class="form-group text-center">
+            <input type="submit" value="Save" class="btn btn-primary">
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Edit Business Details -->
+<div class="modal fade updateBusinessDetail" bsModal #editBusinessDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Business Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editBusinessDetailModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id = "updateBusinessDetail">
+          <!-- {% csrf_token %} -->
+
+          <div class="form-group">
+            <label for="business_type">Business Type</label>
+            <!-- {{businessProfileForm.business_type}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="business_email">Business Email</label>
+            <!-- {{ businessProfileForm.business_email}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="organistaion_type">Organisation Type </label>
+            <!-- {{businessProfileForm.organisation_type}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="ownership_type">Ownership Type</label>
+            <!-- {{businessProfileForm.ownership_type}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="website_link">Website Link</label>
+            <!-- {{businessProfileForm.website_link}} -->
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <!-- {{businessProfileForm.address}} -->
+          </div>
+
+          <div class="form-group text-center">
+            <input type="submit" value="Save" class="btn btn-primary">
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ------------Add Product -->
+<div class="modal fade addProduct" bsModal #addProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mt-3">
+        <form id = "addProduct" action="Supplier/addProduct" method="post" enctype="multipart/form-data">
+          <!-- {% csrf_token %} -->
+          <div class="form-group">
+            <div class="row border-bottom border-light pb-2">
+              <div class="col-6 justify-content-between">
+                <input type="file" name="product_image" id="product_image">
+              </div>
+              <div class="form-group col-6 mt-4">
+                  <label for="product_name">Product Name</label>
+                  <input class="form-control form-control-sm" type="text" name="product_name" id="product_name">
+                  <div class="row justify-content-start mt-2">
+                    <div class="form-group col-8">
+                      <label for="brand">Brand</label>
+                      <input class="form-control form-control-sm" type="text" name="product_brand" id="product_brand">
+                    </div>
+                    <div class="form-group col-4">
+                      <label for="code">Code</label>
+                      <input class="form-control form-control-sm" type="text" name="product_code" id="product_code">
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="form-group col-4">
+                <label for="price">Price</label>
+                <input class="form-control form-control-sm" type="number" name="prodcut_price" id="prodcut_price">
+              </div>
+              <div class="form-group col-4">
+                <label for="prodcut_arrival">New Arrival</label>
+                <select class="form-control form-control-sm" id="prodcut_arrival" name = "prodcut_arrival">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form-group col-4">
+                <label for="prodcut_unit">Unit</label>
+                <select class="form-control form-control-sm" id="prodcut_unit" name = "prodcut_unit">
+                  <option value="Kg">Kg</option>
+                  <option value="Pack">pack</option>
+                  <option value="Unit">Unit</option>
+                  <option value="Meter">Meter</option>
+                  <option value="Piece">Piece</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <div class="row col-12 justify-content-between">
+                <label for="specifications">Specifications</label>
+                <button class="btn btn-sm btn-primary add_field_button">Add Specifications</button>
+              </div>
+              <div class="input_fields_wrap row col-12">
+                <div class="d-flex col-9">
+                </div>
+              </div>
+            </div>
+
+             <div class="form-group mb-4">
+              <label for="description">Description</label>
+              <textarea class="form-control form-control-sm" id = "product_description" name="product_description" cols="20" rows="5" ></textarea>
+            </div>
+
+            <div class="form-group">
+              <h5 class="category-head text-center border-bottom border-top border-light pt-2 pb-3"> Select Category</h5>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="main_category">Main Category</label>
+                <select class="form-control form-control-sm" name="main_category" id="main_category" onchange = getSubCategory(this.value)>
+                  <option value="" selected>----------------------------</option>
+                 <!--  {% for m in mainCategories%}
+                    <option value = {{m.pk}}>{{m.name}}</option>
+                  {% endfor %} -->
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="sub_main_category">Sub Category</label>
+                <select class="form-control" name="sub_main_category" id="sub_main_category" onchange = getCategory(this.value)></select>
+              </div> 
+
+              <div class="form-group col-4">
+                <label for="category">Category</label>
+                <select class="form-control" name="category" id="category"></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="additional_information">Additional Information</label>
+              <input class="form-control form-control-sm" type="text" name="product_additional_information" id="product_additional_information">
+            </div>
+          </div>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Product -->
+<div class="modal fade updateProduct" bsModal #editProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Update Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mt-3">
+        <form id = "updateProduct" action="Supplier/productUpdate" method="post" enctype="multipart/form-data">
+          <!-- {% csrf_token %} -->
+          <div class="form-group">
+            <div class="row border-bottom border-light pb-2">
+              <div class="col-6 justify-content-between">
+                <input type="file" name="update_product_image" id="update_product_image">
+              </div>
+              <div class="form-group col-6 mt-4">
+                  <label for="product_name">Product Name</label>
+                  <input class="form-control form-control-sm" type="text" name="update_product_name" id="update_product_name">
+                  <div class="row justify-content-start mt-2">
+                    <div class="form-group col-6">
+                      <label for="brand">Brand</label>
+                      <input class="form-control form-control-sm" type="text" name="update_product_brand" id="update_product_brand">
+                    </div>
+                    <div class="form-group col-6">
+                      <label for="code">Code</label>
+                      <input class="form-control form-control-sm" type="text" name="update_product_code" id="update_product_code">
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="form-group col-4">
+                <label for="price">Price</label>
+                <input class="form-control form-control-sm" type="number" name="update_prodcut_price" id="update_prodcut_price">
+              </div>
+              <div class="form-group col-4">
+                <label for="prodcut_arrival">Arrival</label>
+                <select class="form-control form-control-sm" id="update_prodcut_arrival" name = "update_prodcut_arrival">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div class="form-group col-4">
+                <label for="prodcut_unit">Unit</label>
+                <select class="form-control form-control-sm" id="update_prodcut_unit" name = "update_prodcut_unit">
+                  <option value="Kg">Kg</option>
+                  <option value="pack">pack</option>
+                  <option value="Unit">Unit</option>
+                   <option value="Meter">Meter</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <div class="row col-12 justify-content-between">
+                <label for="specifications">Specifications</label>
+                <button class="btn btn-sm btn-primary update_add_field_button">Add Specifications</button>
+              </div>
+              <div class="update_input_fields_wrap row col-12">
+                <div class="d-flex col-9">
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group mb-4">
+              <label for="description">Description</label>
+              <textarea class="form-control form-control-sm" id = "update_product_description" name="update_product_description" cols="20" rows="5" ></textarea>
+            </div>
+
+            <div class="form-group">
+              <h5 class="category-head text-center border-bottom border-top border-light pt-2 pb-3"> Select Category</h5>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-4">
+                <label for="main_category">Main Category</label>
+                <select class="form-control form-control-sm" name="update_main_category" id="update_main_category" onchange = getUpdateSubCategory(this.value)>
+                  <option value="" selected>----------------------------</option>
+                  <!-- {% for m in mainCategories%}
+                    <option value = {{m.pk}}>{{m.name}}</option>
+                  {% endfor %} -->
+                </select>
+              </div>
+
+              <div class="form-group col-4">
+                <label for="sub_main_category">Sub Category</label>
+                <select class="form-control" name="update_sub_main_category" id="update_sub_main_category" onchange = getUpdateCategory(this.value)></select>
+              </div> 
+
+              <div class="form-group col-4">
+                <label for="category">Category</label>
+                <select class="form-control" name="update_category" id="update_category"></select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="additional_information">Additional Information</label>
+              <input class="form-control form-control-sm" type="text" name="update_product_additional_information" id="update_product_additional_information">
+            </div>
+          </div>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

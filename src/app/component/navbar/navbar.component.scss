@@ -1,0 +1,82 @@
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler {
+  color: rgba(0,0,0,.5);
+  border-color: rgba(0,0,0,.1);
+  background-color: white;
+}
+
+.nav-item {
+  padding: 0px 8px 0px 8px;
+}
+.navbar {
+  background-color: #303a52;
+  color: white;
+  padding: 3vh 0px 1vh;
+}
+
+#navBeltTwo {
+  padding: 0px 5vw 0px;
+}
+
+.navBarBelt{
+  font-family: 'Kalam', cursive;
+  font-size: 7vh;
+  padding: 1vh 0px 0px;
+}
+
+.navBeltTwoInputGroup{
+  background-color: white;
+  border-radius: 2px;
+}
+
+.navBarBeltThree ul {
+  font-size: 2.5vh;
+}
+
+.navBarBeltThree ul li a{
+  color: white;
+}
+
+#row {
+  justify-content: center;
+}
+
+.dropDownContainer {
+  width: 76vw;
+}
+
+.dropDownColumn {
+  padding: 0px;
+}
+
+#navBeltTwo > div > div.input-group-prepend.navBeltCategory.show > div{
+  width: 53vw;
+}
+
+.navBeltCategory .btn{
+  color: dimgrey;
+  border-radius: 0px;
+  border: 0px;
+}
+
+.categoriesList{
+  list-style-type: none;
+  padding: 0px;
+}
+
+.categoriesList li{
+  padding: 10px;
+}
+
+.dropdown-item:hover{
+  background-color: #071a52;
+  color: white;
+}
+
+#btnNavBarSearch{
+  border: none;
+  border-radius: 0px;
+}
