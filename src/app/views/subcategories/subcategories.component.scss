@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+
+
+body{
+font-family: 'Baloo Tammudu 2', cursive;
+background-color:#e2e6df;
+}
+/* nav bar---//*/
+
+.CategoryHead{
+    background-color: #e2e6df;
+ }
+ 
+   /*mediaQuery--*/
+   .modal .modal-header .modal-title{
+       font-weight:600;
+       padding-top: 5px;
+   }
+ 
+ 
+ /*.SubCategory*/
+ 
+ .SubCategoryHeading{
+   padding: 10px;
+   margin-top: 20px;
+ }
+ 
+ .SubCategory-cards .card{
+   width: 230px;
+   height: 240px;
+   margin-bottom: 20px;
+ }
+ 
+ .SubCategory-cards .card:hover{
+  background-color: #303a52;
+  color: white;
+ }
+ 
+ .SubCategory-cards .card-title .heading{
+   font-weight: bold;
+   font-size: 16px;
+ }
+ 
+ .SubCategory-cards .SubCategory-imgs{
+   height:150px;
+   width:150px;
+   padding: 5px;
+   margin-top: 10px;
+ }
+ /* /.SubCategory*/
+ 
+ /*Supplier-Cards*/
+ 
+ .SupplierCardsBlock .heading{
+   padding-bottom: 0px;
+   margin-top: 40px;
+   margin-left: 20px;
+ }
+ 
+ .SupplierCardsBlock .SupplierCards .card{
+   width: 288px; 
+   height: 170px; 
+   padding: 10px;
+   margin-top: 20px;
+ }
+ 
+ .SupplierCardsBlock .SupplierCards .card .supplier-img
+ {
+   width: 50px; 
+   height: 50px;
+ }
+ 
+ .SupplierCardsBlock .SupplierCards .card:hover{
+   background-color: #303a52;
+  color: white;
+ }
+ 
+ /* /.Supplier-Cards*/
+ 
+ 
+ @media only screen and (max-width : 600px){
+ 
+   .SubCategoryHeading .heading{
+     font-size: 20px;
+   }
+ 
+   .SupplierCardsBlock .heading{
+     font-size: 20px;
+   }
+   
+   .SubCategory-cards .SubCategory-cardsRow{
+    align-content: center;
+    justify-content: center; 
+   }
+ 
+ 
+ }
+ 
+ @media only screen and (min-width : 600px){
+ 
+   
+ }

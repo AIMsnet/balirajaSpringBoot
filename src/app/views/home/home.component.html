@@ -118,6 +118,14 @@
   
   <div class="tab-content">
     <div id="home" class="tab-pane fade show active">
+      <div style=" height: 210px; text-align:center;margin:0; padding:0;">
+        <ng-image-slider #nav
+          [images]="imageObject"
+          [infinite]="false"
+          [autoSlide]="1"
+          [imageSize]="{width: '25%', height: 200}"
+          slideImage="1"></ng-image-slider>
+      </div>
      <!-- -----------------------------------------------Carousel Starts Here -->
        <!-- <div class="con-slider">
         <ul id="autoWidth" class="cs-hidden">

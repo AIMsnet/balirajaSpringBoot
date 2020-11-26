@@ -10,6 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { GovernmentComponent } from './views/government/government.component';
 import { SubcategoriesComponent } from './views/subcategories/subcategories.component';
 import { SupplierComponent } from './views/supplier/supplier.component';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SupplierComponent } from './views/supplier/supplier.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgImageSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,41 @@
-<p>subcategories works!</p>
+<!-- <div class="side-nav">
+  <div id="btn1" class="btn1">
+    <button class="btn side-nav-btn Tender" id="SoilCare">Soil Care <img src = "assets/Sidebar.png"></button>
+  </div>
+  <div id="btn3" class="btn3">
+    <button class="btn side-nav-btn GovtQuickLinks" id="GovtQuickLinks">Govt Quick Links <img src = "assets/GovtQuickLinks.png"></button>
+  </div>
+  <div id="btn4" class="btn4">
+    <button class="btn side-nav-btn Weather" id="Weather">Weather <img src = "assets/Weather.svg"></button>
+  </div>  
+</div> -->
+
+<div class="container-fluid CategoryHead">
+  <div class="heading justify-content-center input-group mt-1">
+    <h2>Farming Tools, Equipment & Machines</h2>
+  </div>
+
+  <section class="SubCategory-cards">
+      <div class="container">
+      <!-- {% for sub in subCategory %}
+        {% if forloop.first %} --><div class="row SubCategory-cardsRow"><!-- {% endif %}
+          {% csrf_token %} -->
+          <div class="col-md-3 subCategory" id = "">
+            <div class="card">
+            <div class="card-body text-center">
+              <div class="card-title">
+                <h3 class="heading" data-id = ""><!-- {{sub.name}} --></h3>
+                <img src=""/>
+                <h6><!-- {{sub.image}} --></h6>
+              </div>
+            </div>    
+            </div>
+          </div><!-- 
+        {% if forloop.counter|divisibleby:4 %} --></div><div class="row"><!-- {% endif %}
+        {% if forloop.last %} --></div><!-- {% endif %}
+        {% endfor %} -->
+        
+      
+      </div>
+    </section>
+</div>
