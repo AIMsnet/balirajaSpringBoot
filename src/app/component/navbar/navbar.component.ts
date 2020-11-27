@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { ToastrService } from 'ngx-toastr';
+import { Supplier, CreateSupplier } from '../../models/Supplier'
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +34,10 @@ export class NavbarComponent implements OnInit {
   customerSignUpAddress : String
   customerSignUpTaluka : String
   customerSignUpPost : String
-  // customerSignUpTaluka : String
+
+  //Model Variables
+  supplierModel : Supplier
+  public createSupplierModel = new CreateSupplier();
   constructor(private router: Router, public navBarService : NavbarService, private tosterService : ToastrService) { }
 
   ngOnInit(): void {
@@ -79,5 +84,27 @@ export class NavbarComponent implements OnInit {
         })
       }
     })
+  }
+
+
+  createSupplier(){
+    console.log("Supplier Name", this.suppplierSignUpfullname)
+    if (this.suppplierSignUpPassword == this.suppplierSignUpConfirmPassword){
+      this.createSupplierModel.full_name = this.suppplierSignUpfullname
+      this.createSupplierModel.email = this.suppplierSignUpEmail
+      this.createSupplierModel.password = this.suppplierSignUpPassword
+
+      this.navBarService.createNewSupplier(this.createSupplierModel).subscribe(response => {
+        console.log(JSON.stringify(response))
+        this.tosterService.success("Account Created Sucessfully.", "Baliraja", {
+          timeOut : 2000, progressBar : true, easing : 'ease-in'
+        })
+      })
+    }
+    else{
+      this.tosterService.error("Password and Confirm Password does not match.", "Baliraja", {
+        timeOut : 2000, progressBar : true, easing : 'ease-out'
+      })
+    }
   }
 }

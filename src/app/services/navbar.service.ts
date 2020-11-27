@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Supplier} from '../models/Supplier';
+import {Supplier, CreateSupplier} from '../models/Supplier';
 import { UrlMappings } from '../shared/UrlMappings';
 import { environment } from 'src/environments/environment';
 
@@ -11,8 +11,8 @@ export class NavbarService {
 
   constructor(public httpClient : HttpClient) { }
 
-  createNewSupplier(supplier : Supplier){
-    return this.httpClient.post(environment.baseUrl + UrlMappings.createSupplier, supplier)
+  createNewSupplier(createSupplier : CreateSupplier){
+    return this.httpClient.post(environment.baseUrl + UrlMappings.createSupplier, createSupplier)
   }
 
   supplierLogin(emailId : String, password : String){
