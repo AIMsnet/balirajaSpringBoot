@@ -80,3 +80,7 @@
   border: none;
   border-radius: 0px;
 }
+
+.btn.disable:hover {     
+  cursor: not-allowed;
+}

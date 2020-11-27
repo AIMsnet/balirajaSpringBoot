@@ -14,3 +14,9 @@ export class Supplier{
     pincode : Number;
     designation : String;
 }
+
+export class CreateSupplier{
+	full_name : String;
+	email : String;
+	password : String
+}
