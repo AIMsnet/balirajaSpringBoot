@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ContactsupplierComponent } from './views/contactsupplier/contactsupplier.component';
 import { GovernmentComponent } from './views/government/government.component';
 import { HomeComponent } from './views/home/home.component';
+import { ProductComponent } from './views/product/product.component';
+import { ProductdescriptionComponent } from './views/productdescription/productdescription.component';
 import { SubcategoriesComponent } from './views/subcategories/subcategories.component';
 import { SupplierComponent } from './views/supplier/supplier.component';
 
@@ -29,6 +32,18 @@ const routes: Routes = [
       {
         path : "supplier",
         component : SupplierComponent
+      },
+      {
+        path : "product",
+        component : ProductComponent
+      },
+      {
+        path : "productdesc",
+        component : ProductdescriptionComponent
+      },
+      {
+        path : "contactsupplier",
+        component : ContactsupplierComponent
       }
     ]
   }
