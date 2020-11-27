@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { GovernmentComponent } from './views/government/government.component';
 import { SubcategoriesComponent } from './views/subcategories/subcategories.component';
 import { SupplierComponent } from './views/supplier/supplier.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +30,11 @@ import { SupplierComponent } from './views/supplier/supplier.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ModalModule.forRoot()
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ModalModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
