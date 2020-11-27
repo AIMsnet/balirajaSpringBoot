@@ -24,4 +24,25 @@ export class HomeComponent implements OnInit {
     this.customerSignUpModal.show();
   }
 
+  imageObject = [{
+    image: 'assets/categories/shovel-svgrepo-com.svg',
+    thumbImage: 'assets/categories/shovel-svgrepo-com.svg'
+}, {
+    image: 'assets/categories/tractor.svg',
+    thumbImage: 'assets/categories/tractor.svg'
+}, {
+    image: 'assets/categories/seed.svg',
+    thumbImage: 'assets/categories/seed.svg'
+},{
+    image: 'assets/categories/plant.svg',
+    thumbImage: 'assets/categories/plant.svg'
+}, {
+    image: 'assets/categories/cow.svg',
+    thumbImage: 'assets/categories/cow.svg'
+}, {
+    image: 'assets/categories/harvester.svg',
+    thumbImage: 'assets/categories/harvester.svg'
+
+}];
+
 }
