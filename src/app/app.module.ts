@@ -17,6 +17,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgImageSliderModule } from 'ng-image-slider';
+import { ProductComponent } from './views/product/product.component';
+import { ProductdescriptionComponent } from './views/productdescription/productdescription.component';
+import { ContactsupplierComponent } from './views/contactsupplier/contactsupplier.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { NgImageSliderModule } from 'ng-image-slider';
     HomeComponent,
     GovernmentComponent,
     SubcategoriesComponent,
-    SupplierComponent
+    SupplierComponent,
+    ProductComponent,
+    ProductdescriptionComponent,
+    ContactsupplierComponent
   ],
   imports: [
     BrowserModule,

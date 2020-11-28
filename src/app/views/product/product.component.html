@@ -1,0 +1,133 @@
+<div class="container-fluid" style = "cursor:pointer">
+  <!-- ----------Navbar Position -->
+  <div class="row">
+      <div class="col-sm-2 col-md-3 col-lg-2 p-0 categoriesBelt">
+          <div class="sidenav ml-1">            
+              <h5 class="my-2 mx-2 text-center border-bottom">Filter</h5>
+              <ul class="navbar-nav nav flex-column">
+                  <li class="nav-item dropdown active">
+                          <a class="nav-link dropdown-toggle" role="button" data-toggle="collapse" data-target="#coladrop1" aria-expanded="true" aria-controls="coladrop1">
+                              Related Categories
+                          </a>
+                          <div class="collapse show" id="coladrop1" aria-labelledby="dropdownMenuButton" data-parent="#accordion">
+                              <a class="dropdown-item active" href="#maindiv">Agricultural Implements</a>
+                              <a class="dropdown-item" href="#">Agricultural Machinery</a>
+                              <a class="dropdown-item" href="#">Agricultural Machine Parts</a>
+                              <a class="dropdown-item" href="#">Agricultural Tools</a>
+                              <a class="dropdown-item" href="#">Farm Equipment</a>
+                              <a class="dropdown-item" href="#">Agricultural Tray</a>
+                              <a class="dropdown-item" href="#">Agricultural Ridger</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Agricultural Gyrovator</a>
+                              <a class="dropdown-item" href="#">Agricultural Wire</a>
+                              <a class="dropdown-item" href="#">Agricultural Tanks</a>
+                              <a class="dropdown-item" href="#">Sugarcane stubble shaver</a>
+                              <a class="dropdown-item" href="#">Agricultural Processing Plants</a>
+                          </div>                 
+                  </li>
+
+                  <li class="nav-item dropdown">    
+                      <a class="nav-link dropdown-toggle" role="button" data-toggle="collapse" data-target="#coladrop2" aria-expanded="false" aria-controls="coladrop2">
+                          Brands
+                      </a>
+                      <div class="collapse" id="coladrop2" aria-labelledby="dropdownMenuButton" data-parent="#accordion">
+                          <a class="dropdown-item" href="#">Honda</a>
+                          <a class="dropdown-item" href="#">AG Champ</a>
+                          <a class="dropdown-item" href="#">RIS Steel</a>
+                          <a class="dropdown-item" href="#">Kirloskar Power</a>
+                          <a class="dropdown-item" href="#">Adani</a>
+                          <!-- <a class="dropdown-item" href="#">HDPE Coil Pipes</a>
+                          <a class="dropdown-item" href="#">Lateral Pipes</a>
+                          <a class="dropdown-item" href="#">MDPE Pipes</a>
+                          <a class="dropdown-item" href="#">HDPE Sprinkler Pipes</a>
+                          <a class="dropdown-item" href="#">UPVC Pressure Pipes</a>
+                          <a class="dropdown-item" href="#">Grey Pipes</a>
+                          <a class="dropdown-item" href="#">LDPE Lay Flat Pipes</a>
+                          <a class="dropdown-item" href="#">Hdpe Tube</a> -->
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="col-sm-10 col-md-9 col-lg-10 productFrame">
+      <!-- {% for p in product %} -->
+          <div class="row rowProduct">
+              <div class="col-sm-3 col-md-3 col-lg-3 productImage">
+                  <img class="img-fluid" src = '' alt="Advertisement Pic">
+              </div>
+              <div class="col-sm-9 col-md-9 col-lg-9 productDescription">
+                <a class = "productLink" (click)="productdesc()">              
+                  <h5 class="card-title">name</h5>
+                  <p class="card-text m-0"> product description</p>
+                </a>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-8 col-lg-8 productDetails">
+                          <p class="productPara"><b>specification</b> &nbsp; description</p>
+                         <!--  <p class="productPara"><b>{{p.specification_2}}:</b> &nbsp; {{p.description_2}}</p>
+                          <p class="productPara"><b>{{p.specification_3}}:</b> &nbsp; {{p.description_3}}</p>
+                          <p class="productPara"><b>{{p.specification_4}}: </b> &nbsp; {{p.description_4}}</p>
+                          {% if p.specification_5 is not None %}
+                          <p class="productPara"><b>{{p.specification_5}}:</b> &nbsp;{{p.description_5}}</p>
+                          {% endif %} -->
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                      </div>
+                      <div class="col-sm-12 col-md-4 col-lg-4 productCompany">
+                          <p class="productPara">business.name</p>
+                          <p class="productPara companyAddress">business.supplier.district</p>
+                          <button type="button" class="btn btn-primary" (click)="openGetQuote()">Get Quote</button> <br>
+                          <button type="button" class="btn btn-primary" (click)="openContactSupplier()">Contact Supplier</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- Get Quote -->
+<div class="modal fade modalGetQuote" bsModal #getQuoteModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+          <h5 class="modal-title">Get Quote</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="getQuoteModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+
+      <div class="modal-body"> 
+          <h5 id = "productName" class="text-center">Husqvarna TF 544 Power Tiller</h5>
+          <form id = "submitQuote"> 
+              <!-- {% csrf_token %} -->
+              <div class="form-group">
+                  <input type = "number" name = "productId" id = "productId" class="form-control quoteControl" hidden = "true">
+                  <input type="number" name="productQty" id="productQty" class="form-control quoteControl" placeholder="Quantity" min="1">
+                  <select name="selectUnit" id="selectUnit" class="form-control quoteControl">
+                      <option value="" selected>Select Unit</option>
+                      <option value="Kg">Kg</option>
+                      <option value="Pack">pack</option>
+                      <option value="Unit">Unit</option>
+                      <option value="Meter">Meter</option>
+                      <option value="Piece">Piece</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" name="productRequirements" id="productRequirements" class="form-control quoteControl w-75" placeholder="Requirement">
+              </div>
+
+              <div class="form-group">
+                  <input type="submit" value="Submit" class="btn btn-primary float-right quoteControl">
+              </div>
+          </form>
+      </div>
+   </div>
+  </div>
+</div>

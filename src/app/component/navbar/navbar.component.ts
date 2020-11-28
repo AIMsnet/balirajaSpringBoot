@@ -69,6 +69,14 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/governmentlink')
   }
 
+  search(){
+   /*  var search = $('#navbarSearchInput').val()
+    if(search != ""){
+      location.href='/product/' + search
+    } */
+    this.router.navigateByUrl('/product')
+  }
+
   loginSupplier(){
     this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
       
