@@ -5,6 +5,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 import { ToastrService } from 'ngx-toastr';
 import { Supplier, CreateSupplier } from '../../models/Supplier'
 import { ThrowStmt } from '@angular/compiler';
+import { CreateCustomer } from 'src/app/models/Customer';
 
 @Component({
   selector: 'app-navbar',
@@ -34,10 +35,14 @@ export class NavbarComponent implements OnInit {
   customerSignUpAddress : String
   customerSignUpTaluka : String
   customerSignUpPost : String
+  customerSignUpDistrict : String
 
   //Model Variables
   supplierModel : Supplier
-  public createSupplierModel = new CreateSupplier();
+  createSupplierModel = new CreateSupplier();
+
+  createCustomerModel = new CreateCustomer();
+
   constructor(private router: Router, public navBarService : NavbarService, private tosterService : ToastrService) { }
 
   ngOnInit(): void {
@@ -95,7 +100,6 @@ export class NavbarComponent implements OnInit {
       this.createSupplierModel.password = this.suppplierSignUpPassword
 
       this.navBarService.createNewSupplier(this.createSupplierModel).subscribe(response => {
-        console.log(JSON.stringify(response))
         this.tosterService.success("Account Created Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
         })
@@ -106,5 +110,23 @@ export class NavbarComponent implements OnInit {
         timeOut : 2000, progressBar : true, easing : 'ease-out'
       })
     }
+  }
+
+  customerSignIn(){
+    
+  }
+
+  createCustomer(){
+    this.createCustomerModel.full_name  = this.customerSignUpFullName
+    this.createCustomerModel.mobile_number  = this.customerSignUpMobileNumber
+    this.createCustomerModel.address = this.customerSignUpAddress
+    this.createCustomerModel.taluka  = this.customerSignUpTaluka
+    this.createCustomerModel.pincode = this.customerSignUpPost
+    this.createCustomerModel.district = this.customerSignUpDistrict
+    this.navBarService.createNewcustomer(this.createCustomerModel).subscribe(response => {
+      this.tosterService.success("Account Created.", "Baliraja", {
+        timeOut : 2000, progressBar : true, easing : 'ease-in'
+      })
+    })
   }
 }
