@@ -81,8 +81,8 @@ export class NavbarComponent implements OnInit {
     this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
       
       console.log("Login reponse" + resp['sessionId'])
-      let sessionId = resp['sessionId']
-      let supplier = resp['supplier']
+      var sessionId = resp['sessionId']
+      var supplier = resp['supplier']
       if(sessionId == "Invalid"){
         this.tosterService.error("Invalid Credentials.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-out'
@@ -95,6 +95,7 @@ export class NavbarComponent implements OnInit {
         this.tosterService.success("Login Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
         })
+        this.supplierSignInModal.hide();
       }
     })
   }
@@ -106,7 +107,7 @@ export class NavbarComponent implements OnInit {
       this.createSupplierModel.full_name = this.suppplierSignUpfullname
       this.createSupplierModel.email = this.suppplierSignUpEmail
       this.createSupplierModel.password = this.suppplierSignUpPassword
-
+      this.supplierSignUpModal.hide()
       this.navBarService.createNewSupplier(this.createSupplierModel).subscribe(response => {
         this.tosterService.success("Account Created Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
