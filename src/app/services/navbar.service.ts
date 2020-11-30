@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Supplier, CreateSupplier} from '../models/Supplier';
+import {Customer, CreateCustomer} from '../models/Customer';
 import { UrlMappings } from '../shared/UrlMappings';
 import { environment } from 'src/environments/environment';
 
@@ -19,4 +20,8 @@ export class NavbarService {
     return this.httpClient.get(environment.baseUrl + UrlMappings.supplierLogIn + emailId + "/" + password)
   }
   
+  createNewcustomer(createCustomer: CreateCustomer){
+    return this.httpClient.post(environment.baseUrl + UrlMappings.createcustomer, createCustomer)
+  }
+
 }
