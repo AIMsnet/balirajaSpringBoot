@@ -38,7 +38,6 @@ export class NavbarComponent implements OnInit {
   customerSignUpDistrict : String
 
   //Model Variables
-  supplierModel : Supplier
   createSupplierModel = new CreateSupplier();
 
   createCustomerModel = new CreateCustomer();
@@ -79,10 +78,9 @@ export class NavbarComponent implements OnInit {
 
   loginSupplier(){
     this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
-      
-      console.log("Login reponse" + resp['sessionId'])
-      var sessionId = resp['sessionId']
-      var supplier = resp['supplier']
+
+      let sessionId = resp['sessionId']
+      let supplier = resp['supplier']
       if(sessionId == "Invalid"){
         this.tosterService.error("Invalid Credentials.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-out'
@@ -90,7 +88,7 @@ export class NavbarComponent implements OnInit {
       }
       else{
         localStorage.setItem("sessionId", sessionId)
-        localStorage.setItem("supplier", supplier)
+        localStorage.setItem("supplier", JSON.stringify(supplier))
         this.router.navigateByUrl('/supplier')
         this.tosterService.success("Login Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'

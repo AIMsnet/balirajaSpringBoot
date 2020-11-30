@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Supplier, Business } from 'src/app/models/Supplier';
+import { SupplierServiceService } from 'src/app/services/supplier/supplier-service.service';
 
 @Component({
   selector: 'app-supplier',
@@ -14,9 +16,16 @@ export class SupplierComponent implements OnInit {
   @ViewChild('editBusinessDetailModal') editBusinessDetailModal! : ModalDirective;
   @ViewChild('addProductModal') addProductModal! : ModalDirective;
   @ViewChild('editProductModal') editProductModal! : ModalDirective;
-  constructor() { }
+ 
+  constructor(public supplierServices : SupplierServiceService) { }
+
+  supplierModel =  new Supplier()
 
   ngOnInit(): void {
+
+    this.supplierServices.getSupplierBySessionId().subscribe(response =>{
+      this.supplierModel = response
+    })
   }
 
   addPersonalDetail(){

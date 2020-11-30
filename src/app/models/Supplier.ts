@@ -1,3 +1,28 @@
+export class CreateSupplier{
+	full_name : String;
+	email : String;
+	password : String
+}
+
+export class Business{
+	id : Number
+	name : String;
+	organisationType : String;
+	ownershipType : String;
+	businessType : String;
+	businessEmail : String;
+	websiteLink : String;
+	address : String;
+	description : String;
+	profileViews : Number;
+	yearOfEstablishment : Date;
+	gst : String;
+	pan : String;
+	cin : String;
+	dgft : String;
+
+}
+
 export class Supplier{
     id : Number;
 	full_name : String;
@@ -12,11 +37,6 @@ export class Supplier{
 	taluka : String;
     state : String;
     pincode : Number;
-    designation : String;
-}
-
-export class CreateSupplier{
-	full_name : String;
-	email : String;
-	password : String
+	designation : String;
+	business = new Business();
 }
