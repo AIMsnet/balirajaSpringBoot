@@ -19,12 +19,15 @@ export class SupplierComponent implements OnInit {
  
   constructor(public supplierServices : SupplierServiceService) { }
 
+
   supplierModel =  new Supplier()
-
+  login : Boolean
   ngOnInit(): void {
-
+    this.login = true
     this.supplierServices.getSupplierBySessionId().subscribe(response =>{
       this.supplierModel = response
+      console.log(response)
+      console.log(this.supplierModel)
     })
   }
 

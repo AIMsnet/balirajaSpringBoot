@@ -32,6 +32,7 @@ export class Supplier{
 	password : String;
 	email_optional : String;
 	address : String;
+	city : String
     area_street : String;
 	district : String;
 	taluka : String;
