@@ -14,4 +14,9 @@ export class SupplierServiceService {
   getSupplierBySessionId() : Observable<any>{
     return this.httpClient.get(environment.baseUrl + UrlMappings.getLoggedInSupplier + "/" + localStorage.getItem('sessionId'));
   }
+
+  updatePersonalDetail(Supplier){
+    return this.httpClient.post(environment.baseUrl + UrlMappings.updateSupplier, new Headers(sessionId))
+  }
+
 }

@@ -26,8 +26,8 @@ export class Business{
 export class Supplier{
     id : Number;
 	full_name : String;
-    phone_number : Number;
-	mobile_number : Number;
+    phone_number : String;
+	mobile_number : String;
 	email : String;
 	password : String;
 	email_optional : String;
@@ -37,7 +37,7 @@ export class Supplier{
 	district : String;
 	taluka : String;
     state : String;
-    pincode : Number;
+    pincode : String;
 	designation : String;
 	business = new Business();
 }

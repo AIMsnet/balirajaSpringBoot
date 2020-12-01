@@ -19,15 +19,42 @@ export class SupplierComponent implements OnInit {
  
   constructor(public supplierServices : SupplierServiceService) { }
 
+  // Instances
+  personalDetailName : String
+  personalDetailDesignation : String  
+  personalDetailPhoneNumber : String
+  personalDetailMobileNumber : String
+  personalDetailEmail : String
+  personalDetailEmailOptional : String
+  personalDetailAddress : String
+  personalDetailAreaStreet : String
+  personalDetailCity : String
+  personalDetailDistrict : String
+  personalDetailTaluka : String
+  personalDetailState : String
+  personalDetailPincode : String
 
+
+  // Model Variable
   supplierModel =  new Supplier()
-  login : Boolean
+
+
   ngOnInit(): void {
-    this.login = true
     this.supplierServices.getSupplierBySessionId().subscribe(response =>{
       this.supplierModel = response
-      console.log(response)
-      console.log(this.supplierModel)
+      this.personalDetailName = this.supplierModel.full_name
+      this.personalDetailDesignation = this.supplierModel.designation
+      this.personalDetailPhoneNumber = this.supplierModel.phone_number
+      this.personalDetailMobileNumber = this.supplierModel.mobile_number
+      this.personalDetailEmail = this.supplierModel.email
+      this.personalDetailEmailOptional = this.supplierModel.email_optional
+      this.personalDetailAddress = this.supplierModel.address
+      this.personalDetailAreaStreet = this.supplierModel.area_street
+      this.personalDetailCity = this.supplierModel.city
+      this.personalDetailDistrict = this.supplierModel.district
+      this.personalDetailTaluka = this.supplierModel.taluka
+      this.personalDetailState = this.supplierModel.state
+      this.personalDetailPincode = this.supplierModel.pincode
     })
   }
 
@@ -41,6 +68,13 @@ export class SupplierComponent implements OnInit {
 
   newproduct(){
     this.addProductModal.show();
+  }
+
+  // Non UI calls
+  personalDetailFormSubmit(){
+    console.log("Form Submit")
+
+    
   }
 
 }

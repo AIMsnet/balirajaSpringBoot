@@ -390,59 +390,70 @@
       </div>
 
       <div class="modal-body">
-        <form id = "personalDetail">
-          <!-- {% csrf_token %} -->
-
+        <form id = "personalDetail" #personalDetail = "ngForm" (ngSubmit) = "personalDetailFormSubmit()">
           <div class="form-group">
-            <!-- {{supplierProfileForm.full_name}} -->
+            <input type="text" [(ngModel)] = "personalDetailName" name="personalDetailName" id="personalDetailName">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.designation}} -->
+            <input type="text" [(ngModel)] = "personalDetailDesignation" name="personalDetailDesignation" id="personalDetailDesignation">
+
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.phone_number}} -->
+            <input type="text" [(ngModel)] = "personalDetailPhoneNumber" name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.mobile_number}} -->
+            <input type="text" [(ngModel)] = "personalDetailMobileNumber" name="personalDetailMobileNumber" id="personalDetailMobileNumber">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.email}} -->
+            <input type="text" [(ngModel)] = "personalDetailEmail" name="personalDetailEmail" id="personalDetailEmail">
           </div>
-
+Email
           <div class="form-group">
             <!-- {{supplierProfileForm.email_optional}} -->
+            <input type="text" [(ngModel)] = "personalDetailEmailOptional" name="personalDetailEmailOptional" id="personalDetailEmailOptional">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.address}} -->
+            <input type="text" [(ngModel)] = "personalDetailAddress" name="personalDetailAddress" id="personalDetailAddress">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.area_street}} -->
+            <input type="text" [(ngModel)] = "personalDetailAreaStreet" name="personalDetailAreaStreet" id="personalDetailAreaStreet">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.city}} -->
+            <input type="text" [(ngModel)] = "personalDetailCity" name="personalDetailCity" id="personalDetailCity">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.district}} -->
+            <input type="text" [(ngModel)] = "personalDetailDistrict" name="personalDetailDistrict" id="personalDetailDistrict">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.taluka}} -->
+            <input type="text" [(ngModel)] = "personalDetailTaluka" name="personalDetailTaluka" id="personalDetailTaluka">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.state}} -->
+            <input type="text" [(ngModel)] = "personalDetailState" name="personalDetailState" id="personalDetailState">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.pincode}} -->
+            <input type="text" [(ngModel)] = "personalDetailPincode" name="personalDetailPincode" id="personalDetailPincode">
           </div>
 
           <div class="form-group text-center">

@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   customerSignUpPost : String
   customerSignUpDistrict : String
 
-  sessionId : String
+  sessionId : string
 
   //Model Variables
   createSupplierModel = new CreateSupplier();
@@ -81,13 +81,13 @@ export class NavbarComponent implements OnInit {
   loginSupplier(){
     this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
       this.sessionId = resp['sessionId']
-      if(sessionId == "Invalid"){
+      if(this.sessionId == "Invalid"){
         this.tosterService.error("Invalid Credentials.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-out'
         })
       }
       else{
-        localStorage.setItem("sessionId", sessionId)
+        localStorage.setItem("sessionId", this.sessionId)
         this.router.navigateByUrl('/supplier')
         this.tosterService.success("Login Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
