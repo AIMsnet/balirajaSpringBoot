@@ -392,68 +392,81 @@
       <div class="modal-body">
         <form id = "personalDetail" #personalDetail = "ngForm" (ngSubmit) = "personalDetailFormSubmit()">
           <div class="form-group">
-            <input type="text" [(ngModel)] = "personalDetailName" name="personalDetailName" id="personalDetailName">
+            <label for="personalDetailName">First Name</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailName" name="personalDetailName" id="personalDetailName">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.designation}} -->
-            <input type="text" [(ngModel)] = "personalDetailDesignation" name="personalDetailDesignation" id="personalDetailDesignation">
+            <label for="personalDetailDesignation">Designation</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailDesignation" name="personalDetailDesignation" id="personalDetailDesignation">
 
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.phone_number}} -->
-            <input type="text" [(ngModel)] = "personalDetailPhoneNumber" name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
+            <label for="personalDetailPhoneNumber">Phone Number</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailPhoneNumber" name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.mobile_number}} -->
-            <input type="text" [(ngModel)] = "personalDetailMobileNumber" name="personalDetailMobileNumber" id="personalDetailMobileNumber">
+            <label for="personalDetailMobileNumber">Mobile Number</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailMobileNumber" name="personalDetailMobileNumber" id="personalDetailMobileNumber">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.email}} -->
-            <input type="text" [(ngModel)] = "personalDetailEmail" name="personalDetailEmail" id="personalDetailEmail">
+            <label for="personalDetailEmail">Email ID</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailEmail" name="personalDetailEmail" id="personalDetailEmail">
           </div>
-Email
+
           <div class="form-group">
             <!-- {{supplierProfileForm.email_optional}} -->
-            <input type="text" [(ngModel)] = "personalDetailEmailOptional" name="personalDetailEmailOptional" id="personalDetailEmailOptional">
+            <label for="personalDetailEmailOptional">Optional Email ID</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailEmailOptional" name="personalDetailEmailOptional" id="personalDetailEmailOptional">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.address}} -->
-            <input type="text" [(ngModel)] = "personalDetailAddress" name="personalDetailAddress" id="personalDetailAddress">
+            <label for="personalDetailAddress">Address</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailAddress" name="personalDetailAddress" id="personalDetailAddress">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.area_street}} -->
-            <input type="text" [(ngModel)] = "personalDetailAreaStreet" name="personalDetailAreaStreet" id="personalDetailAreaStreet">
+            <label for="personalDetailAreaStreet">Area/Street</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailAreaStreet" name="personalDetailAreaStreet" id="personalDetailAreaStreet">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.city}} -->
-            <input type="text" [(ngModel)] = "personalDetailCity" name="personalDetailCity" id="personalDetailCity">
+            <label for="personalDetailCity">City</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailCity" name="personalDetailCity" id="personalDetailCity">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.district}} -->
-            <input type="text" [(ngModel)] = "personalDetailDistrict" name="personalDetailDistrict" id="personalDetailDistrict">
+            <label for="personalDetailDistrict">District</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailDistrict" name="personalDetailDistrict" id="personalDetailDistrict">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.taluka}} -->
-            <input type="text" [(ngModel)] = "personalDetailTaluka" name="personalDetailTaluka" id="personalDetailTaluka">
+            <label for="personalDetailTaluka">Taluka</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailTaluka" name="personalDetailTaluka" id="personalDetailTaluka">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.state}} -->
-            <input type="text" [(ngModel)] = "personalDetailState" name="personalDetailState" id="personalDetailState">
+            <label for="personalDetailState">State</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailState" name="personalDetailState" id="personalDetailState">
           </div>
 
           <div class="form-group">
             <!-- {{supplierProfileForm.pincode}} -->
-            <input type="text" [(ngModel)] = "personalDetailPincode" name="personalDetailPincode" id="personalDetailPincode">
+            <label for="personalDetailPincode">Pincode</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)] = "personalDetailPincode" name="personalDetailPincode" id="personalDetailPincode">
           </div>
 
           <div class="form-group text-center">
@@ -483,47 +496,56 @@ Email
           <!-- {% csrf_token %} -->
 
           <div class="form-group">
-            <label for="Full Name">Full Name</label>
+            <label for="fname">Full Name</label>
+            <input id="fname" name="fname" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.full_name}} -->
           </div>
 
           <div class="form-group">
-            <label for="emailOptional">Email Optional</label>
+            <label for="optionalmail">Email Optional</label>
+            <input id="optionalmail" name="optionalmail" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.email_optional}} -->
           </div>
 
           <div class="form-group">
             <label for="address">Address</label>
+            <input id="address" name="address" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.address}} -->
           </div>
 
           <div class="form-group">
-            <label for="area_street">Area/Street</label>
+            <label for="area">Area/Street</label>
+            <input id="area" name="area" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.area_street}} -->
           </div>
 
           <div class="form-group">
             <label for="city">City</label>
+            <input id="city" name="city" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.city}} -->
           </div>
 
           <div class="form-group">
             <label for="district">District</label>
+            <input id="district" name="district" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.district}} -->
           </div>
 
           <div class="form-group">
             <label for="taluka">Taluka</label>
+            <input id="taluka" name="taluka" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.taluka}} -->
           </div>
 
           <div class="form-group">
             <label for="state">State</label>
+            <input id="state" name="state" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.state}} -->
           </div>
 
           <div class="form-group">
             <label for="pincode">Pincode</label>
+            <input id="pincode" name="pincode" class="form-control form-control-sm">
             <!-- {{supplierProfileForm.pincode}} -->
           </div>
 
@@ -553,54 +575,80 @@ Email
           <!-- {% csrf_token %} -->
 
           <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="form-control form-control-sm">
             <!-- {{businessProfileForm.name}} -->
           </div>
 
           <div class="form-group">
+            <label for="organisationtype">Organisation Type</label>
+            <input id="organisationtype" name="organisationtype" class="form-control form-control-sm">
             <!-- {{businessProfileForm.organisation_type}} -->
           </div>
 
           <div class="form-group">
+            <label for="ownershiptype">Ownership Type</label>
+            <input id="ownershiptype" name="ownershiptype" class="form-control form-control-sm">
             <!-- {{businessProfileForm.ownership_type}} -->
           </div>
 
           <div class="form-group">
+            <label for="businesstype">Business Type</label>
+            <input id="businesstype" name="businesstype" class="form-control form-control-sm">
             <!-- {{businessProfileForm.business_type}} -->
           </div>
 
           <div class="form-group">
+            <label for="businessemail">Business Email</label>
+            <input id="businessemail" name="businessemail" class="form-control form-control-sm">
             <!-- {{ businessProfileForm.business_email}} -->
           </div>
 
-          <div class="form-group">  
+          <div class="form-group">
+            <label for="websitelink">Website Link</label>
+            <input id="websitelink" name="websitelink" class="form-control form-control-sm">
             <!-- {{businessProfileForm.website_link}} -->
           </div>
 
           <div class="form-group">
+            <label for="Address">Address</label>
+            <input id="Address" name="Address" class="form-control form-control-sm">
             <!-- {{businessProfileForm.address}} -->
           </div>
 
           <div class="form-group">
+            <label for="yearofestablishment">Year of Establishment</label>
+            <input id="yearofestablishment" name="yearofestablishment" class="form-control form-control-sm">
             <!-- {{businessProfileForm.year_of_establishment}} -->
           </div>
 
           <div class="form-group">
+            <label for="Description">Description</label>
+            <input id="Description" name="Description" class="form-control form-control-sm">
             <!-- {{businessProfileForm.description}} -->
           </div>
 
           <div class="form-group">
+            <label for="GST">GST</label>
+            <input id="GST" name="GST" class="form-control form-control-sm">
             <!-- {{businessProfileForm.GST}} -->
           </div>
 
           <div class="form-group">
+            <label for="PAN">PAN</label>
+            <input id="PAN" name="PAN" class="form-control form-control-sm">
             <!-- {{businessProfileForm.PAN}} -->
           </div>
 
           <div class="form-group">
+            <label for="CIN">CIN</label>
+            <input id="CIN" name="CIN" class="form-control form-control-sm">
             <!-- {{businessProfileForm.CIN}} -->
           </div>
 
           <div class="form-group">
+            <label for="DGFT">DGFT</label>
+            <input id="DGFT" name="DGFT" class="form-control form-control-sm">
             <!-- {{businessProfileForm.DGFT}} -->
           </div>
 
@@ -630,32 +678,38 @@ Email
           <!-- {% csrf_token %} -->
 
           <div class="form-group">
-            <label for="business_type">Business Type</label>
+            <label for="editbusinesstype">Business Type</label>
+            <input id="editbusinesstype" name="editbusinesstype" class="form-control form-control-sm">
             <!-- {{businessProfileForm.business_type}} -->
           </div>
 
           <div class="form-group">
-            <label for="business_email">Business Email</label>
+            <label for="editbusinessemail">Business Email</label>
+            <input id="editbusinessemail" name="editbusinessemail" class="form-control form-control-sm">
             <!-- {{ businessProfileForm.business_email}} -->
           </div>
 
           <div class="form-group">
-            <label for="organistaion_type">Organisation Type </label>
+            <label for="editorganistaiontype">Organisation Type </label>
+            <input id="editorganistaiontype" name="editorganistaiontype" class="form-control form-control-sm">
             <!-- {{businessProfileForm.organisation_type}} -->
           </div>
 
           <div class="form-group">
-            <label for="ownership_type">Ownership Type</label>
+            <label for="editownershiptype">Ownership Type</label>
+            <input id="editownershiptype" name="editownershiptype" class="form-control form-control-sm">
             <!-- {{businessProfileForm.ownership_type}} -->
           </div>
 
           <div class="form-group">
-            <label for="website_link">Website Link</label>
+            <label for="editwebsitelink">Website Link</label>
+            <input id="editwebsitelink" name="editwebsitelink" class="form-control form-control-sm">
             <!-- {{businessProfileForm.website_link}} -->
           </div>
 
           <div class="form-group">
-            <label for="address">Address</label>
+            <label for="editaddress">Address</label>
+            <input id="editaddress" name="editaddress" class="form-control form-control-sm">
             <!-- {{businessProfileForm.address}} -->
           </div>
 
