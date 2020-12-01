@@ -20,7 +20,7 @@
 
   <!-- ----------------------------List Visibled on incomplete Details -->
   
-  <div *ngIf="(supplierModel.pincode && supplierModel.business.gst) == null; else profileCompleted">
+  <div *ngIf="(supplierModel.pincode && businessModel.gst) == null; else profileCompleted">
     <div class="container-fluid">
       <div class="container"  style="padding-bottom: 15%; padding-top: 15%; text-align: center;">
         <h3>Your profile is incomplete please add following details</h3>
@@ -392,68 +392,68 @@
       <div class="modal-body">
         <form id = "personalDetail" #personalDetail = "ngForm" (ngSubmit) = "personalDetailFormSubmit()">
           <div class="form-group">
-            <input type="text" [(ngModel)] = "personalDetailName" name="personalDetailName" id="personalDetailName">
+            <input type="text" [(ngModel)] = "supplierModel.full_name" name="personalDetailName" id="personalDetailName">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.designation}} -->
-            <input type="text" [(ngModel)] = "personalDetailDesignation" name="personalDetailDesignation" id="personalDetailDesignation">
+            supplierProfileForm.designation
+            <input type="text" [(ngModel)] = "supplierModel.designation" name="personalDetailDesignation" id="personalDetailDesignation">
 
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.phone_number}} -->
-            <input type="text" [(ngModel)] = "personalDetailPhoneNumber" name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
+            supplierProfileForm.phone_number}}
+            <input type="text" [(ngModel)] = "supplierModel.phone_number" name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.mobile_number}} -->
-            <input type="text" [(ngModel)] = "personalDetailMobileNumber" name="personalDetailMobileNumber" id="personalDetailMobileNumber">
+            supplierProfileForm.mobile_number}}
+            <input type="text" [(ngModel)] = "supplierModel.mobile_number" name="personalDetailMobileNumber" id="personalDetailMobileNumber">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.email}} -->
-            <input type="text" [(ngModel)] = "personalDetailEmail" name="personalDetailEmail" id="personalDetailEmail">
-          </div>
-Email
-          <div class="form-group">
-            <!-- {{supplierProfileForm.email_optional}} -->
-            <input type="text" [(ngModel)] = "personalDetailEmailOptional" name="personalDetailEmailOptional" id="personalDetailEmailOptional">
+            supplierProfileForm.email}}
+            <input type="text" [(ngModel)] = "supplierModel.email" name="personalDetailEmail" id="personalDetailEmail">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.address}} -->
-            <input type="text" [(ngModel)] = "personalDetailAddress" name="personalDetailAddress" id="personalDetailAddress">
+            supplierProfileForm.email_optional}}
+            <input type="text" [(ngModel)] = "supplierModel.email_optional" name="personalDetailEmailOptional" id="personalDetailEmailOptional">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.area_street}} -->
-            <input type="text" [(ngModel)] = "personalDetailAreaStreet" name="personalDetailAreaStreet" id="personalDetailAreaStreet">
+            supplierProfileForm.address}}
+            <input type="text" [(ngModel)] = "supplierModel.address" name="personalDetailAddress" id="personalDetailAddress">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.city}} -->
-            <input type="text" [(ngModel)] = "personalDetailCity" name="personalDetailCity" id="personalDetailCity">
+          supplierProfileForm.area_street}}
+            <input type="text" [(ngModel)] = "supplierModel.area_street" name="personalDetailAreaStreet" id="personalDetailAreaStreet">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.district}} -->
-            <input type="text" [(ngModel)] = "personalDetailDistrict" name="personalDetailDistrict" id="personalDetailDistrict">
+            supplierProfileForm.city}}
+            <input type="text" [(ngModel)] = "supplierModel.city" name="personalDetailCity" id="personalDetailCity">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.taluka}} -->
-            <input type="text" [(ngModel)] = "personalDetailTaluka" name="personalDetailTaluka" id="personalDetailTaluka">
+            supplierProfileForm.district}}
+            <input type="text" [(ngModel)] = "supplierModel.district" name="personalDetailDistrict" id="personalDetailDistrict">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.state}} -->
-            <input type="text" [(ngModel)] = "personalDetailState" name="personalDetailState" id="personalDetailState">
+            supplierProfileForm.taluka}}
+            <input type="text" [(ngModel)] = "supplierModel.taluka" name="personalDetailTaluka" id="personalDetailTaluka">
           </div>
 
           <div class="form-group">
-            <!-- {{supplierProfileForm.pincode}} -->
-            <input type="text" [(ngModel)] = "personalDetailPincode" name="personalDetailPincode" id="personalDetailPincode">
+            supplierProfileForm.state}}
+            <input type="text" [(ngModel)] = "supplierModel.state" name="personalDetailState" id="personalDetailState">
+          </div>
+
+          <div class="form-group">
+            supplierProfileForm.pincode}}
+            <input type="text" [(ngModel)] = "supplierModel.pincode" name="personalDetailPincode" id="personalDetailPincode">
           </div>
 
           <div class="form-group text-center">

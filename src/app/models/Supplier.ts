@@ -20,7 +20,6 @@ export class Business{
 	pan : String;
 	cin : String;
 	dgft : String;
-
 }
 
 export class Supplier{
@@ -39,5 +38,4 @@ export class Supplier{
     state : String;
     pincode : String;
 	designation : String;
-	business = new Business();
 }

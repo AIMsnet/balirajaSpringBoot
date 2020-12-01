@@ -4,7 +4,7 @@ export class UrlMappings{
     public static supplierLogIn  = "supplier/login/"
     public static getLoggedInSupplier = "supplier/getSupplier"
     public static createSupplier = "supplier/createSupplier"
-    public static updateSupplier = "supllier/updateSupplier"
+    public static updateSupplier = "supplier/updateSupplier"
 
     //Customer Url
     public static customerSignIn = ""
