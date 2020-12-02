@@ -38,4 +38,22 @@ export class Supplier{
     state : String;
     pincode : String;
 	designation : String;
+} 
+
+
+export class createBusiness{
+	name : String;
+	organisationType : String;
+	ownershipType : String;
+	businessType : String;
+	businessEmail : String;
+	websiteLink : String;
+	address : String;
+	description : String;
+	profileViews : Number;
+	yearOfEstablishment : Date;
+	gst : String;
+	pan : String;
+	cin : String;
+	dgft : String;
 }

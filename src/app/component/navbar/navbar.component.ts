@@ -38,6 +38,7 @@ export class NavbarComponent implements OnInit {
   customerSignUpDistrict : String
 
   sessionId : string
+  login : boolean
 
   //Model Variables
   createSupplierModel = new CreateSupplier();
@@ -47,7 +48,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, public navBarService : NavbarService, private tosterService : ToastrService) { }
 
   ngOnInit(): void {
-   
+   this.login = false
   }
 
   openhome(){
@@ -92,6 +93,7 @@ export class NavbarComponent implements OnInit {
         this.tosterService.success("Login Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
         })
+        this.login = true
         this.supplierSignInModal.hide();
       }
     })

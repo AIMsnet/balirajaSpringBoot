@@ -70,7 +70,7 @@
             <a class="nav-link" (click)="opengovermentlink()">Goverment Links</a>
           </li>
 
-          <li *ngIf = "!login" class="nav-item">
+          <li *ngIf = "!login ; else logout" class="nav-item">
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent;
               border: transparent; font-size: 2.5vh;">Login
@@ -82,6 +82,13 @@
             </div>
           </li>
 
+          <ng-template #logout>
+            <li class="nav-item">
+              <a class="nav-link">Logout</a>
+            </li>
+          </ng-template>
+
+          
         </ul>
       </div>
     </div>
@@ -189,7 +196,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id = "customerSignIn" #customerSignIn = "ngForm" (ngSubmit) = "customerSignIn()" style="text-align: -webkit-center;">
+        <form id = "customerSignIn" #customerSignIn = "ngForm"  style="text-align: -webkit-center;">
           <div class="form-group">
               <input type="number" class="form-control supplierSignInFormControl" [(ngModel)] = "customerSignInContact" name="customerSignInContact" id="customercustomerSignInContact" placeholder="Contact Number">
           </div>
