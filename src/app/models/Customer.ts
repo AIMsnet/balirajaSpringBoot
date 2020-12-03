@@ -1,7 +1,7 @@
 export class Customer{
 	id : Number
-    full_name : String;
-	mobile_number: String;
+    fullName : String;
+	mobileNumber: String;
     address: String;
 	district: String;
 	taluka: String;
@@ -10,8 +10,8 @@ export class Customer{
 }
 
 export class CreateCustomer{
-	full_name : String;
-	mobile_number: String;
+	fullName : String;
+	mobileNumber: String;
     address: String;
 	district: String;
 	taluka: String;

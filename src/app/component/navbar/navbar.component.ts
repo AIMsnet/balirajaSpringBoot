@@ -4,7 +4,6 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { ToastrService } from 'ngx-toastr';
 import { Supplier, CreateSupplier } from '../../models/Supplier'
-import { ThrowStmt } from '@angular/compiler';
 import { CreateCustomer } from 'src/app/models/Customer';
 
 @Component({
@@ -14,11 +13,15 @@ import { CreateCustomer } from 'src/app/models/Customer';
 })
 export class NavbarComponent implements OnInit {
 
-  @ViewChild('supplierSignInModal') supplierSignInModal : ModalDirective;
-  @ViewChild('supplierSignUpModal') supplierSignUpModal : ModalDirective;
-  @ViewChild('customerSignInModal') customerSignInModal : ModalDirective;
+  // @ViewChild('customerSignInModal') customerSignInModal : ModalDirective;
   @ViewChild('customerSignUpModal') customerSignUpModal : ModalDirective;
 
+
+  @ViewChild('supplierSignUp', { static: false }) supplierSignUpModal: ModalDirective;
+  
+  @ViewChild('supplierSignInModal', { static: false }) supplierSignInModal: ModalDirective;
+  
+  @ViewChild('customerSignUpModal', { static: false }) customerSignInModal: ModalDirective;
   //Variables
   supplierLoginEmailId : String
   supplierLoginpassword : String
@@ -57,14 +60,6 @@ export class NavbarComponent implements OnInit {
 
   openlistbusiness(){
     this.supplierSignUpModal.show()
-  }
-
-  opensuppliersignin(){
-    this.supplierSignInModal.show();
-  }
-
-  opencustomersignin(){
-    this.customerSignInModal.show();
   }
 
   opengovermentlink(){
@@ -124,17 +119,40 @@ export class NavbarComponent implements OnInit {
     
   }
 
+
   createCustomer(){
-    this.createCustomerModel.full_name  = this.customerSignUpFullName
-    this.createCustomerModel.mobile_number  = this.customerSignUpMobileNumber
+    this.createCustomerModel.fullName  = this.customerSignUpFullName
+    this.createCustomerModel.mobileNumber  = this.customerSignUpMobileNumber
     this.createCustomerModel.address = this.customerSignUpAddress
     this.createCustomerModel.taluka  = this.customerSignUpTaluka
     this.createCustomerModel.pincode = this.customerSignUpPost
     this.createCustomerModel.district = this.customerSignUpDistrict
     this.navBarService.createNewcustomer(this.createCustomerModel).subscribe(response => {
-      this.tosterService.success("Account Created.", "Baliraja", {
-        timeOut : 2000, progressBar : true, easing : 'ease-in'
-      })
+      console.log("This is response -> ", response)
+      this.customerSignInModal.hide()
+      if(response != null){
+          this.tosterService.success("Account Created.", "Baliraja", {
+          timeOut : 2000, progressBar : true, easing : 'ease-in'})
+      }else{
+        this.tosterService.error("Mobile Number already existing.", "Baliraja", {
+        timeOut : 2000, progressBar : true, easing : 'ease-in'})
+      }
     })
+  }
+
+  customerLogin(){
+      this.navBarService.customerLogin(Number(this.customerSignInContact)).subscribe(response => {
+        console.log(JSON.stringify(response))
+        if(response === "No Account Found Or Invalid Number"){
+          this.tosterService.success("No Account Found Or Invalid Number.", "Baliraja", {
+            timeOut : 2000, progressBar : true, easing : 'ease-in'})
+        }
+        else{
+          localStorage.setItem("sessionId", response['response'])
+          this.tosterService.error("Login Sucess.", "Baliraja", {
+            timeOut : 2000, progressBar : true, easing : 'ease-in'})
+            this.login = true
+        }
+      })
   }
 }

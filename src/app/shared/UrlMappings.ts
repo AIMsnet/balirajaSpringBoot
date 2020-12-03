@@ -12,5 +12,6 @@ export class UrlMappings{
     
     //Customer Url
     public static customerSignIn = ""
+    public static customerLogin = "customer/customerLogin/"
     public static createcustomer = "customer/createCustomer"
 }   

@@ -24,4 +24,8 @@ export class NavbarService {
     return this.httpClient.post(environment.baseUrl + UrlMappings.createcustomer, createCustomer)
   }
 
+  customerLogin(mobileNumber : Number){
+    return this.httpClient.get(environment.baseUrl + UrlMappings.customerLogin + mobileNumber)
+  }
+
 }
