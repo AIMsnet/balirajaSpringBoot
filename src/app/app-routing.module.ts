@@ -26,7 +26,8 @@ const routes: Routes = [
         component : GovernmentComponent
       },
       {
-        path : "subcategories",
+        path : "subCategories/:id",
+        pathMatch : 'full',
         component : SubcategoriesComponent
       },
       {

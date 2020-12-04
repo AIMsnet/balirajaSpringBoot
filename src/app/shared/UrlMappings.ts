@@ -14,4 +14,8 @@ export class UrlMappings{
     public static customerSignIn = ""
     public static customerLogin = "customer/customerLogin/"
     public static createcustomer = "customer/createCustomer"
+
+    //Category
+
+    public static getMainCategory = "mainCategory/getMainCategoryById/"
 }   

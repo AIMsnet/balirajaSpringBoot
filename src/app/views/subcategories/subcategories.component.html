@@ -17,25 +17,41 @@
 
   <section class="SubCategory-cards">
       <div class="container">
-      <!-- {% for sub in subCategory %}
-        {% if forloop.first %} --><div class="row SubCategory-cardsRow"><!-- {% endif %}
-          {% csrf_token %} -->
-          <div class="col-md-3 subCategory" id = "">
-            <div class="card">
+        <div class="row">
+          <div *ngFor = "let subCategory of subMainCategory" class="col-md-3 subCategory" id = "" >
+            <div class="card" (click)="showModalCategory(subCategory.id)">
             <div class="card-body text-center">
               <div class="card-title">
-                <h3 class="heading" data-id = ""><!-- {{sub.name}} --></h3>
+                <h3 class="heading" data-id = "">{{subCategory.name}}</h3>
                 <img src=""/>
                 <h6><!-- {{sub.image}} --></h6>
               </div>
             </div>    
             </div>
-          </div><!-- 
-        {% if forloop.counter|divisibleby:4 %} --></div><div class="row"><!-- {% endif %}
-        {% if forloop.last %} --></div><!-- {% endif %}
-        {% endfor %} -->
-        
-      
+          </div>
+        </div>
       </div>
     </section>
+</div>
+
+
+<div class="modal fade" bsModal #categoryModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Static modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="categoryModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul id = "categoryid">
+          <li *ngFor = "let cat of category">
+            {{cat.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

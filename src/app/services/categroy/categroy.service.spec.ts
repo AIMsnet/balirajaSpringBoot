@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EmitServiceService } from './emit-service.service';
+import { CategroyService } from './categroy.service';
 
-describe('EmitServiceService', () => {
-  let service: EmitServiceService;
+describe('CategroyService', () => {
+  let service: CategroyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EmitServiceService);
+    service = TestBed.inject(CategroyService);
   });
 
   it('should be created', () => {

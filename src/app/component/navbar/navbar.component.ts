@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   
   @ViewChild('supplierSignInModal', { static: false }) supplierSignInModal: ModalDirective;
   
-  @ViewChild('customerSignUpModal', { static: false }) customerSignInModal: ModalDirective;
+  @ViewChild('customerSignInModal', { static: false }) customerSignInModal: ModalDirective;
   //Variables
   supplierLoginEmailId : String
   supplierLoginpassword : String
