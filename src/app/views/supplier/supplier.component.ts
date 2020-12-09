@@ -18,6 +18,9 @@ export class SupplierComponent implements OnInit {
 
   @ViewChild('addProductModal') addProductModal! : ModalDirective;
   @ViewChild('editProductModal') editProductModal! : ModalDirective;
+
+  @ViewChild('addSpecificationModal') addSpecificationModal: ModalDirective;
+  @ViewChild('photoModal') photoModal: ModalDirective;
  
   // Instances
   personalDetailName : String
@@ -72,6 +75,16 @@ export class SupplierComponent implements OnInit {
         this.editBusinessModel = Object.assign({},  response['business']['0'])
       }
     })
+  }
+
+  addSpecification(){
+    this.addSpecificationModal.show();
+    this.addProductModal.hide();
+  }
+
+  openPhoto(){
+    this.photoModal.show();
+    this.addProductModal.hide();
   }
 
   newproduct(){
