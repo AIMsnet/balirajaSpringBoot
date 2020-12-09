@@ -2,6 +2,7 @@ export class UrlMappings{
    
     // Supplier Url
     public static supplierLogIn  = "supplier/login/"
+    public static supplierLogout = "supplier/logout"
     public static getLoggedInSupplier = "supplier/getSupplier"
 
     public static createSupplier = "supplier/createSupplier"

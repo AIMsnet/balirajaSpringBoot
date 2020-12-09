@@ -52,6 +52,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
    this.login = false
+   if(localStorage.getItem('sessionId') != null){
+    this.login = true
+   }
   }
 
   openhome(){
@@ -72,26 +75,6 @@ export class NavbarComponent implements OnInit {
       location.href='/product/' + search
     } */
     this.router.navigateByUrl('/product')
-  }
-
-  loginSupplier(){
-    this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
-      this.sessionId = resp['sessionId']
-      if(this.sessionId == "Invalid"){
-        this.tosterService.error("Invalid Credentials.", "Baliraja", {
-          timeOut : 2000, progressBar : true, easing : 'ease-out'
-        })
-      }
-      else{
-        localStorage.setItem("sessionId", this.sessionId)
-        this.router.navigateByUrl('/supplier')
-        this.tosterService.success("Login Sucessfully.", "Baliraja", {
-          timeOut : 2000, progressBar : true, easing : 'ease-in'
-        })
-        this.login = true
-        this.supplierSignInModal.hide();
-      }
-    })
   }
 
 
@@ -154,5 +137,34 @@ export class NavbarComponent implements OnInit {
             this.login = true
         }
       })
+  }
+
+  loginSupplier(){
+    this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
+      this.sessionId = resp['sessionId']
+      if(this.sessionId == "Invalid"){
+        this.tosterService.error("Invalid Credentials.", "Baliraja", {
+          timeOut : 2000, progressBar : true, easing : 'ease-out'
+        })
+      }
+      else{
+        localStorage.setItem("sessionId", this.sessionId)
+        this.router.navigateByUrl('/supplier')
+        this.tosterService.success("Login Sucessfully.", "Baliraja", {
+          timeOut : 2000, progressBar : true, easing : 'ease-in'
+        })
+        this.login = true
+        this.supplierSignInModal.hide();
+      }
+    })
+  }
+
+  logoutSupplier(){
+    this.navBarService.supplierLogout().subscribe(response => {
+      console.log(response)
+      this.login = false
+      localStorage.removeItem('sessionId')
+      this.router.navigateByUrl('')
+    })
   }
 }

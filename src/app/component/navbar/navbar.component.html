@@ -84,7 +84,7 @@
 
           <ng-template #logout>
             <li class="nav-item">
-              <a class="nav-link">Logout</a>
+              <a class="nav-link" (click) = "logoutSupplier()">Logout</a>
             </li>
           </ng-template>
 
@@ -94,40 +94,6 @@
     </div>
   </nav>
 </div>
-
-<!-- ------------Supplier Sign In Model -->
-<!-- <div class="modal fade" id="supplierSignIn" bsModal  tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="dialog-static-name" class="modal-title">Supplier Sign In</h5>
-        <button type="button" class="close pull-right" aria-label="Close" >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id = "supplierSignIn" #supplierLogin = "ngForm"  (onSubmit) = "loginSupplier()" style="text-align: -webkit-center;">
-        <div class="form-group">
-          <input type="text" class="form-control supplierSignInFormControl" [(ngModel)] = "supplierLoginEmailId" name="supplierLoginEmailId" id="supplierLoginEmailId" placeholder="Email" required>
-        </div>
-
-        <div class="form-group">
-          <input type="password" [(ngModel)] = "supplierLoginpassword" class="form-control supplierSignInFormControl"  name="supplierLoginpassword" id="supplierLoginpassword" placeholder="Password" required>
-       </div>
-
-       <div class="form-group">
-        <input type="submit" value="Sign In" [disabled] = "supplierLogin.invalid" [class.disable] = "supplierLogin.invalid" class="btn btn-primary" (click)="loginSupplier()">
-       </div>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        New Seller ?<a href="" class = "px-3" data-toggle="modal" data-target=".supplierSignUp" (click)="supplierSignUpModal.show()">Start Here</a>
-    </div>
-    </div>
-  </div>
-</div> -->
-
 
 <div bsModal #supplierSignInModal="bs-modal" class="modal fade" tabindex="-1"
      role="dialog" aria-labelledby="dialog-child-name">
