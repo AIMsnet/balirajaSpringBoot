@@ -159,3 +159,29 @@ th, td {
 #productTable_paginate{
     display: none;
 }
+
+.modal-md {
+  max-width: 600px;
+}
+
+.modal-sm {
+  max-width: 500px;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #6c757d;
+  border: none;
+  border-bottom: 1px solid #6c757d;
+  margin: 10px 0px;
+  padding: 9px 21px 2px;
+}
+
+.btn-success {
+  background: transparent;
+  color: #28a745;
+  border: none;
+  border-bottom: 1px solid #28a745;
+  margin: 10px 0px;
+  padding: 9px 21px 2px;
+}

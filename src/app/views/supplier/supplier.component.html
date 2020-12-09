@@ -671,7 +671,7 @@
 
 <!-- ------------Add Product -->
 <div class="modal fade addProduct" bsModal #addProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
@@ -679,31 +679,25 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body mt-3">
+      <div class="modal-body">
         <form id = "addProduct" action="Supplier/addProduct" method="post" enctype="multipart/form-data">
           <!-- {% csrf_token %} -->
-          <div class="form-group">
-            <div class="row border-bottom border-light pb-2">
-              <div class="col-6 justify-content-between">
+             <!--  <div class="col-6 justify-content-between">
                 <input type="file" name="product_image" id="product_image">
+              </div> -->
+            <div class="form-row">
+              <div class="form-group col-5">
+                <label for="product_name">Product Name</label>
+                <input class="form-control form-control-sm" type="text" name="product_name" id="product_name">
               </div>
-              <div class="form-group col-6 mt-4">
-                  <label for="product_name">Product Name</label>
-                  <input class="form-control form-control-sm" type="text" name="product_name" id="product_name">
-                  <div class="row justify-content-start mt-2">
-                    <div class="form-group col-8">
-                      <label for="brand">Brand</label>
-                      <input class="form-control form-control-sm" type="text" name="product_brand" id="product_brand">
-                    </div>
-                    <div class="form-group col-4">
-                      <label for="code">Code</label>
-                      <input class="form-control form-control-sm" type="text" name="product_code" id="product_code">
-                    </div>
-                  </div>
+              <div class="form-group col-5">
+                <label for="brand">Brand</label>
+                <input class="form-control form-control-sm" type="text" name="product_brand" id="product_brand">
               </div>
-            </div>
-
-            <div class="row mt-4">
+              <div class="form-group col-2">
+                <label for="code">Code</label>
+                <input class="form-control form-control-sm" type="text" name="product_code" id="product_code">
+              </div>
               <div class="form-group col-4">
                 <label for="price">Price</label>
                 <input class="form-control form-control-sm" type="number" name="prodcut_price" id="prodcut_price">
@@ -725,29 +719,23 @@
                   <option value="Piece">Piece</option>
                 </select>
               </div>
-            </div>
-
-            <div class="form-group mb-4">
-              <div class="row col-12 justify-content-between">
-                <label for="specifications">Specifications</label>
-                <button class="btn btn-sm btn-primary add_field_button">Add Specifications</button>
-              </div>
-              <div class="input_fields_wrap row col-12">
-                <div class="d-flex col-9">
+              <div class="form-group col-12">
+                <div class="row col-12 justify-content-between mx-0 p-0">
+                  <label for="specifications">Specifications</label>
+                  <button class="btn btn-sm btn-primary add_field_button" (click)="addSpecification()">Add Specifications</button>
+                </div>
+                <div class="input_fields_wrap row col-12">
+                  <div class="d-flex col-9">
+                  </div>
                 </div>
               </div>
-            </div>
-
-             <div class="form-group mb-4">
-              <label for="description">Description</label>
-              <textarea class="form-control form-control-sm" id = "product_description" name="product_description" cols="20" rows="5" ></textarea>
-            </div>
-
-            <div class="form-group">
-              <h5 class="category-head text-center border-bottom border-top border-light pt-2 pb-3"> Select Category</h5>
-            </div>
-
-            <div class="row">
+              <div class="form-group col-12">
+                <label for="description">Description</label>
+                <textarea class="form-control form-control-sm" id = "product_description" name="product_description" cols="20" rows="3" ></textarea>
+              </div>
+              <div class="form-group col-12 m-0">
+                <h5 class="category-head text-center border-bottom border-top border-light py-2"> Select Category</h5>
+              </div>
               <div class="form-group col-4">
                 <label for="main_category">Main Category</label>
                 <select class="form-control form-control-sm" name="main_category" id="main_category" onchange = getSubCategory(this.value)>
@@ -760,26 +748,33 @@
 
               <div class="form-group col-4">
                 <label for="sub_main_category">Sub Category</label>
-                <select class="form-control" name="sub_main_category" id="sub_main_category" onchange = getCategory(this.value)></select>
+                <select class="form-control form-control-sm" name="sub_main_category" id="sub_main_category" onchange = getCategory(this.value)></select>
               </div> 
 
               <div class="form-group col-4">
                 <label for="category">Category</label>
-                <select class="form-control" name="category" id="category"></select>
+                <select class="form-control form-control-sm" name="category" id="category"></select>
+              </div>
+              <div class="form-group col-12">
+                <label for="additional_information">Additional Information</label>
+                <input class="form-control form-control-sm" type="text" name="product_additional_information" id="product_additional_information">
+              </div>
+              <div class="row justify-content-center col-12 mx-0">
+                <div class=" text-center">
+                  <button class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()" ><i class="fa fa-times mr-1"></i>Cancel</button>
+                  <button class="btn btn-sm btn-primary mr-2" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+                  <button class="btn btn-sm btn-success" (click)="openPhoto()"><i class="fa fa-save mr-1"></i>Save</button>
+                </div>
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="additional_information">Additional Information</label>
-              <input class="form-control form-control-sm" type="text" name="product_additional_information" id="product_additional_information">
-            </div>
-          </div>
-          <input type="submit" value="Submit">
+            
+          <!-- <input type="submit" value="Submit"> -->
         </form>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -893,6 +888,52 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Specification -->
+<div bsModal #addSpecificationModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name2">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()">
+          <span aria-hidden="true" class="">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label >Add Specifications</label>
+          <div class="row mx-0">
+            <input type="text" class="form-control form-control-sm col-4 mx-2" id="addspec" name="addspec">:
+            <input type="text" class="form-control form-control-sm col-4 mx-2" id="addspec" name="addspec">
+            <button class="btn btn-sm btn-danger" >Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- photo -->
+<div bsModal #photoModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name2">
+  <div class="modal-dialog modal-xs">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name2" class="modal-title pull-left">Photo</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="photoModal.hide()">
+          <span aria-hidden="true" class="">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label >Add Image</label>
+          <input type="file" name="product_image" id="product_image" style="display: flex;">
+        </div>
       </div>
     </div>
   </div>
