@@ -28,7 +28,8 @@ export class SubcategoriesComponent implements OnInit {
   }
 
   showModalCategory(id){
-    this.category = this.subMainCategory[id-1]
+    console.log("Subcategory id -> ", id)
+    this.category = this.subMainCategory[id]
     this.category = this.category["category"]
     console.log(this.category) 
     this.categoryModal.show()

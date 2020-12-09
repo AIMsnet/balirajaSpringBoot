@@ -1,5 +1,9 @@
+
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ProductService } from 'src/app/services/product/product.service';
+import { Byte } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +15,25 @@ export class HomeComponent implements OnInit {
   @ViewChild('supplierSignUpModal') supplierSignUpModal! : ModalDirective;
   @ViewChild('customerSignUpModal') customerSignUpModal! : ModalDirective;
 
-  constructor() { }
+  image : any
+  imageByte
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResponse: any;
+  imageUrl
+  constructor(private productService : ProductService, private domSanitizer: DomSanitizer) { }
+
 
   ngOnInit(): void {
+    this.productService.getProduct(1).subscribe(response => {
+      this.image = response['productImages']['0']['image']
+      console.log("Product Response" + this.image)
+      // console.log("Product byte" + this.image.)
+
+      this.retrievedImage = "data:image/jpeg;base64," + this.image
+      this.retrievedImage = this.domSanitizer.bypassSecurityTrustUrl(this.retrievedImage)
+      
+    })
   }
 
   openSupplierSignUp(){
@@ -46,3 +66,10 @@ export class HomeComponent implements OnInit {
 }];
 
 }
+
+
+  // this.retrieveResponse = this.base64ToArrayBuffer(this.image)
+      // this.base64Data = this.retrieveResponse.picByte;
+      // console.log("Retrive response" + this.base64Data)
+      // this.retrievedImage = 'data:image/svg;base64,' + this.retrieveResponse
+      // this.retrievedImage = this.domSanitizer.bypassSecurityTrustUrl(this.retrievedImage);

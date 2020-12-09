@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, ɵBROWSER_SANITIZATION_PROVIDERS } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 
@@ -44,7 +44,7 @@ import { ContactsupplierComponent } from './views/contactsupplier/contactsupplie
     ToastrModule.forRoot(),
     NgImageSliderModule
   ],
-  providers: [],
+  providers: [ɵBROWSER_SANITIZATION_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,6 +16,8 @@ export class UrlMappings{
     public static createcustomer = "customer/createCustomer"
 
     //Category
-
     public static getMainCategory = "mainCategory/getMainCategoryById/"
+
+    // Product
+    public static getProduct = "product/getProductById/"
 }   

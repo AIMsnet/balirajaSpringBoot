@@ -18,8 +18,8 @@
   <section class="SubCategory-cards">
       <div class="container">
         <div class="row">
-          <div *ngFor = "let subCategory of subMainCategory" class="col-md-3 subCategory" id = "" >
-            <div class="card" (click)="showModalCategory(subCategory.id)">
+          <div *ngFor = "let subCategory of subMainCategory; let i = index" class="col-md-3 subCategory" id = "" >
+            <div class="card" (click)="showModalCategory(i)">
             <div class="card-body text-center">
               <div class="card-title">
                 <h3 class="heading" data-id = "">{{subCategory.name}}</h3>
