@@ -24,15 +24,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.productService.getProduct(1).subscribe(response => {
-      this.image = response['productImages']['0']['image']
-      console.log("Product Response" + this.image)
-    
-
-      this.retrievedImage = "data:image/jpeg;base64," + this.image
-      this.retrievedImage = this.domSanitizer.bypassSecurityTrustUrl(this.retrievedImage)
-      
-    })
   }
 
   openSupplierSignUp(){

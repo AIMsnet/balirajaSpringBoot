@@ -27,5 +27,7 @@ export class SupplierServiceService {
     return this.httpClient.post(environment.baseUrl + UrlMappings.updateBusiness, business, {headers : new HttpHeaders().set('sessionId', localStorage.getItem('sessionId'))})
   }
 
-  // return this.httpClient.post(environment.baseUrl + UrlMappings.saveFileEntryUrl, fileEntry, {headers: new HttpHeaders().set('sessionId', localStorage.getItem('sessionId'))})
+  getQuotesBySessionId() : Observable<any> {
+    return this.httpClient.get(environment.baseUrl + UrlMappings.getQuotesBySessionId + localStorage.getItem('sessionId'))
+  }
 }

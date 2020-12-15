@@ -240,7 +240,7 @@
                 <div class="card" style="background-color: #02ABC0">
                   <div class="card-body">
                     <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5></h5>
+                    <h5>{{totalLeads}}</h5>
                     <h5>Leads</h5>
                   </div>
                 </div>
@@ -249,7 +249,7 @@
                 <div class="card" style="background-color: #DC1B5E;">
                   <div class="card-body">
                     <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5></h5>
+                    <h5>{{totalClicks}}</h5>
                     <h5>Clicks</h5>
                   </div>
                 </div>
@@ -258,7 +258,7 @@
                 <div class="card" style="background-color: #FB8B0D;">
                   <div class="card-body">
                     <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5></h5>
+                    <h5>{{totalProducts}}</h5>
                     <h5>Total Prodcuts</h5>
                   </div>
                 </div>
@@ -267,7 +267,7 @@
                 <div class="card" style="background-color: #8E24A8;">
                   <div class="card-body">
                     <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5></h5>
+                    <h5>{{businessModel.profileViews}}</h5>
                     <h5>Profile Views</h5>
                   </div>
                 </div>
@@ -297,31 +297,14 @@
           <div class="container-fluid quotesTable mt-5">
             <h6 class="p-2">Quotes Requested By </h6>
             <div class="table-responsive mt-2 mb-2 tabeleQuotes">
-              <table class = "table table-striped table-hover" id = "tabeleQuotes" data-toggle="table" data-pagination="true" data-search="true"
-              data-search-align="left" data-show-fullscreen="true" data-show-toggle="true">    
-                <thead>
-                  <tr>
-                      <th data-field = "name">Name</th>
-                      <th data-field = "contact">Contact</th>
-                      <th data-field = "productCode">Product Code</th>
-                      <th data-field = "product">Product</th>
-                      <th data-field = "quantity">Quantity</th>
-                      <th data-field = "description">Requirement</th>
-                  </tr>
-                </thead>  
-                <!-- <tbody>
-                  {% for q in quotes %}
-                    <td>{{q.customer.full_name}}</td>
-                    <td>{{q.customer.mobile_number}}</td>
-                    <td>{{q.product.code}}</td>
-                    <td>{{q.product.name}}</td>
-                    <td>{{q.quantity}}</td>
-                    <td>{{q.requirement}}</td>
-                  {% endfor %}
-                </tbody> -->
-              </table>
+              <ag-grid-angular #productGridTable
+              style="width: 100%; height: 500px;" 
+              class="ag-theme-balham"
+              [gridOptions] = "gridOptions"
+              [rowData]="quotesObject"
+              [columnDefs]="columnDefsQuotes">
+            </ag-grid-angular>
             </div>
-      <!-- Tableeeeeeeeee End -->
           </div>
         </div>
       </div>
@@ -331,45 +314,18 @@
         <div class="container-fluid productManagement">
           <h6>Product Management</h6>
           <div class="container">
-            <button class="btn btn-primary" data-toggle = "modal" data-target=".addProduct" (click)="newproduct()"> New Product </button>
+            <button class="btn btn-primary" data-toggle = "modal" data-target="#addProductModal"> New Product </button>
           </div>
           <div class="table-responsive mt-2 mb-2 productTable">
-            <table class = "table table-striped table-hover" id = "productTable" data-toggle="table" data-pagination="true" data-search="true"
-            data-search-align="left" data-show-fullscreen="true" data-show-toggle="true">    
-              <thead>
-                <tr>
-                  <th data-field="productcode">Code</th>
-                  <th data-field="productName">Product Name</th>
-                  <th data-field="brand">Brand</th>
-                  <th data-field="price">Price</th>
-                  <th data-field="category">Category</th>
-                  <th data-field="arrival">New Arrival</th>
-                  <th data-field="unit">Unit</th>
-                  <th data-field="clicks">Clicks</th>
-                  <th data-field="createddate">Created Date</th>
-                </tr>
-              </thead>  
-
-              <!-- <tbody>
-                {% for p in products %}
-                  <tr>
-                    <th>{{p.code}}</th>
-                    <td>{{p.name}}</td>
-                    <td>{{p.brand}}</td>
-                    <td>{{p.price}}</td>
-                    <td>{{p.category}}</td>
-                    <td>{{p.arrival}}</td>
-                    <td>{{p.unit}}</td>
-                    <td>{{p.clicks}}</td>
-                    <td>{{p.created_date}}</td>
-                  </tr>
-                {% endfor %}
-              </tbody> -->
-             
-
-            </table>
+            <ag-grid-angular #productGridTable
+            style="width: 100%; height: 500px;" 
+            class="ag-theme-balham"
+            [gridOptions] = "gridOptions"
+            [rowData]="productObject"
+            [columnDefs]="columnDefsProduct">
+            
+          </ag-grid-angular>
           </div>
-
         </div>
       </div>  
   </div>
@@ -661,16 +617,15 @@
           <div class="form-group text-center">
             <input type="submit" value="Save" class="btn btn-primary">
           </div>
-
         </form>
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- ------------Add Product -->
-<div class="modal fade addProduct" bsModal #addProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div bsModal id = "addProductModal" #addProductModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name2">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
@@ -680,38 +635,35 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id = "addProduct" action="Supplier/addProduct" method="post" enctype="multipart/form-data">
-          <!-- {% csrf_token %} -->
-             <!--  <div class="col-6 justify-content-between">
-                <input type="file" name="product_image" id="product_image">
-              </div> -->
+        <form id = "addProduct" #addProduct = "ngForm" (ngSubmit) = "newProduct()">
+
             <div class="form-row">
               <div class="form-group col-5">
                 <label for="product_name">Product Name</label>
-                <input class="form-control form-control-sm" type="text" name="product_name" id="product_name">
+                <input class="form-control form-control-sm" [(ngModel)] = "productModel.name" type="text" name="product_name" id="product_name" required>
               </div>
               <div class="form-group col-5">
                 <label for="brand">Brand</label>
-                <input class="form-control form-control-sm" type="text" name="product_brand" id="product_brand">
-              </div>
+                <input class="form-control form-control-sm" [(ngModel)] = "productModel.brand" type="text" name="product_brand" id="product_brand" required>
+              </div> 
               <div class="form-group col-2">
                 <label for="code">Code</label>
-                <input class="form-control form-control-sm" type="text" name="product_code" id="product_code">
+                <input class="form-control form-control-sm" [(ngModel)] = "productModel.code" type="text" name="product_code" id="product_code" required>
               </div>
               <div class="form-group col-4">
                 <label for="price">Price</label>
-                <input class="form-control form-control-sm" type="number" name="prodcut_price" id="prodcut_price">
+                <input class="form-control form-control-sm" [(ngModel)] = "productModel.price" type="number" name="prodcut_price" id="prodcut_price" required>
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_arrival">New Arrival</label>
-                <select class="form-control form-control-sm" id="prodcut_arrival" name = "prodcut_arrival">
+                <select class="form-control form-control-sm" id="prodcut_arrival" [(ngModel)] = "productModel.arrival" name = "prodcut_arrival" required>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_unit">Unit</label>
-                <select class="form-control form-control-sm" id="prodcut_unit" name = "prodcut_unit">
+                <select class="form-control form-control-sm" [(ngModel)] = "productModel.unit" id="prodcut_unit" name = "prodcut_unit" required>
                   <option value="Kg">Kg</option>
                   <option value="Pack">pack</option>
                   <option value="Unit">Unit</option>
@@ -719,10 +671,11 @@
                   <option value="Piece">Piece</option>
                 </select>
               </div>
+
               <div class="form-group col-12">
                 <div class="row col-12 justify-content-between mx-0 p-0">
                   <label for="specifications">Specifications</label>
-                  <button class="btn btn-sm btn-primary add_field_button" (click)="addSpecification()">Add Specifications</button>
+                  <label class="btn btn-sm btn-primary add_field_button" data-toggle = "modal" data-target="#addSpecificationModal">Add Specifications</label>
                 </div>
                 <div class="input_fields_wrap row col-12">
                   <div class="d-flex col-9">
@@ -731,195 +684,143 @@
               </div>
               <div class="form-group col-12">
                 <label for="description">Description</label>
-                <textarea class="form-control form-control-sm" id = "product_description" name="product_description" cols="20" rows="3" ></textarea>
+                <textarea class="form-control form-control-sm" [(ngModel)] = "productModel.additional_information" id = "product_description" name="product_description" cols="20" rows="3" required></textarea>
               </div>
               <div class="form-group col-12 m-0">
                 <h5 class="category-head text-center border-bottom border-top border-light py-2"> Select Category</h5>
               </div>
               <div class="form-group col-4">
                 <label for="main_category">Main Category</label>
-                <select class="form-control form-control-sm" name="main_category" id="main_category" onchange = getSubCategory(this.value)>
+                <select class="form-control form-control-sm" [(ngModel)] = "mainCategory" name="main_category" id="main_category" (change) = "getSubCategory()" required>
                   <option value="" selected>----------------------------</option>
-                 <!--  {% for m in mainCategories%}
-                    <option value = {{m.pk}}>{{m.name}}</option>
-                  {% endfor %} -->
+                  <option value="1">Farming Tools, Equipment & Machines</option>
+                  <option value="2">Flowers, Plants & Trees</option>
+                  <option value="3">Seeds Plants & Saplings</option>
+                  <option value="4">Tractor, Tractor Parts & Assemblies</option>
+                  <option value="5">Bird Food, Poultry & Animal Food</option>
+                  <option value="6">Irrigation & Harvesting Machines</option>
+                  <option value="7">Fertilizers and Soil Additives</option>
+                  <option value="8">Coir & Agro Products</option>
+                  <option value="9">Farming and Pet Animals</option>
+                  <option value="10">Agri Finance</option>
+                  <option value="11">Agri Insurance</option>
+                  <option value="12">Agri Related Business</option>
                 </select>
               </div>
-
               <div class="form-group col-4">
                 <label for="sub_main_category">Sub Category</label>
-                <select class="form-control form-control-sm" name="sub_main_category" id="sub_main_category" onchange = getCategory(this.value)></select>
+                <select class="form-control form-control-sm" [(ngModel)] = "subCategory" name="sub_main_category" id="sub_main_category" (change) = "getCategory()" required>
+                  <option *ngFor = "let subCat of subCategoryObject; let i = index" value={{i}}> {{subCat.name}} </option>
+                </select>
               </div> 
-
               <div class="form-group col-4">
                 <label for="category">Category</label>
-                <select class="form-control form-control-sm" name="category" id="category"></select>
-              </div>
-              <div class="form-group col-12">
-                <label for="additional_information">Additional Information</label>
-                <input class="form-control form-control-sm" type="text" name="product_additional_information" id="product_additional_information">
+                <select class="form-control form-control-sm" [(ngModel)] = "productModel.categoryId" name="category" id="category" required>
+
+                  <option *ngFor = "let cat of categroyObject" value = {{cat.id}}> {{cat.name}} </option>
+                </select>
+
               </div>
               <div class="row justify-content-center col-12 mx-0">
                 <div class=" text-center">
-                  <button class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()" ><i class="fa fa-times mr-1"></i>Cancel</button>
-                  <button class="btn btn-sm btn-primary mr-2" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-                  <button class="btn btn-sm btn-success" (click)="openPhoto()"><i class="fa fa-save mr-1"></i>Save</button>
+                  <button class="btn btn-sm btn-secondary mr-2"><i class="fa fa-times mr-1"></i>Cancel</button>
+                  <button class="btn btn-sm btn-primary mr-2" (click) = "addProduct.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+                  <button class="btn btn-sm btn-success" [disabled] = "addProduct.invalid" [class.disable] = "addProduct.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
               </div>
             </div>
 
-            
-          <!-- <input type="submit" value="Submit"> -->
         </form>
       </div>
-      <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div> -->
+     
     </div>
   </div>
 </div>
 
-<!-- Update Product -->
-<div class="modal fade updateProduct" bsModal #editProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLongTitle">Update Product</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mt-3">
-        <form id = "updateProduct" action="Supplier/productUpdate" method="post" enctype="multipart/form-data">
-          <!-- {% csrf_token %} -->
-          <div class="form-group">
-            <div class="row border-bottom border-light pb-2">
-              <div class="col-6 justify-content-between">
-                <input type="file" name="update_product_image" id="update_product_image">
-              </div>
-              <div class="form-group col-6 mt-4">
-                  <label for="product_name">Product Name</label>
-                  <input class="form-control form-control-sm" type="text" name="update_product_name" id="update_product_name">
-                  <div class="row justify-content-start mt-2">
-                    <div class="form-group col-6">
-                      <label for="brand">Brand</label>
-                      <input class="form-control form-control-sm" type="text" name="update_product_brand" id="update_product_brand">
-                    </div>
-                    <div class="form-group col-6">
-                      <label for="code">Code</label>
-                      <input class="form-control form-control-sm" type="text" name="update_product_code" id="update_product_code">
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-            <div class="row mt-4">
-              <div class="form-group col-4">
-                <label for="price">Price</label>
-                <input class="form-control form-control-sm" type="number" name="update_prodcut_price" id="update_prodcut_price">
-              </div>
-              <div class="form-group col-4">
-                <label for="prodcut_arrival">Arrival</label>
-                <select class="form-control form-control-sm" id="update_prodcut_arrival" name = "update_prodcut_arrival">
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </div>
-              <div class="form-group col-4">
-                <label for="prodcut_unit">Unit</label>
-                <select class="form-control form-control-sm" id="update_prodcut_unit" name = "update_prodcut_unit">
-                  <option value="Kg">Kg</option>
-                  <option value="pack">pack</option>
-                  <option value="Unit">Unit</option>
-                   <option value="Meter">Meter</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group mb-4">
-              <div class="row col-12 justify-content-between">
-                <label for="specifications">Specifications</label>
-                <button class="btn btn-sm btn-primary update_add_field_button">Add Specifications</button>
-              </div>
-              <div class="update_input_fields_wrap row col-12">
-                <div class="d-flex col-9">
-                </div>
-              </div>
-            </div>
-            
-            <div class="form-group mb-4">
-              <label for="description">Description</label>
-              <textarea class="form-control form-control-sm" id = "update_product_description" name="update_product_description" cols="20" rows="5" ></textarea>
-            </div>
-
-            <div class="form-group">
-              <h5 class="category-head text-center border-bottom border-top border-light pt-2 pb-3"> Select Category</h5>
-            </div>
-
-            <div class="row">
-              <div class="form-group col-4">
-                <label for="main_category">Main Category</label>
-                <select class="form-control form-control-sm" name="update_main_category" id="update_main_category" onchange = getUpdateSubCategory(this.value)>
-                  <option value="" selected>----------------------------</option>
-                  <!-- {% for m in mainCategories%}
-                    <option value = {{m.pk}}>{{m.name}}</option>
-                  {% endfor %} -->
-                </select>
-              </div>
-
-              <div class="form-group col-4">
-                <label for="sub_main_category">Sub Category</label>
-                <select class="form-control" name="update_sub_main_category" id="update_sub_main_category" onchange = getUpdateCategory(this.value)></select>
-              </div> 
-
-              <div class="form-group col-4">
-                <label for="category">Category</label>
-                <select class="form-control" name="update_category" id="update_category"></select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="additional_information">Additional Information</label>
-              <input class="form-control form-control-sm" type="text" name="update_product_additional_information" id="update_product_additional_information">
-            </div>
-          </div>
-          <input type="submit" value="Submit">
-        </form>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Add Specification -->
-<div bsModal #addSpecificationModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog"
+<div bsModal id = "addSpecificationModal" #addSpecificationModal="bs-modal"  class="modal fade" tabindex="-1" role="dialog"
   aria-labelledby="dialog-sizes-name2">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
           <span aria-hidden="true" class="">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label >Add Specifications</label>
-          <div class="row mx-0">
-            <input type="text" class="form-control form-control-sm col-4 mx-2" id="addspec" name="addspec">:
-            <input type="text" class="form-control form-control-sm col-4 mx-2" id="addspec" name="addspec">
-            <button class="btn btn-sm btn-danger" >Delete</button>
+        <form #specificationForm = "ngForm">
+          <div class="form-group">
+            <label >Add Specifications</label>
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_1" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_1" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_2" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_2" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_3" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_3" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_4" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_4" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_5" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_5" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_6" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_6" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+            
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_7" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_7" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_8" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_8" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_9" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_9" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_10" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_10" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 
 <!-- photo -->
-<div bsModal #photoModal="bs-modal" [config]="{backdrop: 'static'}" class="modal fade" tabindex="-1" role="dialog"
+<div bsModal #photoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
   aria-labelledby="dialog-sizes-name2">
   <div class="modal-dialog modal-xs">
     <div class="modal-content">
@@ -930,10 +831,13 @@
         </button>
       </div>
       <div class="modal-body">
+       <form #productImageUpload (ngSubmit) = "saveImage()">
         <div class="form-group">
           <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" style="display: flex;">
+          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;">
         </div>
+        <input type="submit" value="Upload Image">
+       </form>
       </div>
     </div>
   </div>

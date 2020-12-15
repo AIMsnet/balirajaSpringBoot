@@ -38,7 +38,7 @@ export class Supplier{
     state : String;
     pincode : String;
 	designation : String;
-} 
+}
 
 
 export class createBusiness{
@@ -56,4 +56,70 @@ export class createBusiness{
 	pan : String;
 	cin : String;
 	dgft : String;
+}
+
+export class updateProduct{
+
+	name : String;
+	price : Number;
+	arrival : String;
+	unit : String;
+	brand : String;
+	code : Number;
+	categoryId : Number;
+	additional_information : String;
+	specification_1 : String;
+	specification_2 : String;
+	specification_3 : String;
+	specification_4 : String;
+	specification_5 : String;
+	specification_6 : String;
+	specification_7 : String;
+	specification_8 : String;
+	specification_9 : String;
+	specification_10 : String;
+	description_1 : String;
+	description_2 : String;
+	description_3 : String;
+	description_4 : String;
+	description_5 : String;
+	description_6 : String;
+	description_7 : String;
+	description_8 : String;
+	description_9 : String;
+	description_10 : String;
+	created_date : Date;
+	updated_date : Date;
+	clicks : Number;	
+}
+
+export class Product{
+	name : String;
+	price : Number;
+	arrival : String;
+	unit : String;
+	brand : String;
+	code : Number;
+	categoryId : Number;
+	additional_information : String;
+	specification_1 : String;
+	specification_2 : String;
+	specification_3 : String;
+	specification_4 : String;
+	specification_5 : String;
+	specification_6 : String;
+	specification_7 : String;
+	specification_8 : String;
+	specification_9 : String;
+	specification_10 : String;
+	description_1 : String;
+	description_2 : String;
+	description_3 : String;
+	description_4 : String;
+	description_5 : String;
+	description_6 : String;
+	description_7 : String;
+	description_8 : String;
+	description_9 : String;
+	description_10 : String;
 }

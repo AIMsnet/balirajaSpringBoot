@@ -1,8 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Supplier, Business } from 'src/app/models/Supplier';
+import { Supplier, Business, Product } from 'src/app/models/Supplier';
 import { SupplierServiceService } from 'src/app/services/supplier/supplier-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { CategroyService } from 'src/app/services/categroy/categroy.service';
+import { ProductService } from 'src/app/services/product/product.service';
+import { GridOptions } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular';
 
 
 @Component({
@@ -10,18 +14,20 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './supplier.component.html',
   styleUrls: ['./supplier.component.scss']
 })
-export class SupplierComponent implements OnInit {
+export class SupplierComponent implements OnInit{
 
   // View Modal Declarations
   @ViewChild('editPersonalDetailModal') editPersonalDetailModal! : ModalDirective;
   @ViewChild('editBusinessDetailModal') editBusinessDetailModal! : ModalDirective;
 
-  @ViewChild('addProductModal') addProductModal! : ModalDirective;
-  @ViewChild('editProductModal') editProductModal! : ModalDirective;
+  @ViewChild('addProductModal') addProductModal : ModalDirective;
+  @ViewChild('editProductModal') editProductModal : ModalDirective;
 
   @ViewChild('addSpecificationModal') addSpecificationModal: ModalDirective;
   @ViewChild('photoModal') photoModal: ModalDirective;
- 
+  @ViewChild('productGridTable') productGridTable: AgGridAngular;
+
+
   // Instances
   personalDetailName : String
   personalDetailDesignation : String  
@@ -37,22 +43,59 @@ export class SupplierComponent implements OnInit {
   personalDetailState : String
   personalDetailPincode : String
 
-  login : Boolean
-
-
   // Model Variable
   supplierModel =  new Supplier()
   businessModel = new Business()
   editBusinessModel = new Business()
 
+  productModel = new Product()
+  editProductModel = new Product()
+
+  mainCategory : Number = 0
+  subCategory
   
 
-  constructor(public supplierServices : SupplierServiceService, private tosterService : ToastrService) { }
+  subCategoryObject
+  categroyObject
+  totalLeads : Number = 0
+  totalProducts : Number = 0
+  totalClicks : Number = 0
+  productObject = [] // For storing Product
+  quotesObject = []
+  addednewProduct : {}
+  gridOptions : GridOptions ={
+  }
+
+  image
+  productImage
+  savedProductId : Number
+
+  //Table Elements
+  columnDefsProduct = [
+    {field : 'code', headerName : 'Code'},
+    {field : 'name', headerName : 'Name'},
+    {field : 'brand', headerName : 'Brand'},
+    {field : 'price', headerName : 'Price'},
+    {field : 'arrival', headerName : 'Arrival'},
+    {field : 'unit', headerName : 'Unit'},
+    {field : 'clicks', headerName : 'Clicks'},
+    {field : 'created_date', headerName : 'Created Date'},
+  ]
+
+  columnDefsQuotes = [
+    {field : 'customerName', headerName : 'Customer Name'},
+    {field : 'customerMobileNumber', headerName : 'Customer Mobile Number'},
+    {field : 'productName', headerName : 'Product Name'},
+    {field : 'quantity', headerName : 'Quantity'},
+    {field : 'requirement', headerName : 'Requirement'},
+  ]
+
+  
+  constructor(public supplierServices : SupplierServiceService, private categoryService : CategroyService, private productService : ProductService, private tosterService : ToastrService) { }
 
   ngOnInit(): void {
-    this.login = true
     this.supplierServices.getSupplierBySessionId().subscribe(response =>{
-    
+      console.log(response)
       this.supplierModel.full_name = response['full_name'] 
       this.supplierModel.designation = response['designation'] 
       this.supplierModel.phone_number = response['phone_number'] 
@@ -74,21 +117,31 @@ export class SupplierComponent implements OnInit {
         this.businessModel =  response['business']['0']
         this.editBusinessModel = Object.assign({},  response['business']['0'])
       }
+      
+      // Fetching Products
+      this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
+        this.productObject = response
+        this.totalProducts = this.productObject.length
+      })
     })
-  }
 
-  addSpecification(){
-    this.addSpecificationModal.show();
-    this.addProductModal.hide();
-  }
+    // Fetching Quotes
+    this.supplierServices.getQuotesBySessionId().subscribe(response => {
+      this.quotesObject = response
+      this.totalLeads = this.quotesObject.length
+    })
 
-  openPhoto(){
-    this.photoModal.show();
-    this.addProductModal.hide();
-  }
+    this.productObject.forEach(function(){
+      this.totalClicks = this.productObject['clicks'] + this.totalClicks
+    }
+    )
+    
 
-  newproduct(){
-    this.addProductModal.show();
+    this.gridOptions = <GridOptions>{
+      onGridReady :() =>{
+        this.gridOptions.api.sizeColumnsToFit()
+      }
+    }
   }
 
   // Non UI calls
@@ -125,4 +178,73 @@ export class SupplierComponent implements OnInit {
     })
   }
 
+  getSubCategory(){
+    if( this.mainCategory != 0){
+      this.categoryService.getCategory(this.mainCategory).subscribe(response =>{
+        this.subCategoryObject = response['subMainCategory']
+        console.log(this.subCategoryObject)
+      })
+    }
+  }
+
+  getCategory(){
+    this.categroyObject = this.subCategoryObject[this.subCategory].category
+    console.log(this.categroyObject)
+  }
+
+  newProduct(){
+    if(this.productModel.name){
+      this.productService.newProduct(this.productModel).subscribe(response =>{
+        this.savedProductId = Number(response)
+        this.addProductModal.hide()
+        this.photoModal.show()
+      })
+    }
+  }
+
+  saveImage(){
+    if(this.image.size < 3145728){
+      this.productService.saveProductImage(this.image, this.savedProductId)
+      .subscribe(response => {
+        console.log("Image Resposne", JSON.stringify(response))
+        if(response == true){
+          this.tosterService.success("Image Uploaded.", "Baliraja", {
+            timeOut : 2000, progressBar : true, easing : 'ease-in'
+          })
+          this.photoModal.hide()
+          this.addProductModal.hide()
+
+          this.addednewProduct = {
+            "arrival": this.productModel.arrival,
+            "brand": this.productModel.brand,
+            "clicks" : "0",
+            "code" : this.productModel.code,
+            "created_date" : "Today",
+            "name" : this.productModel.name,
+            "price" : this.productModel.price,
+            "unit" : this.productModel.unit,
+          }
+          this.productObject.push(this.addednewProduct)
+          this.productGridTable.api.setRowData(this.productObject)
+        }
+      })
+    }
+    else{
+        this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
+          timeOut : 2000, progressBar : true, easing : 'ease-in'  
+        })
+    }
+
+  }
+
+  onFileChanged(event){
+    this.image = event.target.files[0]
+    if(this.image.size > 3145728){
+        this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
+          timeOut : 2000, progressBar : true, easing : 'ease-in'  
+        })
+    }
+  }
+
 }
+

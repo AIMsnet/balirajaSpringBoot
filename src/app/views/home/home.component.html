@@ -9,10 +9,6 @@
     </div>
   </div> -->
 
-  <h1>Image</h1>
-
-  <img [src]="retrievedImage">
-
   <div class="col-md-10 p-0">
     <div class="categories">
         <h3>Categories</h3>
@@ -131,25 +127,6 @@
           [imageSize]="{width: '25%', height: 200}"
           slideImage="1"></ng-image-slider>
       </div>
-     <!-- -----------------------------------------------Carousel Starts Here -->
-       <!-- <div class="con-slider">
-        <ul id="autoWidth" class="cs-hidden">
-          {% for arrival in newArrival %}
-          <li class="item-a">
-            <a href="/product/productDescription/{{arrival.pk}}">
-              <div class="card crd-slider">
-                <img src = {{arrival.image.url}} class="model ">
-                <div class="card-body details">
-                  <h5>{{arrival.name}}</h5>
-                  <b><h6>Price : &nbsp₹ {{arrival.price}}</h6></b>
-                </div>
-              </div>
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div> -->
-      <!-- -----------------------------------------------Carousel Ends Here -->
     </div>  
     <div id="menu1" class="tab-pane fade">
       <h3 class="text-center">Offers</h3>

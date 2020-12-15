@@ -20,6 +20,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { ProductComponent } from './views/product/product.component';
 import { ProductdescriptionComponent } from './views/productdescription/productdescription.component';
 import { ContactsupplierComponent } from './views/contactsupplier/contactsupplier.component';
+import { AgGridModule } from 'ag-grid-angular';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { ContactsupplierComponent } from './views/contactsupplier/contactsupplie
     BrowserAnimationsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    NgImageSliderModule
+    NgImageSliderModule,
+    AgGridModule.withComponents([])
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],
   bootstrap: [AppComponent]

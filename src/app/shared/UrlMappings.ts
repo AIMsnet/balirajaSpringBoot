@@ -21,4 +21,12 @@ export class UrlMappings{
 
     // Product
     public static getProduct = "product/getProductById/"
+    public static createProduct = "product/createProduct"
+    public static getAllProductByBusiness =  "product/getAllProductByBusiness/"
+    
+    //Product Image
+    public static uploadProductImage = "productImage/uploadImage"
+
+    //Quotes
+    public static getQuotesBySessionId = "quotes/getQuotes/"
 }   
