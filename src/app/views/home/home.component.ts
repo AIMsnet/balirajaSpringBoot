@@ -11,8 +11,8 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild('supplierSignUpModal') supplierSignUpModal! : ModalDirective;
-  @ViewChild('customerSignUpModal') customerSignUpModal! : ModalDirective;
+  @ViewChild('supplierSignUpModal') supplierSignUpModal : ModalDirective;
+  @ViewChild('customerSignUpModal') customerSignUpModal : ModalDirective;
 
   image : any
   imageByte

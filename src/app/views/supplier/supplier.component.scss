@@ -65,14 +65,20 @@ th, td {
 
 /* Dashboard CSS */
 .card{
-    width: 16vw;
+    //width: 16vw;
     color: white;
     text-align: end;
 }
 
+.productgridtable {
+    width: auto;
+    color: black;
+    text-align: start;
+}
+
 .imgCard{
     padding: 5px;
-    height: 4vw;
+    height: 3.8vw;
     float: left;
     opacity: 0.7;
 }

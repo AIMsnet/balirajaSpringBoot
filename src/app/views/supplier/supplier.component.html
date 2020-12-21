@@ -234,9 +234,9 @@
           <h6>Application / Dashboard</h6>
 
           <!-- Cards -->
-          <div class="container p-2">
+          <div class="container">
             <div class="row">
-              <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
                 <div class="card" style="background-color: #02ABC0">
                   <div class="card-body">
                     <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
@@ -245,7 +245,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
                 <div class="card" style="background-color: #DC1B5E;">
                   <div class="card-body">
                     <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
@@ -254,21 +254,21 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
                 <div class="card" style="background-color: #FB8B0D;">
                   <div class="card-body">
                     <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
                     <h5>{{totalProducts}}</h5>
-                    <h5>Total Prodcuts</h5>
+                    <h5 style="display: inline-block;">Total Prodcuts</h5>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
                 <div class="card" style="background-color: #8E24A8;">
                   <div class="card-body">
                     <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
                     <h5>{{businessModel.profileViews}}</h5>
-                    <h5>Profile Views</h5>
+                    <h5 style="display: inline-block;">Profile Views</h5>
                   </div>
                 </div>
 
@@ -294,9 +294,9 @@
           </div>
 
           <!-- Quotes Table -->
-          <div class="container-fluid quotesTable mt-5">
-            <h6 class="p-2">Quotes Requested By </h6>
-            <div class="table-responsive mt-2 mb-2 tabeleQuotes">
+          <div class="container-fluid quotesTable mt-5 p-0">
+            <h6 style="padding: 1rem 0.8rem 0.3rem 0.8rem;">Quotes Requested By </h6>
+            <div class="table-responsive mb-2 tabeleQuotes">
               <ag-grid-angular #productGridTable
               style="width: 100%; height: 500px;" 
               class="ag-theme-balham"
@@ -306,6 +306,7 @@
             </ag-grid-angular>
             </div>
           </div>
+
         </div>
       </div>
 
