@@ -267,4 +267,29 @@
   
   } */
   
-  
+  ::ng-deep .ng-image-slider .ng-image-slider-container .main .main-inner .img-div img {
+      //border-style: groove;
+      padding: 35px 50px 50px 50px;
+      width: 90% !important;
+      bottom: 40px !important;
+  }
+
+  ::ng-deep .ng-image-slider .ng-image-slider-container .main .main-inner .img-div {
+      box-shadow: none !important;
+      background: #fff;
+    //text-align: center;
+    border: solid 1px #f3f3f3;
+  }
+  ::ng-deep .ng-image-slider .ng-image-slider-container .main .next {
+      line-height: 40px !important;
+  }
+
+  ::ng-deep .ng-image-slider .ng-image-slider-container .main .prev {
+    line-height: 40px !important;
+  }
+
+  ::ng-deep .ng-image-slider .ng-image-slider-container .main .main-inner .img-div .caption {
+    color: black !important;
+    margin-bottom: 25px;
+    background-image: none !important;
+  }

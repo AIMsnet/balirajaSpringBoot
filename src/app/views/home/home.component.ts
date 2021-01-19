@@ -36,16 +36,20 @@ export class HomeComponent implements OnInit {
 
   imageObject = [{
     image: 'assets/categories/shovel-svgrepo-com.svg',
-    thumbImage: 'assets/categories/shovel-svgrepo-com.svg'
+    thumbImage: 'assets/categories/shovel-svgrepo-com.svg',
+    title : 'Farming Tools Equipment & Machines'
 }, {
     image: 'assets/categories/tractor.svg',
-    thumbImage: 'assets/categories/tractor.svg'
+    thumbImage: 'assets/categories/tractor.svg',
+    title : 'Tractor, Tractor Parts & Assemblies'
 }, {
     image: 'assets/categories/seed.svg',
-    thumbImage: 'assets/categories/seed.svg'
+    thumbImage: 'assets/categories/seed.svg',
+    title : 'Seeds, Plant & Sapling'
 },{
     image: 'assets/categories/plant.svg',
-    thumbImage: 'assets/categories/plant.svg'
+    thumbImage: 'assets/categories/plant.svg',
+    title : 'Flowers, Plants & Trees'
 }, {
     image: 'assets/categories/cow.svg',
     thumbImage: 'assets/categories/cow.svg'
