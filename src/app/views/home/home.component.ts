@@ -52,10 +52,12 @@ export class HomeComponent implements OnInit {
     title : 'Flowers, Plants & Trees'
 }, {
     image: 'assets/categories/cow.svg',
-    thumbImage: 'assets/categories/cow.svg'
+    thumbImage: 'assets/categories/cow.svg',
+    title : 'Bird Poultry & Animal Food'
 }, {
     image: 'assets/categories/harvester.svg',
-    thumbImage: 'assets/categories/harvester.svg'
+    thumbImage: 'assets/categories/harvester.svg',
+    title : 'Irrigation & Harvesting Machine'
 
 }];
 
