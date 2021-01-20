@@ -53,10 +53,10 @@ export class SupplierComponent implements OnInit{
 
   mainCategory : Number = 0
   subCategory
-  
-
   subCategoryObject
   categroyObject
+  offer : Boolean = false
+
   totalLeads : Number = 0
   totalProducts : Number = 0
   totalClicks : Number = 0
@@ -140,8 +140,14 @@ export class SupplierComponent implements OnInit{
     this.gridOptions = <GridOptions>{
       onGridReady :() =>{
         this.gridOptions.api.sizeColumnsToFit()
+        console.log("Grid Caleed")
       }
     }
+  }
+
+  //TO make offer field visible line no 659
+  offerField() {
+    this.offer = !this.offer
   }
 
   // Non UI calls
@@ -245,6 +251,8 @@ export class SupplierComponent implements OnInit{
         })
     }
   }
+
+
 
 }
 
