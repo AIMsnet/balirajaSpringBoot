@@ -65,9 +65,10 @@
 }
 
 .requirement{
-    background-color: #574b90;
-    padding: 5vh;
-    color: white;
+    //background-color: #574b90;
+    background-color: #fff;
+    padding: 5vh 0vh 2vh 0vh;
+    color: #000;
 }
 
 .requirement span{
@@ -93,7 +94,7 @@
 .requirementFormGroup > input::-ms-input-placeholder {
     color: #fff;
 }
-.btn-primary{
+.btn-success{
     padding: 1vh 13px 0px;
     border-radius: 13px;
 }
@@ -102,9 +103,9 @@
     padding: 0px 51px 3px;
 }
 
-.form-group{
+/* .form-group{
     padding: 1vh 0px;
-}
+} */
 
 .card{
     height: 100%;
@@ -184,10 +185,17 @@
   .crd-slider{
     //width: 260px;
     background-color: #fff;
-    border: 1px solid #b6b6b4; 
+    //border: 1px solid #b6b6b4; 
     justify-content: center;
     align-items: center;
+    border-right: solid 1px #f3f3f3;
     }
+
+  .crd-slider:hover {
+    z-index: 1;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  }
   
   .details{
     align-items: left;
@@ -207,6 +215,8 @@
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
     /*margin-left: 30px;
     margin-right: 20px;*/
     // height: 200px;
@@ -293,3 +303,48 @@
     margin-bottom: 25px;
     background-image: none !important;
   }
+
+  .checkboxform {
+    margin-right: .5rem;
+  }
+
+  .textorder {
+    color: black;
+    line-height: 20px;
+    width: 130px;
+    float: right;
+    margin-top: 30px;
+    margin-right: 50px;
+  }
+
+  .line{
+    margin-left: 8rem;
+    color: black;
+    width: 150px;
+    border-top: 1px solid rgba(0,0,0,.5);
+  }
+
+  .call {
+    color: black;
+    margin-left: 5rem;
+  }
+
+  #nums {
+    font-size: 1.5rem;
+    background-color: orange;
+    margin-left: 6.5rem;
+    margin-right: 0.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .desc {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .price {
+    color: red;
+    float: right;
+    font-weight: 600;
+  }
+  
