@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   //baseUrl : "http://192.168.1.136:8080/",
 
-  baseUrl : "http://localhost:8080/com.baliraja"
+  baseUrl : "http://localhost:8080/com.baliraja/"
 };
 
 /*
