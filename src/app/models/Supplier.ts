@@ -66,6 +66,7 @@ export class updateProduct{
 	unit : String;
 	brand : String;
 	code : Number;
+	offer : Number;
 	categoryId : Number;
 	additional_information : String;
 	specification_1 : String;
@@ -100,6 +101,7 @@ export class Product{
 	unit : String;
 	brand : String;
 	code : Number;
+	offer : Number;
 	categoryId : Number;
 	additional_information : String;
 	specification_1 : String;
