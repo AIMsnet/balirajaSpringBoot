@@ -1,63 +1,91 @@
 <div class="sticky-top d-flex" style="flex-wrap: wrap;">
-  <nav class="navbar navbar-expand-sm col-12 d-flex flex-wrap text-white p-0" >
+  <nav class="navbar navbar-expand-sm col-12 d-flex flex-wrap text-white p-0">
     <!-- <button class="navbar-toggler m-1" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
     <!-- <div class="collapse navbar-collapse my-1" id="navbarNavDropdown"> -->
-      
-      <div class="col-sm-5 col-md-5 col-lg-5 navBeltTwo my-1" id = "navBeltTwo">
+
+    <div class="col-sm-5 col-md-5 col-lg-5 navBeltTwo my-1" id="navBeltTwo">
       <div class="input-group my-3 navBeltTwoInputGroup">
-          <div class="input-group-prepend navBeltCategory">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+        <div class="input-group-prepend navBeltCategory">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Categories</button>
           <div class="dropdown-menu">
-          <!-- Drop down List---------------------------------- -->
-          <div class="container dropDownContainer">
+            <!-- Drop down List---------------------------------- -->
+            <div class="container dropDownContainer">
               <div class="row p-2">
-                  <div class="col-3 col-sm-3 col-md-4 col-lg-4 dropDownColumn">
-                    <ul class = "categoriesList">
-                    <a href=""><li>Farming Tools, Equipment & Machines</li></a>
-                    <a href=""><li>Flowers, Plants & Trees</li></a>
-                    <a href=""><li>Seeds and Plant Saplings</li></a>
-                    <a href=""><li>Tractor, Tractor Parts & Assemblies</li></a>
-                    </ul>
-                  </div>
-                  <div class="col-3 col-sm-3 col-md-4 col-lg-4 dropDownColumn">
-                    <ul class="categoriesList">
-                      <a href=""><li>Bird Food, Poultry & Animal Food</li></a>
-                      <a href=""><li>Irrigation & Harvesting Machines</li></a>
-                      <a href=""><li>Fertilizers and Soil Additives</li></a>
-                      <a href=""><li>Coir and Agro Products</li></a>
-                    </ul>
-                  </div>
-                  <div class="col-3 col-sm-3 col-md-4 col-lg-4 dropDownColumn">
-                    <ul class="categoriesList">
-                      <a href=""><li>Farming and Pet Animals</li></a>
-                      <a href=""><li>Agri Finance</li></a>
-                      <a href=""><li>Agri Insurance</li></a>
-                      <a href=""><li>Agri Related Business</li></a>
-                    </ul>
-                  </div>
+                <div class="col-3 col-sm-3 col-md-4 col-lg-4 dropDownColumn">
+                  <ul class="categoriesList">
+                    <a href="">
+                      <li>Farming Tools, Equipment & Machines</li>
+                    </a>
+                    <a href="">
+                      <li>Flowers, Plants & Trees</li>
+                    </a>
+                    <a href="">
+                      <li>Seeds and Plant Saplings</li>
+                    </a>
+                    <a href="">
+                      <li>Tractor, Tractor Parts & Assemblies</li>
+                    </a>
+                  </ul>
+                </div>
+                <div class="col-3 col-sm-3 col-md-4 col-lg-4 dropDownColumn">
+                  <ul class="categoriesList">
+                    <a href="">
+                      <li>Bird Food, Poultry & Animal Food</li>
+                    </a>
+                    <a href="">
+                      <li>Irrigation & Harvesting Machines</li>
+                    </a>
+                    <a href="">
+                      <li>Fertilizers and Soil Additives</li>
+                    </a>
+                    <a href="">
+                      <li>Coir and Agro Products</li>
+                    </a>
+                  </ul>
+                </div>
+                <div class="col-3 col-sm-3 col-md-4 col-lg-4 dropDownColumn">
+                  <ul class="categoriesList">
+                    <a href="">
+                      <li>Farming and Pet Animals</li>
+                    </a>
+                    <a href="">
+                      <li>Agri Finance</li>
+                    </a>
+                    <a href="">
+                      <li>Agri Insurance</li>
+                    </a>
+                    <a href="">
+                      <li>Agri Related Business</li>
+                    </a>
+                  </ul>
+                </div>
               </div>
+            </div>
+            <!-- Drop Down list Ending--------------------------- -->
           </div>
-          <!-- Drop Down list Ending--------------------------- -->
-          </div>
-          </div>
-          <input type="text" class="form-control navbarSearchInput" id ="navbarSearchInput" aria-label="Text input with dropdown button" placeholder="Search Product..">
-  
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary btnNavBarSearch" id = "btnNavBarSearch" type="button" (click)="search()">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </div>
+        </div>
+        <input type="text" class="form-control navbarSearchInput" id="navbarSearchInput"
+          aria-label="Text input with dropdown button" placeholder="Search Product..">
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary btnNavBarSearch" id="btnNavBarSearch" type="button"
+            (click)="search()">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2 text-center my-1 navBarBelt">
-        <h2>बळीराजा</h2>
-      </div>
-      <button class="navbar-toggler m-1" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2 text-center my-1 navBarBelt">
+      <h2>बळीराजा</h2>
+    </div>
+    <button class="navbar-toggler m-1" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <div class="col-12 navBarBeltThree">
         <ul class="navbar-nav row" id="row">
           <li class="nav-item">
@@ -70,116 +98,144 @@
             <a class="nav-link" (click)="opengovermentlink()">Goverment Links</a>
           </li>
 
-          <li *ngIf = "!login ; else logout" class="nav-item">
+          <li *ngIf="!login ; else logout" class="nav-item">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent;
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="background: transparent;
               border: transparent; font-size: 2.5vh;">Login
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" type="button" data-toggle="modal" (click) = "supplierSignInModal.show()">Seller</button>
-                <button class="dropdown-item" type="button" data-toggle="modal" (click) = "customerSignInModal.show()">Customer</button>
+                <button class="dropdown-item" type="button" data-toggle="modal"
+                  (click)="supplierSignInModal.show()">Seller</button>
+                <button class="dropdown-item" type="button" data-toggle="modal"
+                  (click)="customerSignInModal.show()">Customer</button>
               </div>
             </div>
           </li>
 
           <ng-template #logout>
             <li class="nav-item">
-              <a class="nav-link" (click) = "logoutSupplier()">Logout</a>
+              <a class="nav-link" (click)="logoutSupplier()">Logout</a>
             </li>
           </ng-template>
 
-          
+
         </ul>
       </div>
     </div>
   </nav>
 </div>
 
-<div bsModal #supplierSignInModal="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-child-name">
+<div bsModal #supplierSignInModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 id="dialog-child-name" class="modal-title pull-left"> modal</h4>
+        <h4 id="dialog-child-name" class="modal-title pull-left"> Login</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="supplierSignInModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id = "supplierSignIn" #supplierLogin = "ngForm"  (onSubmit) = "loginSupplier()" style="text-align: -webkit-center;">
+        <form id="supplierSignIn" #supplierLogin="ngForm" (onSubmit)="loginSupplier()"
+          style="text-align: -webkit-center;">
           <div class="form-group">
-            <input type="text" class="form-control supplierSignInFormControl" [(ngModel)] = "supplierLoginEmailId" name="supplierLoginEmailId" id="supplierLoginEmailId" placeholder="Email" required>
+            <input type="text" class="form-control supplierSignInFormControl" [(ngModel)]="supplierLoginEmailId"
+              name="supplierLoginEmailId" id="supplierLoginEmailId" placeholder="Email" required>
           </div>
-  
+
           <div class="form-group">
-            <input type="password" [(ngModel)] = "supplierLoginpassword" class="form-control supplierSignInFormControl"  name="supplierLoginpassword" id="supplierLoginpassword" placeholder="Password" required>
-         </div>
-  
-         <div class="form-group">
-          <input type="submit" value="Sign In" [disabled] = "supplierLogin.invalid" [class.disable] = "supplierLogin.invalid" class="btn btn-primary" (click)="loginSupplier()">
-         </div>
-  
-          </form>
+            <input type="password" [(ngModel)]="supplierLoginpassword" class="form-control supplierSignInFormControl"
+              name="supplierLoginpassword" id="supplierLoginpassword" placeholder="Password" required>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" value="Sign In" [disabled]="supplierLogin.invalid"
+              [class.disable]="supplierLogin.invalid" class="btn btn-primary" (click)="loginSupplier()">
+          </div>
+
+        </form>
       </div>
 
       <div class="modal-footer">
-        New Seller ?<a href="" class = "px-3" data-toggle="modal" (click)="supplierSignUp.show()">Start Here</a>
-    </div>
+        New Seller ?<a href="" class="px-3" data-toggle="modal" (click)="supplierSignUp.show()">Start Here</a>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- ------------Supplier Sign Up Model -->
-<div bsModal class="modal fade" #supplierSignUp = "bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+<div bsModal class="modal fade" #supplierSignUp="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 id="dialog-child-name" class="modal-title">Sign Up Supplier</h5>
-        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="supplierSignUp.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" style="padding: 2vh 6vw;">
-        <form id="createNewSupplier" #createNewSupplier = "ngForm" (ngSubmit) = "createSupplier()">
-             <div class="form-group">
-                  <label for="txtProduct">
-                     <svg class="bi bi-person inputGroupSvg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                         <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM8 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"/>
-                       </svg>   
-                     Full Name</label>
-                 <input class="form-control" type="text" [(ngModel)] = "suppplierSignUpfullname" name="suppplierSignUpfullname" id="fullName" placeholder="Full Name" required>
-             </div>
-             <div class="form-group">
-                 <label for="txtProduct">
-                     <svg class="bi bi-envelope-open inputGroupSvg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                         <path fill-rule="evenodd" d="M.243 6.929l.514-.858L8 10.417l7.243-4.346.514.858L8 11.583.243 6.93z" clip-rule="evenodd"/>
-                         <path fill-rule="evenodd" d="M7.184 10.68L.752 14.432l-.504-.864L6.68 9.816l.504.864zm1.632 0l6.432 3.752.504-.864L9.32 9.816l-.504.864z" clip-rule="evenodd"/>
-                         <path fill-rule="evenodd" d="M8.47 1.318a1 1 0 00-.94 0l-6 3.2A1 1 0 001 5.4V14a1 1 0 001 1h12a1 1 0 001-1V5.4a1 1 0 00-.53-.882l-6-3.2zM7.06.435a2 2 0 011.882 0l6 3.2A2 2 0 0116 5.4V14a2 2 0 01-2 2H2a2 2 0 01-2-2V5.4a2 2 0 011.059-1.765l6-3.2z" clip-rule="evenodd"/>
-                       </svg>
-                     Email</label>
-                 <input class="form-control" type="text" [(ngModel)] = "suppplierSignUpEmail" name="suppplierSignUpEmail" id="suppplierSignUpEmail" placeholder="Email" required>
-             </div>
-             <div class="form-group">
-                 <label for="txtProduct">
-                     <svg class="bi bi-shield-lock inputGroupSvg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                         <path fill-rule="evenodd" d="M5.443 1.991a60.17 60.17 0 00-2.725.802.454.454 0 00-.315.366C1.87 7.056 3.1 9.9 4.567 11.773c.736.94 1.533 1.636 2.197 2.093.333.228.626.394.857.5.116.053.21.089.282.11A.73.73 0 008 14.5c.007-.001.038-.005.097-.023.072-.022.166-.058.282-.111.23-.106.525-.272.857-.5a10.197 10.197 0 002.197-2.093C12.9 9.9 14.13 7.056 13.597 3.159a.454.454 0 00-.315-.366c-.626-.2-1.682-.526-2.725-.802C9.491 1.71 8.51 1.5 8 1.5c-.51 0-1.49.21-2.557.491zm-.256-.966C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 012.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 01-2.418 2.3 6.942 6.942 0 01-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 01-1.007-.586 11.192 11.192 0 01-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 012.415 1.84a61.11 61.11 0 012.772-.815z" clip-rule="evenodd"/>
-                         <path d="M9.5 6.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
-                         <path d="M7.411 8.034a.5.5 0 01.493-.417h.156a.5.5 0 01.492.414l.347 2a.5.5 0 01-.493.585h-.835a.5.5 0 01-.493-.582l.333-2z"/>
-                       </svg>
-                     Password</label>
-                 <input class="form-control" type="password" [(ngModel)] = "suppplierSignUpPassword" name="suppplierSignUpPassword" id="suppplierSignUpPassword" placeholder="Password" required>
-             </div>
-             <div class="form-group">
-                 <label for="txtProduct">Confirm Password</label>
-                 <input class="form-control" type="password" [(ngModel)] = "suppplierSignUpConfirmPassword" name="suppplierSignUpConfirmPassword" id="suppplierSignUpConfirmPassword" placeholder="password" required>
-             </div>
-             <div class="form-check">
-                 <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-                 <label class="form-check-label" for="exampleCheck1">I agree to the Terms of User</label>
-             </div>
-             <div class="form-group text-center">
-                 <input type="submit" [disabled] = "createNewSupplier.invalid" [class.disable] = "createNewSupplier.invalid" value="Sign Up" class="btn btn-primary" >
-             </div>
+        <form id="createNewSupplier" #createNewSupplier="ngForm" (ngSubmit)="createSupplier()">
+          <div class="form-group">
+            <label for="txtProduct">
+              <svg class="bi bi-person inputGroupSvg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM8 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0z"
+                  clip-rule="evenodd" />
+              </svg>
+              Full Name</label>
+            <input class="form-control" type="text" [(ngModel)]="suppplierSignUpfullname" name="suppplierSignUpfullname"
+              id="fullName" placeholder="Full Name" required>
+          </div>
+          <div class="form-group">
+            <label for="txtProduct">
+              <svg class="bi bi-envelope-open inputGroupSvg" width="1em" height="1em" viewBox="0 0 16 16"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M.243 6.929l.514-.858L8 10.417l7.243-4.346.514.858L8 11.583.243 6.93z"
+                  clip-rule="evenodd" />
+                <path fill-rule="evenodd"
+                  d="M7.184 10.68L.752 14.432l-.504-.864L6.68 9.816l.504.864zm1.632 0l6.432 3.752.504-.864L9.32 9.816l-.504.864z"
+                  clip-rule="evenodd" />
+                <path fill-rule="evenodd"
+                  d="M8.47 1.318a1 1 0 00-.94 0l-6 3.2A1 1 0 001 5.4V14a1 1 0 001 1h12a1 1 0 001-1V5.4a1 1 0 00-.53-.882l-6-3.2zM7.06.435a2 2 0 011.882 0l6 3.2A2 2 0 0116 5.4V14a2 2 0 01-2 2H2a2 2 0 01-2-2V5.4a2 2 0 011.059-1.765l6-3.2z"
+                  clip-rule="evenodd" />
+              </svg>
+              Email</label>
+            <input class="form-control" type="text" [(ngModel)]="suppplierSignUpEmail" name="suppplierSignUpEmail"
+              id="suppplierSignUpEmail" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="txtProduct">
+              <svg class="bi bi-shield-lock inputGroupSvg" width="1em" height="1em" viewBox="0 0 16 16"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M5.443 1.991a60.17 60.17 0 00-2.725.802.454.454 0 00-.315.366C1.87 7.056 3.1 9.9 4.567 11.773c.736.94 1.533 1.636 2.197 2.093.333.228.626.394.857.5.116.053.21.089.282.11A.73.73 0 008 14.5c.007-.001.038-.005.097-.023.072-.022.166-.058.282-.111.23-.106.525-.272.857-.5a10.197 10.197 0 002.197-2.093C12.9 9.9 14.13 7.056 13.597 3.159a.454.454 0 00-.315-.366c-.626-.2-1.682-.526-2.725-.802C9.491 1.71 8.51 1.5 8 1.5c-.51 0-1.49.21-2.557.491zm-.256-.966C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 012.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 01-2.418 2.3 6.942 6.942 0 01-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 01-1.007-.586 11.192 11.192 0 01-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 012.415 1.84a61.11 61.11 0 012.772-.815z"
+                  clip-rule="evenodd" />
+                <path d="M9.5 6.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                <path
+                  d="M7.411 8.034a.5.5 0 01.493-.417h.156a.5.5 0 01.492.414l.347 2a.5.5 0 01-.493.585h-.835a.5.5 0 01-.493-.582l.333-2z" />
+              </svg>
+              Password</label>
+            <input class="form-control" type="password" [(ngModel)]="suppplierSignUpPassword"
+              name="suppplierSignUpPassword" id="suppplierSignUpPassword" placeholder="Password" required>
+          </div>
+          <div class="form-group">
+            <label for="txtProduct">Confirm Password</label>
+            <input class="form-control" type="password" [(ngModel)]="suppplierSignUpConfirmPassword"
+              name="suppplierSignUpConfirmPassword" id="suppplierSignUpConfirmPassword" placeholder="password" required>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+              <label class="form-check-label" for="exampleCheck1">I agree to the Terms of User</label>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <input type="submit" [disabled]="createNewSupplier.invalid" [class.disable]="createNewSupplier.invalid"
+              value="Sign Up" class="btn btn-primary">
+          </div>
         </form>
       </div>
     </div>
@@ -187,35 +243,39 @@
 </div>
 
 <!-- ------------Customer Sign In Model -->
-<div class="modal fade" id="customerSignIn" bsModal #customerSignInModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="customerSignIn" bsModal #customerSignInModal="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Sign In</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="customerSignInModal.hide()">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="customerSignInModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id = "customerSignIn" #customerSignIn = "ngForm" (ngSubmit) = "customerLogin()" style="text-align: -webkit-center;">
+        <form id="customerSignIn" #customerSignIn="ngForm" (ngSubmit)="customerLogin()"
+          style="text-align: -webkit-center;">
           <div class="form-group">
-              <input type="number" class="form-control supplierSignInFormControl" [(ngModel)] = "customerSignInContact" name="customerSignInContact" id="customercustomerSignInContact" placeholder="Contact Number">
+            <input type="number" class="form-control supplierSignInFormControl" [(ngModel)]="customerSignInContact"
+              name="customerSignInContact" id="customercustomerSignInContact" placeholder="Contact Number">
           </div>
           <div class="form-group">
-              <input type="submit" value="Sign In" class="btn btn-primary">
+            <input type="submit" value="Sign In" class="btn btn-primary">
           </div>
         </form>
       </div>
       <div class="modal-footer">
-          New Here ?<a href="" class = "px-3" data-toggle="modal" (click)="customerSignUpModal.show()">Join Us</a>
+        New Here ?<a href="" class="px-3" data-toggle="modal" (click)="customerSignUpModal.show()">Join Us</a>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ------------Customer Sign Up Model -->
-<div bsModal #customerSignUpModal="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-child-name">
+<div bsModal #customerSignUpModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -225,50 +285,57 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id = "customerSignUp" #customerSignUp = "ngForm" (ngSubmit) = "createCustomer()">
+        <form id="customerSignUp" #customerSignUp="ngForm" (ngSubmit)="createCustomer()">
           <div class="form-row">
             <div class="form-group col-6">
               <label for="txtProduct">
                 <i class="fa fa-user pr-1"></i>
                 Full Name</label>
-              <input class="form-control form-control-sm" type="text" [(ngModel)] = "customerSignUpFullName" name="customerSignUpFullName" id="customerSignUpFullName" required>
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="customerSignUpFullName"
+                name="customerSignUpFullName" id="customerSignUpFullName" required>
             </div>
             <div class="form-group col-6">
               <label for="txtProduct">
                 <i class="fa fa-phone pr-1"></i>
                 Mobile Number</label>
-              <input class="form-control form-control-sm" type="number" [(ngModel)] = "customerSignUpMobileNumber" name="customerSignUpMobileNumber" id="customerSignUpMobileNumber" required>
+              <input class="form-control form-control-sm" type="number" [(ngModel)]="customerSignUpMobileNumber"
+                name="customerSignUpMobileNumber" id="customerSignUpMobileNumber" required>
             </div>
             <div class="form-group col-6">
               <label for="txtProduct">
                 <i class="fa fa-home pr-1"></i>
-                  Address</label>
-              <input class="form-control form-control-sm" type="text" [(ngModel)] = "customerSignUpAddress" name="customerSignUpAddress" id="customerSignUpAddress" required>
+                Address</label>
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="customerSignUpAddress"
+                name="customerSignUpAddress" id="customerSignUpAddress" required>
             </div>
             <div class="form-group col-6">
               <label for="txtProduct">
                 <i class="fa fa-map pr-1"></i>
                 Taluka</label>
-              <input class="form-control form-control-sm" type="text" [(ngModel)] = "customerSignUpTaluka" name="customerSignUpTaluka" id="customerSignUpTaluka" required>
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="customerSignUpTaluka"
+                name="customerSignUpTaluka" id="customerSignUpTaluka" required>
             </div>
             <div class="form-group col-6">
               <label for="txtProduct">
                 <i class="fa fa-envelope-open pr-1"></i>
                 Post</label>
-              <input class="form-control form-control-sm" type="text" [(ngModel)] = "customerSignUpPost" name="customerSignUpPost" id="customerSignUpPost" required>
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="customerSignUpPost"
+                name="customerSignUpPost" id="customerSignUpPost" required>
             </div>
             <div class="form-group col-6">
               <label for="txtProduct">
                 <i class="fa fa-building pr-1"></i>
-                  District</label>
-              <input class="form-control form-control-sm" type="text" [(ngModel)] = "customerSignUpDistrict" name="customerSignUpTaluka" id="customerSignUpTaluka" required>
+                District</label>
+              <input class="form-control form-control-sm" type="text" [(ngModel)]="customerSignUpDistrict"
+                name="customerSignUpTaluka" id="customerSignUpTaluka" required>
             </div>
             <div class="form-group col-12">
               <input type="checkbox" class="checkboxform" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">I agree to the Terms of User</label>
             </div>
             <div class="row col-12" style="justify-content: center;">
-              <input type="submit" [disabled] = "customerSignUp.invalid" [class.disable] = "customerSignUp.invalid" value="Sign Up" class="btn btn-primary">
+              <input type="submit" [disabled]="customerSignUp.invalid" [class.disable]="customerSignUp.invalid"
+                value="Sign Up" class="btn btn-primary">
             </div>
           </div>
         </form>
@@ -276,4 +343,3 @@
     </div>
   </div>
 </div>
-
