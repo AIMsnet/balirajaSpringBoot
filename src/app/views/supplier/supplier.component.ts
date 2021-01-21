@@ -200,7 +200,7 @@ export class SupplierComponent implements OnInit{
   newProduct(addProduct){
     if(this.productModel.name){
       this.productService.newProduct(this.productModel).subscribe(response =>{
-        this.savedProductId = Number(response)
+        this.savedProductId = Number(response);
         this.addProductModal.hide();
         this.getProductBySupplier();
         addProduct.reset();
