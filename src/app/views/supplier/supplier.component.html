@@ -324,8 +324,7 @@
             [gridOptions] = "gridOptions"
             [rowData]="productObject"
             [columnDefs]="columnDefsProduct"
-            [suppressScrollOnNewData]="true">
-            
+            [suppressScrollOnNewData]="true">           
           </ag-grid-angular>
           </div>
         </div>
@@ -688,8 +687,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               <div class="form-group col-12">
                 <div class="row col-12 justify-content-between mx-0 p-0">
                   <label for="specifications">Specifications</label>
-                  <button class="btn btn-primary" (click)="addSpecificationModal.show()"> Add Specifications </button>
-                  <!-- <label class="btn btn-sm btn-primary add_field_button" data-toggle = "modal" data-target="#addSpecificationModal">Add Specifications</label> -->
+                  <!-- <button class="btn btn-primary" (click)="addSpecificationModal.show()"> Add Specifications </button> -->
+                  <label class="btn btn-sm btn-primary add_field_button" (click)="addSpecificationModal.show()">Add Specifications</label>
                 </div>
                 <div class="input_fields_wrap row col-12">
                   <div class="d-flex col-9">
@@ -831,7 +830,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
             <div class=" text-center">
               <button class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
               <button class="btn btn-sm btn-primary mr-2" (click) = "specificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-              <button class="btn btn-sm btn-success" (click)="addSpecificationModal.hide()"><i class="fa fa-save mr-1"></i>Add</button>
+              <button class="btn btn-sm btn-success" (click) = "onSpecification(specificationForm)"><i class="fa fa-save mr-1"></i>Add</button>
             </div>
           </div>
         </form>
@@ -855,7 +854,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
        <form #productImageUpload (ngSubmit) = "saveImage()">
         <div class="form-group">
           <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;">
+          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png">
         </div>
         <input type="submit" value="Upload Image">
        </form>
