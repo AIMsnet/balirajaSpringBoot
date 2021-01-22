@@ -313,9 +313,9 @@
        <!-- Tab Three -->
       <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <div class="container-fluid productManagement">
-          <h6>Product Management</h6>
-          <div class="container">
-            <button class="btn btn-primary" data-toggle = "modal" data-target="#addProductModal"> New Product </button>
+          <div class="row m-0 mb-4 d-flex justify-content-between"> 
+            <h5>Product Management</h5>
+            <button class="btn btn-primary" (click)="addProductModal.show()"> New Product </button>
           </div>
           <div class="table-responsive mt-2 mb-2 productTable">
             <ag-grid-angular #productGridTable
@@ -323,7 +323,8 @@
             class="ag-theme-balham"
             [gridOptions] = "gridOptions"
             [rowData]="productObject"
-            [columnDefs]="columnDefsProduct">
+            [columnDefs]="columnDefsProduct"
+            [suppressScrollOnNewData]="true">
             
           </ag-grid-angular>
           </div>
@@ -623,18 +624,18 @@
 </div>
 
 <!-- ------------Add Product -->
-<div bsModal id = "addProductModal" #addProductModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-sizes-name2">
+<div class="modal fade" bsModal  #addProductModal="bs-modal"  [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addProductModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id = "addProduct" #addProduct = "ngForm" (ngSubmit) = "newProduct()">
+        <form #addProduct = "ngForm" (ngSubmit) = "newProduct(addProduct)">
 
             <div class="form-row">
               <div class="form-group col-5">
@@ -651,7 +652,7 @@
               </div>
               <div class="form-group col-4">
                 <label for="price">Price</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.price" type="number" name="prodcut_price" id="prodcut_price" required>
+                <input class="form-control form-control-sm" [(ngModel)] = "productModel.price" type="number" min="0" name="prodcut_price" id="prodcut_price" required>
               </div>
                <div class="form-group col-4">
                 <label for="prodcut_arrival">Offer on this product</label>
@@ -685,7 +686,8 @@
               <div class="form-group col-12">
                 <div class="row col-12 justify-content-between mx-0 p-0">
                   <label for="specifications">Specifications</label>
-                  <label class="btn btn-sm btn-primary add_field_button" data-toggle = "modal" data-target="#addSpecificationModal">Add Specifications</label>
+                  <button class="btn btn-primary" (click)="addSpecificationModal.show()"> Add Specifications </button>
+                  <!-- <label class="btn btn-sm btn-primary add_field_button" data-toggle = "modal" data-target="#addSpecificationModal">Add Specifications</label> -->
                 </div>
                 <div class="input_fields_wrap row col-12">
                   <div class="d-flex col-9">
@@ -733,7 +735,7 @@
               </div>
               <div class="row justify-content-center col-12 mx-0">
                 <div class=" text-center">
-                  <button class="btn btn-sm btn-secondary mr-2"><i class="fa fa-times mr-1"></i>Cancel</button>
+                  <button class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
                   <button class="btn btn-sm btn-primary mr-2" (click) = "addProduct.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
                   <button class="btn btn-sm btn-success" [disabled] = "addProduct.invalid" [class.disable] = "addProduct.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
@@ -749,14 +751,14 @@
 
 
 <!-- Add Specification -->
-<div bsModal id = "addSpecificationModal" #addSpecificationModal="bs-modal"  class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-sizes-name2">
+<div class="modal fade" bsModal #addSpecificationModal="bs-modal"   [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
-        <button type="button" class="close pull-right" aria-label="Close" data-dismiss="modal">
-          <span aria-hidden="true" class="">&times;</span>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()">
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -821,6 +823,13 @@
               <input type="text" [(ngModel)] = "productModel.specification_10" class="form-control form-control-sm col-4 mx-2" name="addspec">:
               <input type="text" [(ngModel)] = "productModel.description_10" class="form-control form-control-sm col-4 mx-2" name="addspec">
               
+            </div>
+          </div>
+          <div class="row justify-content-center col-12 mx-0">
+            <div class=" text-center">
+              <button class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
+              <button class="btn btn-sm btn-primary mr-2" (click) = "specificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+              <button class="btn btn-sm btn-success" (click)="addSpecificationModal.hide()"><i class="fa fa-save mr-1"></i>Add</button>
             </div>
           </div>
         </form>

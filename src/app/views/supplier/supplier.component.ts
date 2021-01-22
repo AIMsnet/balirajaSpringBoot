@@ -8,6 +8,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -27,7 +28,6 @@ export class SupplierComponent implements OnInit{
   @ViewChild('addSpecificationModal') addSpecificationModal: ModalDirective;
   @ViewChild('photoModal') photoModal: ModalDirective;
   @ViewChild('productGridTable') productGridTable: AgGridAngular;
-
 
   // Instances
   personalDetailName : String
@@ -64,31 +64,30 @@ export class SupplierComponent implements OnInit{
   productObject = [] // For storing Product
   quotesObject = []
   addednewProduct : {}
-  gridOptions : GridOptions ={
-  }
-
   image
   productImage
   savedProductId : Number
+  gridOptions : GridOptions ={
+  }
 
   //Table Elements
   columnDefsProduct = [
-    {field : 'code', headerName : 'Code'},
-    {field : 'name', headerName : 'Name'},
-    {field : 'brand', headerName : 'Brand'},
-    {field : 'price', headerName : 'Price'},
-    {field : 'arrival', headerName : 'Arrival'},
-    {field : 'unit', headerName : 'Unit'},
-    {field : 'clicks', headerName : 'Clicks'},
-    {field : 'created_date', headerName : 'Created Date'},
+    {field : 'code', headerName : 'Code', resizable: true, width: 150 },
+    {field : 'name', headerName : 'Name', resizable: true, width: 210 },
+    {field : 'brand', headerName : 'Brand', resizable: true, width: 219 },
+    {field : 'price', headerName : 'Price', resizable: true, width: 140 },
+    {field : 'arrival', headerName : 'Arrival', resizable: true, width: 140 },
+    {field : 'unit', headerName : 'Unit', resizable: true, width: 140 },
+    {field : 'clicks', headerName : 'Clicks', resizable: true, width: 150 },
+    {field : 'created_date', headerName : 'Created Date', width: 150 }
   ]
 
   columnDefsQuotes = [
-    {field : 'customerName', headerName : 'Customer Name'},
-    {field : 'customerMobileNumber', headerName : 'Customer Mobile Number'},
-    {field : 'productName', headerName : 'Product Name'},
-    {field : 'quantity', headerName : 'Quantity'},
-    {field : 'requirement', headerName : 'Requirement'},
+    {field : 'customerName', headerName : 'Customer Name', width: 200 },
+    {field : 'customerMobileNumber', headerName : 'Customer Mobile Number', width: 200 },
+    {field : 'productName', headerName : 'Product Name', width: 250 },
+    {field : 'quantity', headerName : 'Quantity', width: 100 },
+    {field : 'requirement', headerName : 'Requirement', width: 450 }
   ]
 
   
@@ -219,12 +218,47 @@ export class SupplierComponent implements OnInit{
     console.log(this.categroyObject)
   }
 
-  newProduct(){
+  getProductBySupplier(){
+    this.supplierServices.getSupplierBySessionId().subscribe(response =>{
+      console.log(response)
+      this.supplierModel.full_name = response['full_name'] 
+      this.supplierModel.designation = response['designation'] 
+      this.supplierModel.phone_number = response['phone_number'] 
+      this.supplierModel.mobile_number = response['mobile_number'] 
+      this.supplierModel.email = response['email'] 
+      this.supplierModel.email_optional = response['email_optional'] 
+      this.supplierModel.address = response['address'] 
+      this.supplierModel.area_street = response['area_street'] 
+      this.supplierModel.city = response['city'] 
+      this.supplierModel.district = response['district'] 
+      this.supplierModel.taluka = response['taluka'] 
+      this.supplierModel.state = response['state'] 
+      this.supplierModel.pincode = response['pincode']
+
+      if(response['business']['0'] == null){
+        this.businessModel.gst = null
+      }
+      else{
+        this.businessModel =  response['business']['0']
+        this.editBusinessModel = Object.assign({},  response['business']['0'])
+      }
+      
+      // Fetching Products
+      this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
+        this.productObject = response
+        this.totalProducts = this.productObject.length
+      })
+    })
+  }
+
+  newProduct(addProduct){
     if(this.productModel.name){
       this.productService.newProduct(this.productModel).subscribe(response =>{
-        this.savedProductId = Number(response)
-        this.addProductModal.hide()
-        this.photoModal.show()
+        this.savedProductId = Number(response);
+        this.addProductModal.hide();
+        this.getProductBySupplier();
+        addProduct.reset();
+        this.photoModal.show();
       })
     }
   }
