@@ -35,7 +35,7 @@ const routes: Routes = [
         component : SupplierComponent
       },
       {
-        path : "product",
+        path : "product/:searchedProduct",
         component : ProductComponent
       },
       {

@@ -32,4 +32,7 @@ export class ProductService {
     return this.httpClient.get(environment.baseUrl + UrlMappings.getAllProductByBusiness + business)
   }
 
+  getSearchedProduct(product : String): Observable<any>{
+    return this.httpClient.get(environment.baseUrl + UrlMappings.getSearchedProduct + product)
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-product',
@@ -11,9 +12,16 @@ export class ProductComponent implements OnInit {
 
   @ViewChild('getQuoteModal') getQuoteModal : ModalDirective;
 
-  constructor(private router : Router) { }
+  searchedProduct : String = ""
+  productList : any
+  constructor(private router : Router, private activatedRoute : ActivatedRoute, private productService : ProductService) { }
 
   ngOnInit(): void {
+    this.searchedProduct = this.activatedRoute.snapshot.paramMap.get("searchedProduct")
+    this.productService.getSearchedProduct(this.searchedProduct).subscribe(response => {
+      console.log(response)
+      this.productList = response
+    })
   }
 
   openGetQuote(){
@@ -27,4 +35,7 @@ export class ProductComponent implements OnInit {
   productdesc(){
     this.router.navigateByUrl('/productdesc');
   }
+
+
+
 }

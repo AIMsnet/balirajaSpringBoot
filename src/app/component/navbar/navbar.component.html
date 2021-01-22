@@ -42,7 +42,7 @@
           <!-- Drop Down list Ending--------------------------- -->
           </div>
           </div>
-          <input type="text" class="form-control navbarSearchInput" id ="navbarSearchInput" aria-label="Text input with dropdown button" placeholder="Search Product..">
+          <input type="text" class="form-control navbarSearchInput" id ="navbarSearchInput" aria-label="Text input with dropdown button" placeholder="Search Product.." [(ngModel)] = "searchedProduct">
   
           <div class="input-group-append">
             <button class="btn btn-outline-secondary btnNavBarSearch" id = "btnNavBarSearch" type="button" (click)="search()">

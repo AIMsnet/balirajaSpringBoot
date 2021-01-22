@@ -7,6 +7,7 @@ import { CategroyService } from 'src/app/services/categroy/categroy.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -47,7 +48,6 @@ export class SupplierComponent implements OnInit{
   supplierModel =  new Supplier()
   businessModel = new Business()
   editBusinessModel = new Business()
-
   productModel = new Product()
   editProductModel = new Product()
 
@@ -56,6 +56,7 @@ export class SupplierComponent implements OnInit{
   subCategoryObject
   categroyObject
   offer : Boolean = false
+  isLogin : Boolean = true
 
   totalLeads : Number = 0
   totalProducts : Number = 0
@@ -91,59 +92,79 @@ export class SupplierComponent implements OnInit{
   ]
 
   
-  constructor(public supplierServices : SupplierServiceService, private categoryService : CategroyService, private productService : ProductService, private tosterService : ToastrService) { }
+  constructor(private router: Router, public supplierServices : SupplierServiceService, private categoryService : CategroyService, private productService : ProductService, private tosterService : ToastrService) { }
 
   ngOnInit(): void {
+
     this.supplierServices.getSupplierBySessionId().subscribe(response =>{
-      console.log(response)
-      this.supplierModel.full_name = response['full_name'] 
-      this.supplierModel.designation = response['designation'] 
-      this.supplierModel.phone_number = response['phone_number'] 
-      this.supplierModel.mobile_number = response['mobile_number'] 
-      this.supplierModel.email = response['email'] 
-      this.supplierModel.email_optional = response['email_optional'] 
-      this.supplierModel.address = response['address'] 
-      this.supplierModel.area_street = response['area_street'] 
-      this.supplierModel.city = response['city'] 
-      this.supplierModel.district = response['district'] 
-      this.supplierModel.taluka = response['taluka'] 
-      this.supplierModel.state = response['state'] 
-      this.supplierModel.pincode = response['pincode']
-
-      if(response['business']['0'] == null){
-        this.businessModel.gst = null
-      }
-      else{
-        this.businessModel =  response['business']['0']
-        this.editBusinessModel = Object.assign({},  response['business']['0'])
-      }
       
-      // Fetching Products
-      this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
-        this.productObject = response
-        this.totalProducts = this.productObject.length
-      })
-    })
+      if (response['full_name'] == "Session Expired" || localStorage.getItem("sessionId") == null){
+        this.isLogin = false
+        localStorage.removeItem('sessionId')
+        this.tosterService.error("Session Expired.", "Baliraja", {
+          timeOut: 2000, progressBar: true, easing: 'ease-in'
+        })
+        this.router.navigateByUrl('')
+      }
 
-    // Fetching Quotes
-    this.supplierServices.getQuotesBySessionId().subscribe(response => {
-      this.quotesObject = response
-      this.totalLeads = this.quotesObject.length
-    })
+      if (this.isLogin){
+        this.supplierModel.full_name = response['full_name']
+        this.supplierModel.designation = response['designation']
+        this.supplierModel.phone_number = response['phone_number']
+        this.supplierModel.mobile_number = response['mobile_number']
+        this.supplierModel.email = response['email']
+        this.supplierModel.email_optional = response['email_optional']
+        this.supplierModel.address = response['address']
+        this.supplierModel.area_street = response['area_street']
+        this.supplierModel.city = response['city']
+        this.supplierModel.district = response['district']
+        this.supplierModel.taluka = response['taluka']
+        this.supplierModel.state = response['state']
+        this.supplierModel.pincode = response['pincode']
 
-    this.productObject.forEach(function(){
+        if (response['business']['0'] == null) {
+          this.businessModel.gst = null
+        }
+        else {
+          this.businessModel = response['business']['0']
+          this.editBusinessModel = Object.assign({}, response['business']['0'])
+        }
+
+        this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
+          this.productObject = response
+          this.totalProducts = this.productObject.length
+        })
+        
+        // Fetching Products
+        this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
+          this.productObject = response
+          this.totalProducts = this.productObject.length
+        })
+       
+        // Fetching Quotes
+        this.supplierServices.getQuotesBySessionId().subscribe(response => {
+          this.quotesObject = response
+          this.totalLeads = this.quotesObject.length
+        })
+
+      }// End of this.login
+
+     })
+
+
+    this.productObject.forEach(function () {
       this.totalClicks = this.productObject['clicks'] + this.totalClicks
-    }
-    )
-    
+    })
+
 
     this.gridOptions = <GridOptions>{
-      onGridReady :() =>{
+      onGridReady: () => {
         this.gridOptions.api.sizeColumnsToFit()
         console.log("Grid Caleed")
       }
     }
-  }
+
+  }// End of ngOnInit
 
   //TO make offer field visible line no 659
   offerField() {

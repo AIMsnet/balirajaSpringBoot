@@ -51,25 +51,22 @@
       </div>
 
       <div class="col-sm-10 col-md-9 col-lg-10 productFrame">
-      <!-- {% for p in product %} -->
-          <div class="row rowProduct">
+          <div class="row rowProduct" *ngFor = "let product of productList">
               <div class="col-sm-3 col-md-3 col-lg-3 productImage">
-                  <img class="img-fluid" src = '' alt="Advertisement Pic">
+                  <img class="img-fluid" src = "data:image/png;base64,{{product.image}}" alt="Advertisement Pic">
               </div>
               <div class="col-sm-9 col-md-9 col-lg-9 productDescription">
                 <a class = "productLink" (click)="productdesc()">              
-                  <h5 class="card-title">name</h5>
-                  <p class="card-text m-0"> product description</p>
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text m-0">{{product.additionalDescription}}</p>
                 </a>
                   <div class="row">
                       <div class="col-sm-12 col-md-8 col-lg-8 productDetails">
-                          <p class="productPara"><b>specification</b> &nbsp; description</p>
-                         <!--  <p class="productPara"><b>{{p.specification_2}}:</b> &nbsp; {{p.description_2}}</p>
-                          <p class="productPara"><b>{{p.specification_3}}:</b> &nbsp; {{p.description_3}}</p>
-                          <p class="productPara"><b>{{p.specification_4}}: </b> &nbsp; {{p.description_4}}</p>
-                          {% if p.specification_5 is not None %}
-                          <p class="productPara"><b>{{p.specification_5}}:</b> &nbsp;{{p.description_5}}</p>
-                          {% endif %} -->
+                          <p class="productPara"><b>{{product.specification_1}}:</b> {{product.description_1}}</p>
+                          <p class="productPara"><b>{{product.specification_2}}:</b>  {{product.description_2}}</p>
+                          <p class="productPara"><b>{{product.specification_3}}: </b> {{product.description_3}}</p>
+                          <p class="productPara"><b>{{product.specification_4}}:</b> {{product.description_4}}</p>
+                          
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
                           <span class="fa fa-star checked"></span>
@@ -77,8 +74,6 @@
                           <span class="fa fa-star"></span>
                       </div>
                       <div class="col-sm-12 col-md-4 col-lg-4 productCompany">
-                          <p class="productPara">business.name</p>
-                          <p class="productPara companyAddress">business.supplier.district</p>
                           <button type="button" class="btn btn-primary" (click)="openGetQuote()">Get Quote</button> <br>
                           <button type="button" class="btn btn-primary" (click)="openContactSupplier()">Contact Supplier</button>
                       </div>

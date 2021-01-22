@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit {
 
   sessionId : string
   login : boolean
+  searchedProduct : String
 
   //Model Variables
   createSupplierModel = new CreateSupplier();
@@ -70,11 +71,10 @@ export class NavbarComponent implements OnInit {
   }
 
   search(){
-   /*  var search = $('#navbarSearchInput').val()
-    if(search != ""){
-      location.href='/product/' + search
-    } */
-    this.router.navigateByUrl('/product')
+    if (this.searchedProduct != ""){
+      console.log(this.searchedProduct)
+      this.router.navigateByUrl('/product/' + this.searchedProduct)
+    } 
   }
 
 
