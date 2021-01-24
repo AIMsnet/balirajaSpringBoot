@@ -65,6 +65,7 @@ export class SupplierComponent implements OnInit {
   quotesObject = []
   addednewProduct: {}
   image
+  product_image:boolean=true;
   productImage
   savedProductId: Number
   gridOptions: GridOptions = {
@@ -263,7 +264,7 @@ export class SupplierComponent implements OnInit {
     }
   }
 
-  saveImage() {
+  saveImage(productImageUpload) {
     if (this.image.size < 3145728) {
       this.productService.saveProductImage(this.image, this.savedProductId)
         .subscribe(response => {
@@ -288,6 +289,7 @@ export class SupplierComponent implements OnInit {
             this.productObject.push(this.addednewProduct)
             this.productGridTable.api.setRowData(this.productObject)
           }
+          productImageUpload.reset();
         })
     }
     else {
@@ -305,10 +307,14 @@ export class SupplierComponent implements OnInit {
         timeOut: 2000, progressBar: true, easing: 'ease-in'
       })
     }
-    if (!this.validateFile(this.image[0].name)) {
+    console.log("outside if")
+    console.log("product image"+ this.productImage)
+    if (!this.validateFile(this.productImage)) {
       console.log('Selected file format is not supported');
+      this.tosterService.error("Selected file format is not supported");
       return false;
     }else{
+      this.tosterService.success("File Uploaded Successfully");
       return true;
     }
     // this.imageFormat.nativeElement.innerHTML;
@@ -329,9 +335,13 @@ export class SupplierComponent implements OnInit {
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
     if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
+      console.log("image valid")
+      this.product_image=false;
       return true;
     }
     else {
+      console.log("image invalid")
+      this.product_image=true;
       return false;
     }
   }

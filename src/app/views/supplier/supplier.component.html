@@ -849,12 +849,12 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         </button>
       </div>
       <div class="modal-body">
-       <form #productImageUpload (ngSubmit) = "saveImage()">
+       <form #productImageUpload="ngForm" (ngSubmit) = "saveImage(productImageUpload)">
         <div class="form-group">
           <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png">
+          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png" required>
         </div>
-        <input type="submit" value="Upload Image">
+        <input [disabled]="product_image" type="submit" value="Upload Image">
        </form>
       </div>
     </div>
