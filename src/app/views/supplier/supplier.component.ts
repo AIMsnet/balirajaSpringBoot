@@ -72,22 +72,22 @@ export class SupplierComponent implements OnInit {
 
   //Table Elements
   columnDefsProduct = [
-    { field: 'code', headerName: 'Code', resizable: true, width: 150 },
-    { field: 'name', headerName: 'Name', resizable: true, width: 210 },
-    { field: 'brand', headerName: 'Brand', resizable: true, width: 219 },
-    { field: 'price', headerName: 'Price', resizable: true, width: 140 },
-    { field: 'arrival', headerName: 'Arrival', resizable: true, width: 140 },
-    { field: 'unit', headerName: 'Unit', resizable: true, width: 140 },
-    { field: 'clicks', headerName: 'Clicks', resizable: true, width: 150 },
-    { field: 'created_date', headerName: 'Created Date', width: 150 }
+    { field: 'code', headerName: 'Code'},
+    { field: 'name', headerName: 'Name'},
+    { field: 'brand', headerName: 'Brand'},
+    { field: 'price', headerName: 'Price'},
+    { field: 'arrival', headerName: 'Arrival'},
+    { field: 'unit', headerName: 'Unit'},
+    { field: 'clicks', headerName: 'Clicks'},
+    { field: 'created_date', headerName: 'Created Date'}
   ]
 
   columnDefsQuotes = [
-    { field: 'customerName', headerName: 'Customer Name', width: 210 },
-    { field: 'customerMobileNumber', headerName: 'Customer Mobile Number', width: 200 },
-    { field: 'productName', headerName: 'Product Name', width: 250 },
-    { field: 'quantity', headerName: 'Quantity', width: 200 },
-    { field: 'requirement', headerName: 'Requirement', width: 447 }
+    { field: 'customerName', headerName: 'Customer Name'},
+    { field: 'customerMobileNumber', headerName: 'Customer Mobile Number'},
+    { field: 'productName', headerName: 'Product Name'},
+    { field: 'quantity', headerName: 'Quantity'},
+    { field: 'requirement', headerName: 'Requirement'}
   ]
 
   
@@ -298,34 +298,47 @@ export class SupplierComponent implements OnInit {
 
   }
 
-  onFileChanged(event) {
+  onFileChanged(event: any) {
     this.image = event.target.files[0]
     if (this.image.size > 3145728) {
       this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
         timeOut: 2000, progressBar: true, easing: 'ease-in'
       })
     }
+    if (!this.validateFile(this.image[0].name)) {
+      console.log('Selected file format is not supported');
+      return false;
+    }else{
+      return true;
+    }
     // this.imageFormat.nativeElement.innerHTML;
-    var fileName = this.productImage;
-    console.log("file name = "+ this.productImage);
-    var idxDot = fileName.lastIndexOf(".") + 1;
-    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    console.log("file format = " + extFile);
-    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
-      console.log("if")
-      this.tosterService.success("Image uploaded");   
-    } else {
-      console.log("else")
-      this.tosterService.error("Only jpg/jpeg and png images are allowed!");
+    //   var fileName = this.productImage;
+    // console.log("file name = " + this.productImage);
+    // var idxDot = fileName.lastIndexOf(".") + 1;
+    // var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    // console.log("file format = " + extFile);
+    // if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+    //   console.log("if")
+    //   this.tosterService.success("Image uploaded");
+    // } else {
+    //   console.log("else")
+    //   this.tosterService.error("Only jpg/jpeg and png images are allowed!");
+    // }
+  }
+
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
+      return true;
+    }
+    else {
+      return false;
     }
   }
 
-  onSpecification(specificationForm){
+  onSpecification(specificationForm) {
     this.addSpecificationModal.hide();
     specificationForm.reset();
   }
-
-
-
 }
 
