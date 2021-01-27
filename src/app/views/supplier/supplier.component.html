@@ -324,8 +324,17 @@
             [gridOptions] = "gridOptions"
             [rowData]="productObject"
             [columnDefs]="columnDefsProduct"
-            [suppressScrollOnNewData]="true">           
+            [suppressScrollOnNewData]="true" 
+            [allowContextMenuWithControlKey]="true"
+            [getContextMenuItems]="getContextMenuItems"
+            (cellContextMenu)= "cellRightClickProduct($event)"
+            >   
           </ag-grid-angular>
+          <context-menu #productTableContext>
+            <ng-template contextMenuItem (execute)="editProduct()" >Edit</ng-template>
+            <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
+          </context-menu>
+
           </div>
         </div>
       </div>  

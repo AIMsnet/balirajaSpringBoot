@@ -9,7 +9,7 @@ import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
+import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-supplier',
@@ -28,6 +28,8 @@ export class SupplierComponent implements OnInit {
   @ViewChild('addSpecificationModal') addSpecificationModal: ModalDirective;
   @ViewChild('photoModal') photoModal: ModalDirective;
   @ViewChild('productGridTable') productGridTable: AgGridAngular;
+
+  @ViewChild('productTableContext') productTableContext:ContextMenuComponent;
 
   // Instances
   personalDetailName: String
@@ -70,7 +72,7 @@ export class SupplierComponent implements OnInit {
   savedProductId: Number
   gridOptions: GridOptions = {
   }
-
+  contextRow:any;
   //Table Elements
   columnDefsProduct = [
     { field: 'code', headerName: 'Code'},
@@ -92,10 +94,12 @@ export class SupplierComponent implements OnInit {
   ]
 
   
-  constructor(private router: Router, public supplierServices : SupplierServiceService, private categoryService : CategroyService, private productService : ProductService, private tosterService : ToastrService) { }
+  constructor(private router: Router, public supplierServices : SupplierServiceService, 
+    private categoryService : CategroyService, private productService : ProductService,
+     private tosterService : ToastrService,
+     private contextMenuService : ContextMenuService) { }
 
   ngOnInit(): void {
-
     this.supplierServices.getSupplierBySessionId().subscribe(response =>{
       
       if (response['full_name'] == "Session Expired" || localStorage.getItem("sessionId") == null){
@@ -159,7 +163,7 @@ export class SupplierComponent implements OnInit {
 
     this.gridOptions = <GridOptions>{
       onGridReady: () => {
-        this.gridOptions.api.sizeColumnsToFit()
+        this.gridOptions.api.sizeColumnsToFit();
         console.log("Grid Caleed")
       }
     }
@@ -314,7 +318,7 @@ export class SupplierComponent implements OnInit {
       this.tosterService.error("Selected file format is not supported");
       return false;
     }else{
-      this.tosterService.success("File Uploaded Successfully");
+      //this.tosterService.success("File Uploaded Successfully");
       return true;
     }
     // this.imageFormat.nativeElement.innerHTML;
@@ -350,5 +354,23 @@ export class SupplierComponent implements OnInit {
     this.addSpecificationModal.hide();
     specificationForm.reset();
   }
-}
 
+cellRightClickProduct($event){
+  var mouseevent: MouseEvent = $event.event;
+  this.contextRow = JSON.parse(JSON.stringify($event.data));
+ // this.selectedImportedEnergy = this.contextRow;
+  this.productGridTable.api.redrawRows();
+  this.contextMenuService.show.next({​​
+    contextMenu: this.productTableContext,
+    event: mouseevent,
+    item: $event.data
+
+  }​​);
+}
+editProduct(){
+
+}
+addImage(){
+
+}
+}
