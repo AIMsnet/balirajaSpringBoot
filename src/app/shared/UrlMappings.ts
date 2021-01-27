@@ -10,7 +10,8 @@ export class UrlMappings{
     
     public static createBusiness = "business/createBusines"
     public static updateBusiness = "business/updateBusiness"
-    
+
+    public static getSupplierByBusinessId = "business/getBusinessId/"
     //Customer Url
     public static customerSignIn = ""
     public static customerLogin = "customer/customerLogin/"

@@ -56,14 +56,14 @@
          
           <div class="row rowProduct justify-content-center">
               <div class="col-sm- 5 col-md-5 col-lg-5 productImage">
-                  <img class="img-fluid" src = '' class="fullscreen">
+                    <img src = "data:image/png;base64,{{productImage.image}}" alt="">
               </div>
               <div class="col-sm-5 col-md-5 col-lg-5 productDetails">					
         <span id="productTitle" >					    
-           <h4>product.name</h4>
+           <h4>{{product.name}}</h4>
                   </span>
-                  <h6 class="text-muted">product.business.name</h6>
-        <b><h6>Price : &nbsp₹ product.price</h6></b>
+                  <h6 class="text-muted">{{business.name}}</h6>
+        <b><h6>Price : &nbsp₹ {{product.price}}</h6></b>
                   <small class="">Ratings</small>
       <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
@@ -73,7 +73,7 @@
                   
                   <div class="py-3">
                       <button type="button" class="btn btn-sm btn-primary mr-3" (click)="openContactSupplier()">Contact Supplier</button>
-                      <button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal" data-target=".modalGetQuote" (click)="openGetQuote()">Get Quote</button>
+                      <button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal" data-target=".modalGetQuote">Get Quote</button>
                   </div>
               </div>
           </div>
@@ -93,7 +93,7 @@
               <div class="tab-pane fade show active" id="productDescription">
                   <div class="ProductDescription">
                       <div class="productCompany p-0">
-                         <p class="content">product.description</p>
+                         <p class="content">{{product.additional_information}}</p>
                       </div>
                   </div>
                   <div class="m-5"></div>
@@ -102,9 +102,54 @@
                   <div class="col-sm-5 col-md-5 col-lg-5 productCompany">
           <table class="table specificationTable">
                           <tbody>
-                            <tr>
-                              <td>product.description_1</td>
-                              <td>product.specification_1</td>
+                            <tr *ngIf = "product.description_1 != null">
+                              <td>{{product.description_1}}</td>
+                              <td>{{product.specification_1}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_2 != null">
+                              <td>{{product.description_2}}</td>
+                              <td>{{product.specification_2}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_3 != null">
+                              <td>{{product.description_3}}</td>
+                              <td>{{product.specification_3}}</td>
+                            </tr>
+                            
+                            <tr *ngIf = "product.description_4 != null">
+                              <td>{{product.description_4}}</td>
+                              <td>{{product.specification_4}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_5 != null">
+                              <td>{{product.description_5}}</td>
+                              <td>{{product.specification_5}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_6 != null">
+                              <td>{{product.description_6}}</td>
+                              <td>{{product.specification_6}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_7 != null">
+                              <td>{{product.description_7}}</td>
+                              <td>{{product.specification_7}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_8 != null">
+                              <td>{{product.description_8}}</td>
+                              <td>{{product.specification_8}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_9 != null">
+                              <td>{{product.description_9}}</td>
+                              <td>{{product.specification_9}}</td>
+                            </tr>
+
+                            <tr *ngIf = "product.description_10 != null">
+                              <td>{{product.description_10}}</td>
+                              <td>{{product.specification_10}}</td>
                             </tr>
                             
                           </tbody>
@@ -114,9 +159,9 @@
               <div class="tab-pane fade" id="SupplierDetails">
                   <div class="col-sm-6 col-md-6 col-lg-6 supplierDetails mr-5">=
           <div class="content">
-                          <h5>product.business.name</h5>
-                          <p><b>About Us</b><br>product.business.description</p>
-                          <small class="text-muted">product.business.address<br>Contact No.: </small>
+                          <h5>{{business.name}}</h5>
+                          <p><b>About Us</b><br></p>
+                          <small class="text-muted">City.: {{business.address}}<br></small>
                       </div>
         </div>
               </div>
@@ -138,9 +183,8 @@
       </div>
 
       <div class="modal-body"> 
-          <h5 id = "productName" class="text-center">Husqvarna TF 544 Power Tiller</h5>
+          <h5 id = "productName" class="text-center">{{product.name}}</h5>
           <form id = "submitQuote"> 
-              <!-- {% csrf_token %} -->
               <div class="form-group">
                   <input type = "number" name = "productId" id = "productId" class="form-control quoteControl" hidden = "true">
                   <input type="number" name="productQty" id="productQty" class="form-control quoteControl" placeholder="Quantity" min="1">

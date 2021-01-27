@@ -32,10 +32,7 @@ export class ProductComponent implements OnInit {
     this.router.navigateByUrl('/contactsupplier')
   }
 
-  productdesc(){
-    this.router.navigateByUrl('/productdesc');
+  productdesc(id){
+    this.router.navigateByUrl('/productdesc/' + id);
   }
-
-
-
 }
