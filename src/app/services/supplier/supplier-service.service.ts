@@ -30,4 +30,9 @@ export class SupplierServiceService {
   getQuotesBySessionId() : Observable<any> {
     return this.httpClient.get(environment.baseUrl + UrlMappings.getQuotesBySessionId + localStorage.getItem('sessionId'))
   }
+
+  getSupplierByBusinessId(businessId : String){
+    console.log("Service"+businessId)
+    return this.httpClient.get(environment.baseUrl + UrlMappings.getSupplierByBusinessId + businessId)
+  }
 }

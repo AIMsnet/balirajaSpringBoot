@@ -2,8 +2,8 @@
   <!-- ----------Navbar Position -->
   <div class="row">
     <div class="col-sm-2 col-md-3 col-lg-3 p-0 categoriesBelt">
-      <div class="sidenav pl-1">            
-        <h5 class="my-2 mx-2 text-center border-bottom">Filter</h5>
+      <div class="sidenav">            
+        <h5 class="pt-2 text-center border-bottom" style="background: #f2f2f2; font-weight: 600;">Filter</h5>
         <ul class="navbar-nav nav flex-column">
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" role="button" data-toggle="collapse" data-target="#coladrop1" aria-expanded="true" aria-controls="coladrop1">
@@ -56,26 +56,49 @@
           <img class="img-fluid" src = "data:image/png;base64,{{product.image}}" alt="Advertisement Pic">
         </div>
         <div class="col-sm-9 col-md-9 col-lg-9 productDescription">
-          <a class = "productLink" (click)="productdesc()">              
+          <a class = "productLink" (click)="productdesc(product.id)">              
             <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text m-0">{{product.additionalDescription}}</p>
           </a>
+            <p class="card-text m-0">{{product.additionalDescription}}</p>
+         
+            <p class="card-text m-0 prodesctitle">{{product.additionalDescription}}</p>
+         
             <div class="row">
-              <div class="col-sm-12 col-md-8 col-lg-8 productDetails">
-                <p class="productPara"><b>{{product.specification_1}}:</b> {{product.description_1}}</p>
-                <p class="productPara"><b>{{product.specification_2}}:</b>  {{product.description_2}}</p>
-                <p class="productPara"><b>{{product.specification_3}}: </b> {{product.description_3}}</p>
-                <p class="productPara"><b>{{product.specification_4}}:</b> {{product.description_4}}</p>
-                
+              <div class="col-sm-12 col-md-8 col-lg-8 productDetails pb-3">
+                <p class="productPara"><span style="padding-right: 20px; margin-left: 17px; color: black; font-weight: 600;">{{product.specification_1}} </span>{{product.description_1}}</p>
+                <p class="productPara"><span style="padding-right: 20px; margin-left: 17px; color: black; font-weight: 600;">{{product.specification_2}} </span>{{product.description_2}}</p>
+                <p class="productPara"><span style="padding-right: 20px; margin-left: 17px; color: black; font-weight: 600;">{{product.specification_3}} </span>{{product.description_3}}</p>
+                <p class="productPara"><span style="padding-right: 20px; margin-left: 17px; color: black; font-weight: 600;">{{product.specification_4}} </span>{{product.description_4}}</p>
+                <!-- 
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span> -->
               </div>
-              <div class="col-sm-12 col-md-4 col-lg-4 productCompany">
-                <button type="button" class="btn btn-primary" (click)="openGetQuote()">Get Quote</button> <br>
-                <button type="button" class="btn btn-primary" (click)="openContactSupplier()">Contact Supplier</button>
+              <div class="col-sm-9 col-md-9 col-lg-9 productDescription">
+                <a class = "productLink" (click)="productdesc(product.id)">              
+                  <h5 class="card-title" >{{product.name}}</h5>
+                  <p class="card-text m-0">{{product.additionalDescription}}</p>
+                </a>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-8 col-lg-8 productDetails">
+                          <p class="productPara"><b>{{product.specification_1}}:</b> {{product.description_1}}</p>
+                          <p class="productPara"><b>{{product.specification_2}}:</b>  {{product.description_2}}</p>
+                          <p class="productPara"><b>{{product.specification_3}}: </b> {{product.description_3}}</p>
+                          <p class="productPara"><b>{{product.specification_4}}:</b> {{product.description_4}}</p>
+                          
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                      </div>
+                      <div class="col-sm-12 col-md-4 col-lg-4 productCompany">
+                          <button type="button" class="btn btn-primary" (click)="openGetQuote()">Get Quote</button> <br>
+                          <button type="button" class="btn btn-primary" (click)="openContactSupplier()">Contact Supplier</button>
+                      </div>
+                  </div>
               </div>
             </div>
         </div>
@@ -100,7 +123,6 @@
       <div class="modal-body"> 
           <h5 id = "productName" class="text-center">Husqvarna TF 544 Power Tiller</h5>
           <form id = "submitQuote"> 
-              <!-- {% csrf_token %} -->
               <div class="form-group">
                   <input type = "number" name = "productId" id = "productId" class="form-control quoteControl" hidden = "true">
                   <input type="number" name="productQty" id="productQty" class="form-control quoteControl" placeholder="Quantity" min="1">
