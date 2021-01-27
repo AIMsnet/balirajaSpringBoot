@@ -9,7 +9,7 @@ import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
+import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-supplier',
@@ -28,6 +28,8 @@ export class SupplierComponent implements OnInit {
   @ViewChild('addSpecificationModal') addSpecificationModal: ModalDirective;
   @ViewChild('photoModal') photoModal: ModalDirective;
   @ViewChild('productGridTable') productGridTable: AgGridAngular;
+
+  @ViewChild('productTableContext') productTableContext:ContextMenuComponent;
 
   // Instances
   personalDetailName: String
@@ -65,36 +67,39 @@ export class SupplierComponent implements OnInit {
   quotesObject = []
   addednewProduct: {}
   image
+  product_image:boolean=true;
   productImage
   savedProductId: Number
   gridOptions: GridOptions = {
   }
-
+  contextRow:any;
   //Table Elements
   columnDefsProduct = [
-    { field: 'code', headerName: 'Code', resizable: true, width: 150 },
-    { field: 'name', headerName: 'Name', resizable: true, width: 210 },
-    { field: 'brand', headerName: 'Brand', resizable: true, width: 219 },
-    { field: 'price', headerName: 'Price', resizable: true, width: 140 },
-    { field: 'arrival', headerName: 'Arrival', resizable: true, width: 140 },
-    { field: 'unit', headerName: 'Unit', resizable: true, width: 140 },
-    { field: 'clicks', headerName: 'Clicks', resizable: true, width: 150 },
-    { field: 'created_date', headerName: 'Created Date', width: 150 }
+    { field: 'code', headerName: 'Code'},
+    { field: 'name', headerName: 'Name'},
+    { field: 'brand', headerName: 'Brand'},
+    { field: 'price', headerName: 'Price'},
+    { field: 'arrival', headerName: 'Arrival'},
+    { field: 'unit', headerName: 'Unit'},
+    { field: 'clicks', headerName: 'Clicks'},
+    { field: 'created_date', headerName: 'Created Date'}
   ]
 
   columnDefsQuotes = [
-    { field: 'customerName', headerName: 'Customer Name', width: 210 },
-    { field: 'customerMobileNumber', headerName: 'Customer Mobile Number', width: 200 },
-    { field: 'productName', headerName: 'Product Name', width: 250 },
-    { field: 'quantity', headerName: 'Quantity', width: 200 },
-    { field: 'requirement', headerName: 'Requirement', width: 447 }
+    { field: 'customerName', headerName: 'Customer Name'},
+    { field: 'customerMobileNumber', headerName: 'Customer Mobile Number'},
+    { field: 'productName', headerName: 'Product Name'},
+    { field: 'quantity', headerName: 'Quantity'},
+    { field: 'requirement', headerName: 'Requirement'}
   ]
 
   
-  constructor(private router: Router, public supplierServices : SupplierServiceService, private categoryService : CategroyService, private productService : ProductService, private tosterService : ToastrService) { }
+  constructor(private router: Router, public supplierServices : SupplierServiceService, 
+    private categoryService : CategroyService, private productService : ProductService,
+     private tosterService : ToastrService,
+     private contextMenuService : ContextMenuService) { }
 
   ngOnInit(): void {
-
     this.supplierServices.getSupplierBySessionId().subscribe(response =>{
       
       if (response['full_name'] == "Session Expired" || localStorage.getItem("sessionId") == null){
@@ -158,7 +163,7 @@ export class SupplierComponent implements OnInit {
 
     this.gridOptions = <GridOptions>{
       onGridReady: () => {
-        this.gridOptions.api.sizeColumnsToFit()
+        this.gridOptions.api.sizeColumnsToFit();
         console.log("Grid Caleed")
       }
     }
@@ -263,7 +268,7 @@ export class SupplierComponent implements OnInit {
     }
   }
 
-  saveImage() {
+  saveImage(productImageUpload) {
     if (this.image.size < 3145728) {
       this.productService.saveProductImage(this.image, this.savedProductId)
         .subscribe(response => {
@@ -288,6 +293,7 @@ export class SupplierComponent implements OnInit {
             this.productObject.push(this.addednewProduct)
             this.productGridTable.api.setRowData(this.productObject)
           }
+          productImageUpload.reset();
         })
     }
     else {
@@ -298,34 +304,73 @@ export class SupplierComponent implements OnInit {
 
   }
 
-  onFileChanged(event) {
+  onFileChanged(event: any) {
     this.image = event.target.files[0]
     if (this.image.size > 3145728) {
       this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
         timeOut: 2000, progressBar: true, easing: 'ease-in'
       })
     }
+    console.log("outside if")
+    console.log("product image"+ this.productImage)
+    if (!this.validateFile(this.productImage)) {
+      console.log('Selected file format is not supported');
+      this.tosterService.error("Selected file format is not supported");
+      return false;
+    }else{
+      //this.tosterService.success("File Uploaded Successfully");
+      return true;
+    }
     // this.imageFormat.nativeElement.innerHTML;
-    var fileName = this.productImage;
-    console.log("file name = "+ this.productImage);
-    var idxDot = fileName.lastIndexOf(".") + 1;
-    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    console.log("file format = " + extFile);
-    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
-      console.log("if")
-      this.tosterService.success("Image uploaded");   
-    } else {
-      console.log("else")
-      this.tosterService.error("Only jpg/jpeg and png images are allowed!");
+    //   var fileName = this.productImage;
+    // console.log("file name = " + this.productImage);
+    // var idxDot = fileName.lastIndexOf(".") + 1;
+    // var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    // console.log("file format = " + extFile);
+    // if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+    //   console.log("if")
+    //   this.tosterService.success("Image uploaded");
+    // } else {
+    //   console.log("else")
+    //   this.tosterService.error("Only jpg/jpeg and png images are allowed!");
+    // }
+  }
+
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
+      console.log("image valid")
+      this.product_image=false;
+      return true;
+    }
+    else {
+      console.log("image invalid")
+      this.product_image=true;
+      return false;
     }
   }
 
-  onSpecification(specificationForm){
+  onSpecification(specificationForm) {
     this.addSpecificationModal.hide();
     specificationForm.reset();
   }
 
+cellRightClickProduct($event){
+  var mouseevent: MouseEvent = $event.event;
+  this.contextRow = JSON.parse(JSON.stringify($event.data));
+ // this.selectedImportedEnergy = this.contextRow;
+  this.productGridTable.api.redrawRows();
+  this.contextMenuService.show.next({​​
+    contextMenu: this.productTableContext,
+    event: mouseevent,
+    item: $event.data
 
+  }​​);
+}
+editProduct(){
 
 }
+addImage(){
 
+}
+}

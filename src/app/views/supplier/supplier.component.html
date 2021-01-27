@@ -324,8 +324,17 @@
             [gridOptions] = "gridOptions"
             [rowData]="productObject"
             [columnDefs]="columnDefsProduct"
-            [suppressScrollOnNewData]="true">           
+            [suppressScrollOnNewData]="true" 
+            [allowContextMenuWithControlKey]="true"
+            [getContextMenuItems]="getContextMenuItems"
+            (cellContextMenu)= "cellRightClickProduct($event)"
+            >   
           </ag-grid-angular>
+          <context-menu #productTableContext>
+            <ng-template contextMenuItem (execute)="editProduct()" >Edit</ng-template>
+            <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
+          </context-menu>
+
           </div>
         </div>
       </div>  
@@ -629,7 +638,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="addProductModal.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addProductModal.hide()" onkeydown="return false">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -734,9 +743,9 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               </div>
               <div class="row justify-content-center col-12 mx-0">
                 <div class=" text-center">
-                  <button class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-                  <button class="btn btn-sm btn-primary mr-2" (click) = "addProduct.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-                  <button class="btn btn-sm btn-success" [disabled] = "addProduct.invalid" [class.disable] = "addProduct.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
+                  <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "addProduct.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+                  <button type="submit" class="btn btn-sm btn-success" [disabled] = "addProduct.invalid" [class.disable] = "addProduct.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
               </div>
             </div>
@@ -756,7 +765,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-content">
       <div class="modal-header">
         <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()" onkeydown="return false">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -826,9 +835,9 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
           </div>
           <div class="row justify-content-center col-12 mx-0">
             <div class=" text-center">
-              <button class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-              <button class="btn btn-sm btn-primary mr-2" (click) = "specificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-              <button class="btn btn-sm btn-success" (click) = "onSpecification(specificationForm)"><i class="fa fa-save mr-1"></i>Add</button>
+              <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
+              <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "specificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+              <button type="button" class="btn btn-sm btn-success" (click) = "onSpecification(specificationForm)"><i class="fa fa-save mr-1"></i>Add</button>
             </div>
           </div>
         </form>
@@ -849,12 +858,12 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         </button>
       </div>
       <div class="modal-body">
-       <form #productImageUpload (ngSubmit) = "saveImage()">
+       <form #productImageUpload="ngForm" (ngSubmit) = "saveImage(productImageUpload)">
         <div class="form-group">
           <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png">
+          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png" required>
         </div>
-        <input type="submit" value="Upload Image">
+        <input [disabled]="product_image" type="submit" value="Upload Image">
        </form>
       </div>
     </div>
