@@ -56,8 +56,8 @@
                   <img class="img-fluid" src = "data:image/png;base64,{{product.image}}" alt="Advertisement Pic">
               </div>
               <div class="col-sm-9 col-md-9 col-lg-9 productDescription">
-                <a class = "productLink" (click)="productdesc()">              
-                  <h5 class="card-title">{{product.name}}</h5>
+                <a class = "productLink" (click)="productdesc(product.id)">              
+                  <h5 class="card-title" >{{product.name}}</h5>
                   <p class="card-text m-0">{{product.additionalDescription}}</p>
                 </a>
                   <div class="row">
@@ -100,7 +100,6 @@
       <div class="modal-body"> 
           <h5 id = "productName" class="text-center">Husqvarna TF 544 Power Tiller</h5>
           <form id = "submitQuote"> 
-              <!-- {% csrf_token %} -->
               <div class="form-group">
                   <input type = "number" name = "productId" id = "productId" class="form-control quoteControl" hidden = "true">
                   <input type="number" name="productQty" id="productQty" class="form-control quoteControl" placeholder="Quantity" min="1">

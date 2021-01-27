@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from 'src/app/services/product/product.service';
+import { SupplierServiceService } from 'src/app/services/supplier/supplier-service.service';
 
 @Component({
   selector: 'app-productdescription',
@@ -8,16 +10,34 @@ import { Router } from '@angular/router';
 })
 export class ProductdescriptionComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  product
+  productId : number
+  productImage
+
+  supplier
+  business
+  businessId : String
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private productService: ProductService, private supplierService: SupplierServiceService) { }
 
   ngOnInit(): void {
+    this.productId = Number(this.activatedRoute.snapshot.paramMap.get("id"))
+    this.productService.getProduct(this.productId).subscribe(response => {
+      this.product = response
+      this.productImage = response['productImages']['0']
+      this.businessId = response['businessId']
+      console.log(this.businessId)
+
+      this.supplierService.getSupplierByBusinessId(this.businessId).subscribe(response => {
+        this.supplier = response
+        this.business = response["business"]
+        this.business = this.business['0']
+      })
+    })
+
   }
 
   openContactSupplier(){
     this.router.navigateByUrl('/contactsupplier')
-  }
-
-  openGetQuote(){
-    
   }
 }
