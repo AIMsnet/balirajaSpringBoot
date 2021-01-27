@@ -23,7 +23,7 @@
 
 .productImage img{
     max-width: 100%;
-    height: 30vh;
+    height: 28vh;
 }
 
 .productDescription{
@@ -37,6 +37,11 @@
 
 .productPara{
     margin: 0px;
+    color: #8c8a8a;
+    background-image: url("/assets/list-bullet.png");
+    background-repeat: no-repeat;
+    background-position-x: 0px;
+    background-position-y: 5px;
 }
 
 .companyAddress{
@@ -135,4 +140,19 @@
 
 .img-fluid {
   border: 1px solid #f3f3f3;
+}
+
+.dropdown-toggle {
+  padding-left: 7px;
+}
+
+.protitle {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.prodesctitle {
+  color: #046699;
+  text-transform: uppercase;
+  font-weight: 600;
 }
