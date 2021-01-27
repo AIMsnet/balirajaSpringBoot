@@ -670,7 +670,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               </div>
               <div class="form-group col-4" *ngIf = "offer">
                   <label for="price">Offer</label>
-                  <input class="form-control form-control-sm" [(ngModel)] = "productModel.offer" type="number" name="prodcut_offer" id="prodcut_offer">
+                  <input class="form-control form-control-sm" [(ngModel)] = "productModel.offer" type="number" name="prodcut_offer" id="prodcut_offer" min="0">
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_arrival">New Arrival</label>
@@ -769,7 +769,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         </button>
       </div>
       <div class="modal-body">
-        <form #specificationForm = "ngForm">
+        <form #specificationForm = "ngForm" (ngsubmit)="onSpecification(specificationForm)">
           <div class="form-group">
             <label >Add Specifications</label>
             <div class="row mx-0">
@@ -836,7 +836,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
             <div class=" text-center">
               <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
               <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "specificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-              <button type="button" class="btn btn-sm btn-success" (click) = "onSpecification(specificationForm)"><i class="fa fa-save mr-1"></i>Add</button>
+              <button type="button" class="btn btn-sm btn-success" (click)="addSpecificationModal.hide()"><i class="fa fa-save mr-1"></i>Add</button>
             </div>
           </div>
         </form>
