@@ -125,3 +125,16 @@ export class Product{
 	description_9 : String;
 	description_10 : String;
 }
+
+
+export class Quotes{
+
+	customerId: Number
+	customerName: String
+	customerMobileNumber: Number
+	productId: Number
+	productName: String
+	quantity: Number
+	requirement: String;
+					
+}

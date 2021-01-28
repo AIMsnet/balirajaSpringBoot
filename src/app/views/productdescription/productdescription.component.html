@@ -63,7 +63,7 @@
            <h4>{{product.name}}</h4>
                   </span>
                   <h6 class="text-muted">{{business.name}}</h6>
-        <b><h6>Price : &nbsp₹ {{product.price}}</h6></b>
+        <b><h6>Price : ₹ {{product.price}}</h6></b>
                   <small class="">Ratings</small>
       <span class="fa fa-star checked"></span>
                   <span class="fa fa-star checked"></span>
@@ -73,7 +73,7 @@
                   
                   <div class="py-3">
                       <button type="button" class="btn btn-sm btn-primary mr-3" (click)="openContactSupplier()">Contact Supplier</button>
-                      <button type="button" class="btn btn-sm btn-primary ml-3" data-toggle="modal" data-target=".modalGetQuote">Get Quote</button>
+                      <button type="button" class="btn btn-sm btn-primary ml-3" (click)="openGetQuote(product.id)" >Get Quote</button>
                   </div>
               </div>
           </div>
@@ -171,7 +171,7 @@
   </div>
 </div>
 
-<div class="modal fade modalGetQuote" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade modalGetQuote" bsModal #modalGetQuote = "bs-modal" id = "modalGetQuote" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
@@ -184,10 +184,9 @@
 
       <div class="modal-body"> 
           <h5 id = "productName" class="text-center">{{product.name}}</h5>
-          <form id = "submitQuote"> 
+          <form id = "submitQuote" #submitQuote = "ngForm" (ngSubmit) = "saveQuote()">
               <div class="form-group">
-                  <input type = "number" name = "productId" id = "productId" class="form-control quoteControl" hidden = "true">
-                  <input type="number" name="productQty" id="productQty" class="form-control quoteControl" placeholder="Quantity" min="1">
+                  <input type="number" name="productQty" id="productQty" [(ngModel)] = "quotesObject.quantity" class="form-control quoteControl" placeholder="Quantity" min="1">
                   <select name="selectUnit" id="selectUnit" class="form-control quoteControl">
                       <option value="" selected>Select Unit</option>
                       <option value="Kg">Kg</option>
@@ -199,7 +198,7 @@
               </div>
 
               <div class="form-group">
-                  <input type="text" name="productRequirements" id="productRequirements" class="form-control quoteControl w-75" placeholder="Requirement">
+                  <input type="text" [(ngModel)] = "quotesObject.requirement" name="productRequirements" id="productRequirements" class="form-control quoteControl w-75" placeholder="Requirement">
               </div>
 
               <div class="form-group">

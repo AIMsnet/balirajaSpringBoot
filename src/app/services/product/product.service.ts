@@ -33,6 +33,7 @@ export class ProductService {
   }
 
   getSearchedProduct(product : String): Observable<any>{
+    console.log("Prodcut", product)
     return this.httpClient.get(environment.baseUrl + UrlMappings.getSearchedProduct + product)
   }
 }

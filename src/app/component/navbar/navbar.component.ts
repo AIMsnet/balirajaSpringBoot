@@ -127,12 +127,13 @@ export class NavbarComponent implements OnInit {
       this.navBarService.customerLogin(Number(this.customerSignInContact)).subscribe(response => {
         console.log(JSON.stringify(response))
         if(response === "No Account Found Or Invalid Number"){
-          this.tosterService.success("No Account Found Or Invalid Number.", "Baliraja", {
+          this.tosterService.error("No Account Found Or Invalid Number.", "Baliraja", {
             timeOut : 2000, progressBar : true, easing : 'ease-in'})
         }
         else{
           localStorage.setItem("sessionId", response['response'])
-          this.tosterService.error("Login Sucess.", "Baliraja", {
+          
+          this.tosterService.success("Login Sucess.", "Baliraja", {
             timeOut : 2000, progressBar : true, easing : 'ease-in'})
             this.login = true
         }
@@ -164,6 +165,8 @@ export class NavbarComponent implements OnInit {
       console.log(response)
       this.login = false
       localStorage.removeItem('sessionId')
+     
+   
       this.router.navigateByUrl('')
     })
   }
