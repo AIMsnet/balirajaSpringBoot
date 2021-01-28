@@ -74,7 +74,6 @@ export class SupplierComponent implements OnInit {
   productImage
   savedProductId: Number
   gridOptions: GridOptions = {
-    suppressContextMenu:true
   }
 
   private gridApi;
