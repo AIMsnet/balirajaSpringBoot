@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output} from '@angular/core';
 import { Observable } from 'rxjs';
-import { Business, Supplier } from 'src/app/models/Supplier';
+import { Business, Quotes, Supplier } from 'src/app/models/Supplier';
 import { UrlMappings } from 'src/app/shared/UrlMappings';
 import { environment } from 'src/environments/environment';
 
@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SupplierServiceService {
 
-  @Output()
-  onSupplierLogIn : EventEmitter<boolean> = new EventEmitter(); 
 
   constructor(public httpClient : HttpClient) { }
 
@@ -34,5 +32,9 @@ export class SupplierServiceService {
   getSupplierByBusinessId(businessId : String){
     console.log("Service"+businessId)
     return this.httpClient.get(environment.baseUrl + UrlMappings.getSupplierByBusinessId + businessId)
+  }
+
+  newQuotes(quotes :  Quotes){
+    return this.httpClient.post(environment.baseUrl + UrlMappings.newQuote , quotes)
   }
 }

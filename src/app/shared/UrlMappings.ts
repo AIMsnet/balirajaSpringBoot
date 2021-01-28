@@ -31,4 +31,5 @@ export class UrlMappings{
 
     //Quotes
     public static getQuotesBySessionId = "quotes/getQuotes/"
+    public static newQuote = "quotes/saveQuotes"
 }   
