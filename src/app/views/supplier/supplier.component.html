@@ -910,7 +910,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
         </button>
       </div>
       <div class="modal-body">
-        <form #addProduct = "ngForm" (ngSubmit) = "newProduct(addProduct)">
+        <form #updateProductForm = "ngForm" (ngSubmit) = "updateProduct(updateProductForm)">
 
             <div class="form-row">
               <div class="form-group col-5">
@@ -962,7 +962,7 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                 <div class="row col-12 justify-content-between mx-0 p-0">
                   <label for="specifications">Specifications</label>
                   <!-- <button class="btn btn-primary" (click)="addSpecificationModal.show()"> Add Specifications </button> -->
-                  <label class="btn btn-sm btn-primary add_field_button" (click)="addSpecificationModal.show()">Add Specifications</label>
+                  <label class="btn btn-sm btn-primary add_field_button" (click)="EditSpecificationModal.show()">Edit Specifications</label>
                 </div>
                 <div class="input_fields_wrap row col-12">
                   <div class="d-flex col-9">
@@ -1011,12 +1011,124 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               <div class="row justify-content-center col-12 mx-0">
                 <div class=" text-center">
                   <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateProductModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-                  <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "updateProductModal.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button> -->
-                  <button type="submit" class="btn btn-sm btn-success" [disabled] = "addProduct.invalid" [class.disable] = "addProduct.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "updateProductForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+                  <button type="submit" class="btn btn-sm btn-success" [disabled] = "updateProductForm.invalid" [class.disable] = "updateProductForm.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
               </div>
             </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Specification -->
+<div class="modal fade" bsModal #EditSpecificationModal="bs-modal"   [config]="{backdrop: 'static'}"
+tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="EditSpecificationModal.hide()" onkeydown="return false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editspecificationForm = "ngForm" (ngsubmit)="onEditSpecification(editspecificationForm)">
+          <div class="form-group">
+            <label >Add Specifications</label>
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_1" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_1" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_2" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_2" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_3" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_3" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_4" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_4" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_5" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_5" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_6" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_6" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+            
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_7" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_7" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_8" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_8" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_9" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_9" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+
+            <div class="row mx-0">
+              <input type="text" [(ngModel)] = "productModel.specification_10" class="form-control form-control-sm col-4 mx-2" name="addspec">:
+              <input type="text" [(ngModel)] = "productModel.description_10" class="form-control form-control-sm col-4 mx-2" name="addspec">
+              
+            </div>
+          </div>
+          <div class="row justify-content-center col-12 mx-0">
+            <div class=" text-center">
+              <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="EditSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
+              <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "editspecificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
+              <button type="button" class="btn btn-sm btn-success" (click)="EditSpecificationModal.hide()"><i class="fa fa-save mr-1"></i>Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- update image -->
+<div bsModal #editphotoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-sizes-name2">
+  <div class="modal-dialog modal-xs">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="dialog-sizes-name2" class="modal-title pull-left">Edit Photo</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="editphotoModal.hide()">
+          <span aria-hidden="true" class="">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form #productImageUpload="ngForm" (ngSubmit) = "saveImage(productImageUpload)">
+        <div class="form-group">
+          <label >Add Image</label>
+          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png" required>
+        </div>
+        <input [disabled]="product_image" type="submit" value="Upload Image">
+       </form>
       </div>
     </div>
   </div>

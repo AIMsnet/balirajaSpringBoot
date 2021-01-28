@@ -25,10 +25,11 @@ export class SupplierComponent implements OnInit {
   @ViewChild('updateBusinessDetailModal') updateBusinessDetailModal: ModalDirective;
   @ViewChild('logoModal') logoModal: ModalDirective;
   @ViewChild('addProductModal') addProductModal: ModalDirective;
-  @ViewChild('editProductModal') editProductModal: ModalDirective;
-
+  @ViewChild('updateProductModal') updateProductModal: ModalDirective;
   @ViewChild('addSpecificationModal') addSpecificationModal: ModalDirective;
+  @ViewChild('EditSpecificationModal') EditSpecificationModal: ModalDirective;
   @ViewChild('photoModal') photoModal: ModalDirective;
+  @ViewChild('editphotoModal') editphotoModal: ModalDirective;
   @ViewChild('productGridTable') productGridTable: AgGridAngular;
 
   @ViewChild('productTableContext') productTableContext: ContextMenuComponent;
@@ -73,6 +74,7 @@ export class SupplierComponent implements OnInit {
   productImage
   savedProductId: Number
   gridOptions: GridOptions = {
+    suppressContextMenu:true
   }
 
   private gridApi;
@@ -107,11 +109,11 @@ export class SupplierComponent implements OnInit {
   @HostListener('window:resize')
   onResize() {
     console.log("onresize methodd")
-      if (!this.gridApi) return;
-  
-      setTimeout(() => {
-        this.gridApi.sizeColumnsToFit();
-      });
+    if (!this.gridApi) return;
+
+    setTimeout(() => {
+      this.gridApi.sizeColumnsToFit();
+    });
   }
 
   ngOnInit(): void {
@@ -174,234 +176,254 @@ export class SupplierComponent implements OnInit {
     this.productObject.forEach(function () {
       this.totalClicks = this.productObject['clicks'] + this.totalClicks
     })
-}// End of ngOnInit
+  }// End of ngOnInit
 
-onGridReady(params) {
-  console.log("on ready grid")
-  this.gridApi = params.api;
-  this.gridColumnApi = params.columnApi;
-  params.api.sizeColumnsToFit();
-  window.addEventListener("resize", function () {
-    setTimeout(function () {
-      params.api.sizeColumnsToFit();
+  onGridReady(params) {
+    console.log("on ready grid")
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
+    window.addEventListener("resize", function () {
+      setTimeout(function () {
+        params.api.sizeColumnsToFit();
+      });
     });
-  });
-}
+  }
 
-//TO make offer field visible line no 659
-offerField() {
-  this.offer = !this.offer
-}
+  //TO make offer field visible line no 659
+  offerField() {
+    this.offer = !this.offer
+  }
 
-// Non UI calls
-personalDetailFormSubmit() {
-  this.supplierServices.updatePersonalDetail(this.supplierModel).subscribe(response => {
-    this.editPersonalDetailModal.hide()
-    this.tosterService.success("Personal Details Updated.", "Baliraja", {
-      timeOut: 2000, progressBar: true, easing: 'ease-in'
-    })
-  })
-}
-
-businessDetailFormSubmit(businessDetailForm) {
-  this.editBusinessModel.id = this.businessModel.id
-  console.log("busineess")
-  this.supplierServices.updateBusinessDetail(this.editBusinessModel).subscribe(response => {
-    this.businessModel = Object.assign({}, this.editBusinessModel)
-    this.tosterService.success("Business Details Updated.", "Baliraja", {
-      timeOut: 2000, progressBar: true, easing: 'ease-in'
-    })
-  })
-  businessDetailForm.reset();
-  this.editBusinessDetailModal.hide();
-}
-
-updateBusinessDetailSubmit(updateBusinessDetail) {
-  console.log("update business")
-  this.editBusinessModel.id = this.businessModel.id
-  this.supplierServices.updateBusinessDetail(this.editBusinessModel).subscribe(response => {
-    this.businessModel = Object.assign({}, this.editBusinessModel)
-    this.tosterService.success("Business Details Updated.", "Baliraja", {
-      timeOut: 2000, progressBar: true, easing: 'ease-in'
-    })
-    this.businessModel = response
-    this.editBusinessModel = Object.assign({}, response)
-    this.updateBusinessDetailModal.hide();
-    updateBusinessDetail.reset();
-  })
-  
-  console.log("busineess1")
-  this.logoModal.show();
-}
-
-saveLogo(logoUpload){
-  this.logoModal.hide();
-}
-
-getSubCategory() {
-  if (this.mainCategory != 0) {
-    this.categoryService.getCategory(this.mainCategory).subscribe(response => {
-      this.subCategoryObject = response['subMainCategory']
-      console.log(this.subCategoryObject)
+  // Non UI calls
+  personalDetailFormSubmit() {
+    this.supplierServices.updatePersonalDetail(this.supplierModel).subscribe(response => {
+      this.editPersonalDetailModal.hide()
+      this.tosterService.success("Personal Details Updated.", "Baliraja", {
+        timeOut: 2000, progressBar: true, easing: 'ease-in'
+      })
     })
   }
-}
 
-getCategory() {
-  this.categroyObject = this.subCategoryObject[this.subCategory].category
-  console.log(this.categroyObject)
-}
+  businessDetailFormSubmit(businessDetailForm) {
+    this.editBusinessModel.id = this.businessModel.id
+    console.log("busineess")
+    this.supplierServices.updateBusinessDetail(this.editBusinessModel).subscribe(response => {
+      this.businessModel = Object.assign({}, this.editBusinessModel)
+      this.tosterService.success("Business Details Updated.", "Baliraja", {
+        timeOut: 2000, progressBar: true, easing: 'ease-in'
+      })
+    })
+    businessDetailForm.reset();
+    this.editBusinessDetailModal.hide();
+  }
 
-getProductBySupplier() {
-  this.supplierServices.getSupplierBySessionId().subscribe(response => {
-    console.log(response)
-    this.supplierModel.full_name = response['full_name']
-    this.supplierModel.designation = response['designation']
-    this.supplierModel.phone_number = response['phone_number']
-    this.supplierModel.mobile_number = response['mobile_number']
-    this.supplierModel.email = response['email']
-    this.supplierModel.email_optional = response['email_optional']
-    this.supplierModel.address = response['address']
-    this.supplierModel.area_street = response['area_street']
-    this.supplierModel.city = response['city']
-    this.supplierModel.district = response['district']
-    this.supplierModel.taluka = response['taluka']
-    this.supplierModel.state = response['state']
-    this.supplierModel.pincode = response['pincode']
+  updateBusinessDetailSubmit(updateBusinessDetail) {
+    console.log("update business")
+    this.editBusinessModel.id = this.businessModel.id
+    this.supplierServices.updateBusinessDetail(this.editBusinessModel).subscribe(response => {
+      this.businessModel = Object.assign({}, this.editBusinessModel)
+      this.tosterService.success("Business Details Updated.", "Baliraja", {
+        timeOut: 2000, progressBar: true, easing: 'ease-in'
+      })
+      this.businessModel = response
+      this.editBusinessModel = Object.assign({}, response)
+      this.updateBusinessDetailModal.hide();
+      updateBusinessDetail.reset();
+    })
 
-    if (response['business']['0'] == null) {
-      this.businessModel.gst = null
+    console.log("busineess1")
+    this.logoModal.show();
+  }
+
+  saveLogo(logoUpload) {
+    this.logoModal.hide();
+  }
+
+  getSubCategory() {
+    if (this.mainCategory != 0) {
+      this.categoryService.getCategory(this.mainCategory).subscribe(response => {
+        this.subCategoryObject = response['subMainCategory']
+        console.log(this.subCategoryObject)
+      })
+    }
+  }
+
+  getCategory() {
+    this.categroyObject = this.subCategoryObject[this.subCategory].category
+    console.log(this.categroyObject)
+  }
+
+  getProductBySupplier() {
+    this.supplierServices.getSupplierBySessionId().subscribe(response => {
+      console.log(response)
+      this.supplierModel.full_name = response['full_name']
+      this.supplierModel.designation = response['designation']
+      this.supplierModel.phone_number = response['phone_number']
+      this.supplierModel.mobile_number = response['mobile_number']
+      this.supplierModel.email = response['email']
+      this.supplierModel.email_optional = response['email_optional']
+      this.supplierModel.address = response['address']
+      this.supplierModel.area_street = response['area_street']
+      this.supplierModel.city = response['city']
+      this.supplierModel.district = response['district']
+      this.supplierModel.taluka = response['taluka']
+      this.supplierModel.state = response['state']
+      this.supplierModel.pincode = response['pincode']
+
+      if (response['business']['0'] == null) {
+        this.businessModel.gst = null
+      }
+      else {
+        this.businessModel = response['business']['0']
+        this.editBusinessModel = Object.assign({}, response['business']['0'])
+      }
+
+      // Fetching Products
+      this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
+        this.productObject = response
+        this.totalProducts = this.productObject.length
+      })
+    })
+  }
+
+  newProduct(addProduct) {
+    if (this.productModel.name) {
+      this.productService.newProduct(this.productModel).subscribe(response => {
+        this.savedProductId = Number(response);
+        this.addProductModal.hide();
+        this.getProductBySupplier();
+        addProduct.reset();
+        this.photoModal.show();
+      })
+    }
+  }
+
+  updateProduct(updateProductForm) {
+    if (this.productModel.name) {
+      this.productService.newProduct(this.productModel).subscribe(response => {
+        this.savedProductId = Number(response);
+        this.updateProductModal.hide();
+        this.getProductBySupplier();
+        updateProductForm.reset();
+        // this.editphotoModal.show();
+      })
+    }
+
+  }
+
+  saveImage(productImageUpload) {
+    if (this.image.size < 3145728) {
+      this.productService.saveProductImage(this.image, this.savedProductId)
+        .subscribe(response => {
+          console.log("Image Resposne", JSON.stringify(response))
+          if (response == true) {
+            this.tosterService.success("Image Uploaded.", "Baliraja", {
+              timeOut: 2000, progressBar: true, easing: 'ease-in'
+            })
+            this.photoModal.hide()
+            this.addProductModal.hide()
+
+            this.addednewProduct = {
+              "arrival": this.productModel.arrival,
+              "brand": this.productModel.brand,
+              "clicks": "0",
+              "code": this.productModel.code,
+              "created_date": "Today",
+              "name": this.productModel.name,
+              "price": this.productModel.price,
+              "unit": this.productModel.unit,
+            }
+            this.productObject.push(this.addednewProduct)
+            this.productGridTable.api.setRowData(this.productObject)
+          }
+          productImageUpload.reset();
+        })
     }
     else {
-      this.businessModel = response['business']['0']
-      this.editBusinessModel = Object.assign({}, response['business']['0'])
+      this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
+        timeOut: 2000, progressBar: true, easing: 'ease-in'
+      })
     }
 
-    // Fetching Products
-    this.productService.getAllProductOfLoggedSupplier(response['business']['0']['id']).subscribe(response => {
-      this.productObject = response
-      this.totalProducts = this.productObject.length
-    })
-  })
-}
-
-newProduct(addProduct) {
-  if (this.productModel.name) {
-    this.productService.newProduct(this.productModel).subscribe(response => {
-      this.savedProductId = Number(response);
-      this.addProductModal.hide();
-      this.getProductBySupplier();
-      addProduct.reset();
-      this.photoModal.show();
-    })
   }
-}
 
-saveImage(productImageUpload) {
-  if (this.image.size < 3145728) {
-    this.productService.saveProductImage(this.image, this.savedProductId)
-      .subscribe(response => {
-        console.log("Image Resposne", JSON.stringify(response))
-        if (response == true) {
-          this.tosterService.success("Image Uploaded.", "Baliraja", {
-            timeOut: 2000, progressBar: true, easing: 'ease-in'
-          })
-          this.photoModal.hide()
-          this.addProductModal.hide()
-
-          this.addednewProduct = {
-            "arrival": this.productModel.arrival,
-            "brand": this.productModel.brand,
-            "clicks": "0",
-            "code": this.productModel.code,
-            "created_date": "Today",
-            "name": this.productModel.name,
-            "price": this.productModel.price,
-            "unit": this.productModel.unit,
-          }
-          this.productObject.push(this.addednewProduct)
-          this.productGridTable.api.setRowData(this.productObject)
-        }
-        productImageUpload.reset();
+  onFileChanged(event: any) {
+    this.image = event.target.files[0]
+    if (this.image.size > 3145728) {
+      this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
+        timeOut: 2000, progressBar: true, easing: 'ease-in'
       })
+    }
+    console.log("outside if")
+    console.log("product image" + this.productImage)
+    if (!this.validateFile(this.productImage)) {
+      console.log('Selected file format is not supported');
+      this.tosterService.error("Selected file format is not supported");
+      return false;
+    } else {
+      //this.tosterService.success("File Uploaded Successfully");
+      return true;
+    }
+    // this.imageFormat.nativeElement.innerHTML;
+    //   var fileName = this.productImage;
+    // console.log("file name = " + this.productImage);
+    // var idxDot = fileName.lastIndexOf(".") + 1;
+    // var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+    // console.log("file format = " + extFile);
+    // if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+    //   console.log("if")
+    //   this.tosterService.success("Image uploaded");
+    // } else {
+    //   console.log("else")
+    //   this.tosterService.error("Only jpg/jpeg and png images are allowed!");
+    // }
   }
-  else {
-    this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
-      timeOut: 2000, progressBar: true, easing: 'ease-in'
-    })
+
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
+      console.log("image valid")
+      this.product_image = false;
+      return true;
+    }
+    else {
+      console.log("image invalid")
+      this.product_image = true;
+      return false;
+    }
   }
 
-}
-
-onFileChanged(event: any) {
-  this.image = event.target.files[0]
-  if (this.image.size > 3145728) {
-    this.tosterService.error("Image Size Exceeds Limit.", "Baliraja", {
-      timeOut: 2000, progressBar: true, easing: 'ease-in'
-    })
+  onSpecification(specificationForm) {
+    this.addSpecificationModal.hide();
+    specificationForm.reset();
   }
-  console.log("outside if")
-  console.log("product image" + this.productImage)
-  if (!this.validateFile(this.productImage)) {
-    console.log('Selected file format is not supported');
-    this.tosterService.error("Selected file format is not supported");
-    return false;
-  } else {
-    //this.tosterService.success("File Uploaded Successfully");
-    return true;
+
+  onEditSpecification(editspecificationForm) {
+    this.EditSpecificationModal.hide();
+    editspecificationForm.reset();
   }
-  // this.imageFormat.nativeElement.innerHTML;
-  //   var fileName = this.productImage;
-  // console.log("file name = " + this.productImage);
-  // var idxDot = fileName.lastIndexOf(".") + 1;
-  // var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-  // console.log("file format = " + extFile);
-  // if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
-  //   console.log("if")
-  //   this.tosterService.success("Image uploaded");
-  // } else {
-  //   console.log("else")
-  //   this.tosterService.error("Only jpg/jpeg and png images are allowed!");
-  // }
-}
 
-validateFile(name: String) {
-  var ext = name.substring(name.lastIndexOf('.') + 1);
-  if (ext.toLowerCase() == 'png' || ext.toLowerCase() == 'jpeg' || ext.toLowerCase() == 'jpg') {
-    console.log("image valid")
-    this.product_image = false;
-    return true;
+  cellRightClickProduct($event) {
+    var mouseevent: MouseEvent = $event.event;
+    this.contextRow = JSON.parse(JSON.stringify($event.data));
+    // this.selectedImportedEnergy = this.contextRow;
+    this.productGridTable.api.redrawRows();
+    this.contextMenuService.show.next({
+      contextMenu: this.productTableContext,
+      event: mouseevent,
+      item: $event.data
+
+    });
   }
-  else {
-    console.log("image invalid")
-    this.product_image = true;
-    return false;
+
+  editProduct() {
+    this.updateProductModal.show();
   }
-}
 
-onSpecification(specificationForm) {
-  this.addSpecificationModal.hide();
-  specificationForm.reset();
-}
-
-cellRightClickProduct($event) {
-  var mouseevent: MouseEvent = $event.event;
-  this.contextRow = JSON.parse(JSON.stringify($event.data));
-  // this.selectedImportedEnergy = this.contextRow;
-  this.productGridTable.api.redrawRows();
-  this.contextMenuService.show.next({
-    contextMenu: this.productTableContext,
-    event: mouseevent,
-    item: $event.data
-
-  });
-}
-editProduct() {
-
-}
-addImage() {
-
-}
+  addImage() {
+    this.editphotoModal.show();
+  }
 
 
 
