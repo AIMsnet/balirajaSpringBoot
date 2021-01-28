@@ -22,7 +22,8 @@ export class SupplierComponent implements OnInit {
   // View Modal Declarations
   @ViewChild('editPersonalDetailModal') editPersonalDetailModal!: ModalDirective;
   @ViewChild('editBusinessDetailModal') editBusinessDetailModal!: ModalDirective;
-
+  @ViewChild('updateBusinessDetailModal') updateBusinessDetailModal: ModalDirective;
+  @ViewChild('logoModal') logoModal: ModalDirective;
   @ViewChild('addProductModal') addProductModal: ModalDirective;
   @ViewChild('editProductModal') editProductModal: ModalDirective;
 
@@ -202,18 +203,21 @@ personalDetailFormSubmit() {
   })
 }
 
-businessDetailFormSubmit() {
+businessDetailFormSubmit(businessDetailForm) {
   this.editBusinessModel.id = this.businessModel.id
-
+  console.log("busineess")
   this.supplierServices.updateBusinessDetail(this.editBusinessModel).subscribe(response => {
     this.businessModel = Object.assign({}, this.editBusinessModel)
     this.tosterService.success("Business Details Updated.", "Baliraja", {
       timeOut: 2000, progressBar: true, easing: 'ease-in'
     })
   })
+  businessDetailForm.reset();
+  this.editBusinessDetailModal.hide();
 }
 
-updateBusinessDetailSubmit() {
+updateBusinessDetailSubmit(updateBusinessDetail) {
+  console.log("update business")
   this.editBusinessModel.id = this.businessModel.id
   this.supplierServices.updateBusinessDetail(this.editBusinessModel).subscribe(response => {
     this.businessModel = Object.assign({}, this.editBusinessModel)
@@ -222,8 +226,16 @@ updateBusinessDetailSubmit() {
     })
     this.businessModel = response
     this.editBusinessModel = Object.assign({}, response)
-
+    this.updateBusinessDetailModal.hide();
+    updateBusinessDetail.reset();
   })
+  
+  console.log("busineess1")
+  this.logoModal.show();
+}
+
+saveLogo(logoUpload){
+  this.logoModal.hide();
 }
 
 getSubCategory() {
