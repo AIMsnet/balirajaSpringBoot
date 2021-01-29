@@ -22,6 +22,7 @@ import { ProductdescriptionComponent } from './views/productdescription/productd
 import { ContactsupplierComponent } from './views/contactsupplier/contactsupplier.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ContextMenuModule } from 'ngx-contextmenu';
+import {DividerModule} from 'primeng/divider';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ContextMenuModule } from 'ngx-contextmenu';
     SupplierComponent,
     ProductComponent,
     ProductdescriptionComponent,
-    ContactsupplierComponent
+    ContactsupplierComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,9 @@ import { ContextMenuModule } from 'ngx-contextmenu';
     ToastrModule.forRoot(),
     NgImageSliderModule,
     AgGridModule.withComponents([]),
-    ContextMenuModule.forRoot()
+    ContextMenuModule.forRoot(),
+    DividerModule
+
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],
   bootstrap: [AppComponent]
