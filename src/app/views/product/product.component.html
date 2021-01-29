@@ -115,14 +115,14 @@
     <div class="modal-content">
 
       <div class="modal-header">
-          <h5 class="modal-title">Get Quote</h5>
+          <h5 class="modal-title">Get Quote for {{productQuoteName}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
       </div>
 
       <div class="modal-body"> 
-          <h5 id = "productName" class="text-center">{{productQuoteName}}</h5>
+          <!-- <h5 id = "productName" class="text-center">{{productQuoteName}}</h5> -->
           <form id = "submitQuote" #submitQuote = "ngForm" (ngSubmit) = "saveQuote()">
               <div class="form-group">
                   <input type="number" name="productQty" id="productQty" [(ngModel)] = "quotesObject.quantity" class="form-control quoteControl" placeholder="Quantity" min="1">
