@@ -77,34 +77,16 @@
                 <button type="button" class="btn btn-primary" (click)="openGetQuote(product.id, product.name)">Get Quote</button> <br>
                 <button type="button" class="btn btn-primary" (click)="openContactSupplier()">Contact Supplier</button>
               </div>
-              <!-- <div class="col-sm-9 col-md-9 col-lg-9 productDescription">
-                <a class = "productLink" (click)="productdesc(product.id)">              
-                  <h5 class="card-title" >{{product.name}}</h5>
-                  <p class="card-text m-0">{{product.additionalDescription}}</p>
-                </a>
-                  <div class="row">
-                      <div class="col-sm-12 col-md-8 col-lg-8 productDetails">
-                          <p class="productPara"><b>{{product.specification_1}}:</b> {{product.description_1}}</p>
-                          <p class="productPara"><b>{{product.specification_2}}:</b>  {{product.description_2}}</p>
-                          <p class="productPara"><b>{{product.specification_3}}: </b> {{product.description_3}}</p>
-                          <p class="productPara"><b>{{product.specification_4}}:</b> {{product.description_4}}</p>
-                          
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star checked"></span>
-                          <span class="fa fa-star"></span>
-                          <span class="fa fa-star"></span>
-                      </div>
-                      <div class="col-sm-12 col-md-4 col-lg-4 productCompany">
-                          <button type="button" class="btn btn-primary" (click)="openGetQuote()">Get Quote</button> <br>
-                          <button type="button" class="btn btn-primary" (click)="openContactSupplier()">Contact Supplier</button>
-                      </div>
-                  </div>
-              </div> -->
+
             </div>
         </div>
       </div>
-    </div>
+      
+      <div class = "text-center">
+       <button class = "text-center p-2 m-2" *ngFor = "let counts of counter(totalPage); let i = index" (click)="nextPage(i)">{{i}}</button>
+      </div>
+    
+    </div> 
   </div>
 </div>
 

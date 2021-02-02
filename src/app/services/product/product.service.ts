@@ -32,8 +32,8 @@ export class ProductService {
     return this.httpClient.get(environment.baseUrl + UrlMappings.getAllProductByBusiness + business)
   }
 
-  getSearchedProduct(product : String): Observable<any>{
+  getSearchedProduct(product : String, counter : Number): Observable<any>{
     console.log("Prodcut", product)
-    return this.httpClient.get(environment.baseUrl + UrlMappings.getSearchedProduct + product)
+    return this.httpClient.get(environment.baseUrl + UrlMappings.getSearchedProduct + product + "/" + counter)
   }
 }
