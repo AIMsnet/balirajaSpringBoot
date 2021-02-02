@@ -23,6 +23,8 @@ import { ContactsupplierComponent } from './views/contactsupplier/contactsupplie
 import { AgGridModule } from 'ag-grid-angular';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import {DividerModule} from 'primeng/divider';
+import {CarouselModule} from 'primeng/carousel';
+import {TabViewModule} from 'primeng/tabview';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import {DividerModule} from 'primeng/divider';
     NgImageSliderModule,
     AgGridModule.withComponents([]),
     ContextMenuModule.forRoot(),
-    DividerModule
+    DividerModule,
+    CarouselModule,
+    TabViewModule
 
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],

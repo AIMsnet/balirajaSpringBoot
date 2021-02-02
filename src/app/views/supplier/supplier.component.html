@@ -1,5 +1,5 @@
 <div class = "container-fluid p-0 mainFrame">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">     
+  <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">     
       <li class="nav-item">
         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dashboard</a>
       </li>
@@ -15,8 +15,9 @@
       <li class="nav-item ml-auto">
         <a class="nav-link" style="color: #303A52;">Hello {{supplierModel.full_name}} !</a>
     </li>
-  </ul>
+  </ul> -->
 
+ 
   <!-- ----------------------------List Visibled on incomplete Details -->
   
   <div *ngIf="(supplierModel.pincode && businessModel.gst) == null; else profileCompleted">
@@ -39,307 +40,326 @@
       </div>
     </div>
   </div>
+
 <ng-template #profileCompleted>
     <!-- --------------------------  --Tab Content -->
-    <div class="tab-content" id="myTabContent">
+  <div class="card">
+    <p-tabView styleClass="tabview-custom">
+        <p-tabPanel>
+            <ng-template pTemplate = "header">
+              <i class="pi pi-desktop"></i>
+              <span>Dashboard</span>
+            </ng-template>
+              <div class="container-fluid dashboardMainFrame" style="background-color: #EDF1F5;">
+                  <h6>Application / Dashboard</h6>
+        
+                  <!-- Cards -->
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                        <div class="card" style="background-color: #02ABC0">
+                          <div class="card-body">
+                            <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
+                            <h5>{{totalLeads}}</h5>
+                            <h5>Leads</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                        <div class="card" style="background-color: #DC1B5E;">
+                          <div class="card-body">
+                            <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
+                            <h5>{{totalClicks}}</h5>
+                            <h5>Clicks</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                        <div class="card" style="background-color: #FB8B0D;">
+                          <div class="card-body">
+                            <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
+                            <h5>{{totalProducts}}</h5>
+                            <h5 style="display: inline-block;">Total Prodcuts</h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                        <div class="card" style="background-color: #8E24A8;">
+                          <div class="card-body">
+                            <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
+                            <h5>{{businessModel.profileViews}}</h5>
+                            <h5 style="display: inline-block;">Profile Views</h5>
+                          </div>
+                        </div>
+        
+                      </div>
+                    </div>
+                  </div>
+        
+                  <!-- Chart.js -->
+        
+                  <div class="container-fluid mt-5">
+                    <div class="row">
+                      <div class="col-sm -col-md col-lg clickChart">
+                        <h5 class="p-3">Clicks</h5>
+                        <!-- <img src="https://s3.amazonaws.com/assets.fullstack.io/n/20200309095518221_react-chartjs.png" alt="Graph Will be Here" style="padding: 12px;"> -->
+                      </div>
+                      <div class="col-sm -col-md col-lg quotesChart">
+                        <h5 class="p-3">Quotes</h5>
+                        <!-- <img src="https://cdn.october.codes/images/dataviz-1.png" alt="" style="height: 15vw;"> -->
+                      </div>
+                    </div>
+                  </div>
+        
+                  <!-- Quotes Table -->
+                  <div class="container-fluid quotesTable mt-5 p-0">
+                    <h6 style="padding: 1rem 0.8rem 0.3rem 0.8rem;">Quotes Requested By </h6>
+                    <div class="table-responsive mb-2 tabeleQuotes">
+                      <ag-grid-angular #productGridTable
+                      style="width: 100%; height: 500px;" 
+                      class="ag-theme-balham"
+                      [gridOptions] = "gridOptions"
+                      [rowData]="quotesObject"
+                      [columnDefs]="columnDefsQuotes"
+                      (gridReady)="onGridReady($event)">
+                    </ag-grid-angular>
+                    </div>
+                  </div>
+        
+              </div>
+        </p-tabPanel>
+        <p-tabPanel header="Header II">
+            <ng-template pTemplate = "header">
+                <i class="pi pi-inbox"></i>
+                <span>Product</span>
+            </ng-template>
+            <div class="container-fluid productManagement">
+              <div class="row m-0 mb-4 d-flex justify-content-between"> 
+                <h5>Product Management</h5>
+                <button class="btn btn-primary" (click)="addProductModal.show()"> New Product </button>
+              </div>
+              <div class="table-responsive mt-2 mb-2 productTable">
+                <ag-grid-angular #productGridTable
+                style="width: 100%; height: 500px;" 
+                class="ag-theme-balham"
+                [gridOptions] = "gridOptions"
+                [rowData]="productObject"
+                [columnDefs]="columnDefsProduct"
+                (gridReady)="onGridReady($event)"
+                [suppressScrollOnNewData]="true" 
+                [allowContextMenuWithControlKey]="true"
+                (cellContextMenu)= "cellRightClickProduct($event)">
+              </ag-grid-angular>
+              <context-menu #productTableContext>
+                <ng-template contextMenuItem (execute)="editProduct()" >Edit</ng-template>
+                <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
+              </context-menu>
     
-      <!-- Tab One -->
-      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">    
-        <!-- Comapny  Card -->
-        <div class="container comapnyCard">
-          <div class="row comapnyCardParent">
-            <div class="col-md-3 companyLogo">
-              <img src="https://5.imimg.com/data5/HK/QU/MY-47419749/agriconic-machineries-private-limited-120x120.png" alt="Comapny Logo">
+              </div>
             </div>
-            <div class="col-md-9 comapnyDescription">
-              <h4 class="text-center">{{businessModel.name}}</h4>
-              <span></span>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <!-- Identification Information -->
-
-        <div class="container IdentificationInfo">
-          <h4 class="text-center">Identification Number</h4>
-
-          <div class="row">
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">GST</h6>
-              <h6 class="text-center">{{businessModel.gst}}</h6>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">PAN</h6>
-              <h6 class="text-center">{{businessModel.pan}}</h6>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">CIN</h6>
-              <h6 class="text-center">{{businessModel.cin}}</h6>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">DGFT</h6>
-              <h6 class="text-center">{{businessModel.dgft}}</h6>
-            </div>
-          </div>
-        </div>
-
-        <!-- Business Information -->
-        <div class="container-fluid organizationInfo mt-3">
-
-          <div class="text-center">
-            <span class="infomationTitle">
-              Business Details
-            </span>
-            <button class="float-right btn-primary" data-toggle="modal" data-target = ".editBusinessDetail">Edit</button>
-          </div>
-
-          <div class="row pt-3">
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>Business Type</td>
-                  <td class="tableData" id = "BusinessType">{{businessModel.businessType}}</td>
-                </tr>
-
-                <tr>
-                  <td>Business Email</td>
-                  <td class="tableData" id = "BusinessEmail">{{businessModel.businessEmail}}</td>
-                </tr>
-
-                <tr>
-                  <td>Organization Type</td>
-                  <td class="tableData" id = "OrganisationType">{{businessModel.organisationType}}</td>
-                </tr>
-
-                <tr>
-                  <td>Ownership Type</td>
-                  <td class="tableData" id = "OwnershipType">{{businessModel.ownershipType}}</td>
-                </tr>
-              </table>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>Website Link</td>
-                  <td class="tableData" id = "WebsiteLink">{{businessModel.websiteLink}}</td>
-                </tr>
-
-                <tr>
-                  <td>Address</td>
-                  <td class="tableData" id = "Address">{{businessModel.address}}</td>
-                </tr>
-
-                <tr>
-                  <td>Year Of Establishment</td>
-                  <td class="tableData">{{businessModel.yearOfEstablishment}}</td>
-                </tr>
-
-                <tr>
-                  <td>Description</td>
-                  <td class="tableData">{{businessModel.description}}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-         <!-- Personal Information -->
-        <div class="container-fluid personalInfo mt-3">
-          <div class="text-center">
-            <span class="infomationTitle">
-              Personal Details
-            </span>
-            <button class="float-right btn-primary" data-toggle="modal" data-target = ".editPersonalDetail">Edit</button>
-          </div>
-
-          <div class="row pt-3">
-            <div class="col-sm col-md col-lg">
-             <table>
-               <tr>
-                 <td>Name</td>
-                 <td class="tableData" id = "supplierFullName">{{supplierModel.full_name}}</td>
-               </tr>
-
-                <tr>
-                  <td>Phone Number</td>
-                  <td class="tableData">{{supplierModel.phone_number}}</td>
-                </tr>
-
-                <tr>
-                  <td>Mobile Number</td>
-                  <td class="tableData">{{supplierModel.mobile_number}}</td>
-                </tr>
-
-                <tr>
-                  <td>Email</td>
-                  <td class="tableData">{{supplierModel.email}}</td>
-                </tr>
-             </table>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>Optional Email</td>
-                  <td id = "supplierEmailOptional">{{supplierModel.email_optional}}</td>
-                </tr>
-
-                <tr>
-                  <td>Address</td>
-                  <td id = "supplieraddress">{{supplierModel.address}}</td>
-                </tr>
-
-                <tr>
-                  <td>Area</td>
-                  <td id = "supplierArea">{{supplierModel.area_street}}</td>
-                </tr>
-
-                <tr>
-                  <td>City</td>
-                  <td id = "supplierCity">{{supplierModel.city}}</td>
-                </tr>
-
-              </table>
-            </div>
-
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>District</td>
-                  <td id = "supplierDistrict">{{supplierModel.district}}</td>
-                </tr>
-
-                <tr>
-                  <td>Taluka</td>
-                  <td id = "supplierTaluka">{{supplierModel.taluka}}</td>
-                </tr>
-
-                <tr>
-                  <td>State</td>
-                  <td id = "supplierState"> {{supplierModel.state}} </td>
-                </tr>
-
-                <tr>
-                  <td>Pincode</td>
-                  <td id = "supplierPincode">{{supplierModel.pincode}}</td>
-                </tr>
-              </table>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Tab Two -->
-      <div class="tab-pane fade active show p-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="container-fluid dashboardMainFrame">
-          <h6>Application / Dashboard</h6>
-
-          <!-- Cards -->
-          <div class="container">
-            <div class="row">
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #02ABC0">
-                  <div class="card-body">
-                    <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{totalLeads}}</h5>
-                    <h5>Leads</h5>
+        </p-tabPanel>
+        <p-tabPanel header="Header III">
+            <ng-template pTemplate = "header">
+                <i class="pi pi-user"></i>
+                <span>Profile</span>
+            </ng-template>
+            <div style="background-color: #EDF1F5;">
+            <!-- Comapny  Card -->
+              <div class="container comapnyCard">
+                <div class="row comapnyCardParent">
+                  <div class="col-md-3 companyLogo">
+                    <img src="https://5.imimg.com/data5/HK/QU/MY-47419749/agriconic-machineries-private-limited-120x120.png" alt="Comapny Logo">
+                  </div>
+                  <div class="col-md-9 comapnyDescription">
+                    <h4 class="text-center">{{businessModel.name}}</h4>
+                    <span></span>
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #DC1B5E;">
-                  <div class="card-body">
-                    <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{totalClicks}}</h5>
-                    <h5>Clicks</h5>
+              <hr>
+              <!-- Identification Information -->
+
+              <div class="container IdentificationInfo">
+                <h4 class="text-center">Identification Number</h4>
+
+                <div class="row">
+                  <div class="col-sm col-md col-lg">
+                    <h6 class="text-center">GST</h6>
+                    <h6 class="text-center">{{businessModel.gst}}</h6>
+                  </div>
+                  <div class="col-sm col-md col-lg">
+                    <h6 class="text-center">PAN</h6>
+                    <h6 class="text-center">{{businessModel.pan}}</h6>
+                  </div>
+                  <div class="col-sm col-md col-lg">
+                    <h6 class="text-center">CIN</h6>
+                    <h6 class="text-center">{{businessModel.cin}}</h6>
+                  </div>
+                  <div class="col-sm col-md col-lg">
+                    <h6 class="text-center">DGFT</h6>
+                    <h6 class="text-center">{{businessModel.dgft}}</h6>
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #FB8B0D;">
-                  <div class="card-body">
-                    <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{totalProducts}}</h5>
-                    <h5 style="display: inline-block;">Total Prodcuts</h5>
+
+              <!-- Business Information -->
+              <div class="container-fluid organizationInfo mt-3">
+
+                <div class="text-center">
+                  <span class="infomationTitle">
+                    Business Details
+                  </span>
+                  <button class="float-right btn-primary" data-toggle="modal" data-target = ".editBusinessDetail">Edit</button>
+                </div>
+
+                <div class="row pt-3">
+                  <div class="col-sm col-md col-lg">
+                    <table>
+                      <tr>
+                        <td>Business Type</td>
+                        <td class="tableData" id = "BusinessType">{{businessModel.businessType}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Business Email</td>
+                        <td class="tableData" id = "BusinessEmail">{{businessModel.businessEmail}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Organization Type</td>
+                        <td class="tableData" id = "OrganisationType">{{businessModel.organisationType}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Ownership Type</td>
+                        <td class="tableData" id = "OwnershipType">{{businessModel.ownershipType}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="col-sm col-md col-lg">
+                    <table>
+                      <tr>
+                        <td>Website Link</td>
+                        <td class="tableData" id = "WebsiteLink">{{businessModel.websiteLink}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Address</td>
+                        <td class="tableData" id = "Address">{{businessModel.address}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Year Of Establishment</td>
+                        <td class="tableData">{{businessModel.yearOfEstablishment}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Description</td>
+                        <td class="tableData">{{businessModel.description}}</td>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #8E24A8;">
-                  <div class="card-body">
-                    <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{businessModel.profileViews}}</h5>
-                    <h5 style="display: inline-block;">Profile Views</h5>
-                  </div>
+
+              <!-- Personal Information -->
+              <div class="container-fluid personalInfo mt-3">
+                <div class="text-center">
+                  <span class="infomationTitle">
+                    Personal Details
+                  </span>
+                  <button class="float-right btn-primary" data-toggle="modal" data-target = ".editPersonalDetail">Edit</button>
                 </div>
 
+                <div class="row pt-3">
+                  <div class="col-sm col-md col-lg">
+                  <table>
+                    <tr>
+                      <td>Name</td>
+                      <td class="tableData" id = "supplierFullName">{{supplierModel.full_name}}</td>
+                    </tr>
+
+                      <tr>
+                        <td>Phone Number</td>
+                        <td class="tableData">{{supplierModel.phone_number}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Mobile Number</td>
+                        <td class="tableData">{{supplierModel.mobile_number}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Email</td>
+                        <td class="tableData">{{supplierModel.email}}</td>
+                      </tr>
+                  </table>
+                  </div>
+                  <div class="col-sm col-md col-lg">
+                    <table>
+                      <tr>
+                        <td>Optional Email</td>
+                        <td id = "supplierEmailOptional">{{supplierModel.email_optional}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Address</td>
+                        <td id = "supplieraddress">{{supplierModel.address}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Area</td>
+                        <td id = "supplierArea">{{supplierModel.area_street}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>City</td>
+                        <td id = "supplierCity">{{supplierModel.city}}</td>
+                      </tr>
+
+                    </table>
+                  </div>
+
+                  <div class="col-sm col-md col-lg">
+                    <table>
+                      <tr>
+                        <td>District</td>
+                        <td id = "supplierDistrict">{{supplierModel.district}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Taluka</td>
+                        <td id = "supplierTaluka">{{supplierModel.taluka}}</td>
+                      </tr>
+
+                      <tr>
+                        <td>State</td>
+                        <td id = "supplierState"> {{supplierModel.state}} </td>
+                      </tr>
+
+                      <tr>
+                        <td>Pincode</td>
+                        <td id = "supplierPincode">{{supplierModel.pincode}}</td>
+                      </tr>
+                    </table>
+                  </div>
+
+                </div>
               </div>
             </div>
-
-
-          </div>
-
-          <!-- Chart.js -->
-
-          <div class="container-fluid mt-5">
-            <div class="row">
-              <div class="col-sm -col-md col-lg clickChart">
-                <h5 class="p-3">Clicks</h5>
-                <!-- <img src="https://s3.amazonaws.com/assets.fullstack.io/n/20200309095518221_react-chartjs.png" alt="Graph Will be Here" style="padding: 12px;"> -->
-              </div>
-              <div class="col-sm -col-md col-lg quotesChart">
-                <h5 class="p-3">Quotes</h5>
-                <!-- <img src="https://cdn.october.codes/images/dataviz-1.png" alt="" style="height: 15vw;"> -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Quotes Table -->
-          <div class="container-fluid quotesTable mt-5 p-0">
-            <h6 style="padding: 1rem 0.8rem 0.3rem 0.8rem;">Quotes Requested By </h6>
-            <div class="table-responsive mb-2 tabeleQuotes">
-              <ag-grid-angular #productGridTable
-              style="width: 100%; height: 500px;" 
-              class="ag-theme-balham"
-              [gridOptions] = "gridOptions"
-              [rowData]="quotesObject"
-              [columnDefs]="columnDefsQuotes"
-              (gridReady)="onGridReady($event)">
-            </ag-grid-angular>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-       <!-- Tab Three -->
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <div class="container-fluid productManagement">
-          <div class="row m-0 mb-4 d-flex justify-content-between"> 
-            <h5>Product Management</h5>
-            <button class="btn btn-primary" (click)="addProductModal.show()"> New Product </button>
-          </div>
-          <div class="table-responsive mt-2 mb-2 productTable">
-            <ag-grid-angular #productGridTable
-            style="width: 100%; height: 500px;" 
-            class="ag-theme-balham"
-            [gridOptions] = "gridOptions"
-            [rowData]="productObject"
-            [columnDefs]="columnDefsProduct"
-            (gridReady)="onGridReady($event)"
-            [suppressScrollOnNewData]="true" 
-            [allowContextMenuWithControlKey]="true"
-            (cellContextMenu)= "cellRightClickProduct($event)">
-          </ag-grid-angular>
-          <context-menu #productTableContext>
-            <ng-template contextMenuItem (execute)="editProduct()" >Edit</ng-template>
-            <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
-          </context-menu>
-
-          </div>
-        </div>
-      </div>  
+        </p-tabPanel>
+        <p-tabPanel [disabled]="true" header="Header IV">
+          <ng-template pTemplate = "header">
+              <i class="pi pi-id-card"></i>
+              <span>Subscription</span>
+          </ng-template>
+      </p-tabPanel>
+      <p-tabPanel header="Header V">
+        <ng-template pTemplate = "header">
+            <span style="flex: auto;">Hello {{supplierModel.full_name}} !</span>
+        </ng-template>
+    </p-tabPanel>
+    </p-tabView>
   </div>
 </ng-template>
 
