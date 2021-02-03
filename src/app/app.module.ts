@@ -25,7 +25,7 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 import {DividerModule} from 'primeng/divider';
 import {CarouselModule} from 'primeng/carousel';
 import {TabViewModule} from 'primeng/tabview';
-
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import {TabViewModule} from 'primeng/tabview';
     ContextMenuModule.forRoot(),
     DividerModule,
     CarouselModule,
-    TabViewModule
+    TabViewModule,
+    TableModule
 
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],

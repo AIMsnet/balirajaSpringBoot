@@ -91,13 +91,13 @@ export class SupplierComponent implements OnInit {
     { field: 'created_date', headerName: 'Created Date' }
   ]
 
-  columnDefsQuotes = [
-    { field: 'customerName', headerName: 'Customer Name' },
-    { field: 'customerMobileNumber', headerName: 'Customer Mobile Number' },
-    { field: 'productName', headerName: 'Product Name' },
-    { field: 'quantity', headerName: 'Quantity' },
-    { field: 'requirement', headerName: 'Requirement' }
-  ]
+  // columnDefsQuotes = [
+  //   { field: 'customerName', headerName: 'Customer Name' },
+  //   { field: 'customerMobileNumber', headerName: 'Customer Mobile Number' },
+  //   { field: 'productName', headerName: 'Product Name' },
+  //   { field: 'quantity', headerName: 'Quantity' },
+  //   { field: 'requirement', headerName: 'Requirement' }
+  // ]
 
 
   constructor(private router: Router, public supplierServices: SupplierServiceService,
@@ -164,7 +164,9 @@ export class SupplierComponent implements OnInit {
         // Fetching Quotes
         this.supplierServices.getQuotesBySessionId().subscribe(response => {
           this.quotesObject = response
+          console.log("table response"+ this.quotesObject.length);
           this.totalLeads = this.quotesObject.length
+          console.log("table response1"+ this.totalLeads);
         })
 
       }// End of this.login
