@@ -210,3 +210,15 @@ th, td {
     line-height: 1.5;
     margin: 0;
 }
+
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 0.7rem;
+}
+
+/* :host ::ng-deep .tabview-custom {
+  p {
+    margin-left: 41rem;
+  }
+}
+ */
+
