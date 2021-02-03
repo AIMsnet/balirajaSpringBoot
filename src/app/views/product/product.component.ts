@@ -21,15 +21,22 @@ export class ProductComponent implements OnInit {
   productList : any
   prodcutQuoteId : Number = 0
   productQuoteName : String= ""
+  totalPage = 0
+  pageCounter = 0 
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private supplierService: SupplierServiceService, private productService: ProductService, private tosterService: ToastrService) { }
 
   ngOnInit(): void {
+
+    console.log("Starting")
     this.searchedProduct = this.activatedRoute.snapshot.paramMap.get("searchedProduct")
-    this.productService.getSearchedProduct(this.searchedProduct).subscribe(response => {
+    this.productService.getSearchedProduct(this.searchedProduct, this.totalPage).subscribe(response => {
       console.log(response)
       this.productList = response
+      this.totalPage = response[0]['length']
+      console.log("Page COunter", this.totalPage)
     })
+    
   }
 
   openGetQuote(id : Number, productName : String){
@@ -73,4 +80,20 @@ export class ProductComponent implements OnInit {
     }
   }
 
+
+  nextPage(pageCounter){
+    this.pageCounter = pageCounter
+    this.productService.getSearchedProduct(this.searchedProduct, this.totalPage).subscribe(response => {
+      console.log(response)
+      this.productList = response
+    })
+  }
+
+
+
+
+  // Just for counter
+  counter(i : number){
+    return new Array(i)
+  }
 }
