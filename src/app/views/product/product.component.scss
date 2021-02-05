@@ -159,7 +159,7 @@
 
  ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
   border: none;
-  padding: 0.7rem;
+  padding: 0.7rem 0rem;
 }
 
 .relatedCustom {
@@ -167,7 +167,7 @@
 }
 
 ::ng-deep .p-accordion .p-accordion-content {
-  padding: .6rem 1rem;
+  padding: 0rem;
 }
 
 ::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
@@ -179,6 +179,10 @@
   box-shadow: none;
 }
 
-/* ::ng-deep .p-accordion-header-link>a:hover {
+::ng-deep .p-accordion-header-link:hover {
   text-decoration: none;
-} */
+}
+
+::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+    margin-right: 0.3rem;
+}
