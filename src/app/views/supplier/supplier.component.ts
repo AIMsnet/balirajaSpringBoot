@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
 import { HostListener } from '@angular/core';
-
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-supplier',
   templateUrl: './supplier.component.html',
@@ -73,8 +73,10 @@ export class SupplierComponent implements OnInit {
   product_image: boolean = true;
   productImage
   savedProductId: Number
-  gridOptions: GridOptions = {
-  }
+  selectedProduct: Product;
+  items: MenuItem[];
+  // gridOptions: GridOptions = {
+  // }
 
   private gridApi;
   private gridColumnApi;
@@ -177,6 +179,11 @@ export class SupplierComponent implements OnInit {
     this.productObject.forEach(function () {
       this.totalClicks = this.productObject['clicks'] + this.totalClicks
     })
+
+    this.items = [
+      { label: 'Edit Product', command: () => this.updateProductModal.show() },
+      { label: 'Edit Image', command: () => this.editphotoModal.show() }
+    ];
   }// End of ngOnInit
 
   onGridReady(params) {
