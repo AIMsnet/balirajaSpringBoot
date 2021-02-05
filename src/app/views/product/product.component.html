@@ -2,9 +2,9 @@
   <!-- ----------Navbar Position -->
   <div class="row">
     <div class="col-sm-2 col-md-3 col-lg-3 p-0 categoriesBelt">
-      <div class="sidenav pl-1">            
-        <h5 class="my-2 mx-2 text-center border-bottom">Filter</h5>
-        <ul class="navbar-nav nav flex-column">
+      <div class="sidenav">            
+        <h5 class="m-2" style="text-decoration: underline;">Filter</h5>
+       <!--  <ul class="navbar-nav nav flex-column">
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" role="button" data-toggle="collapse" data-target="#coladrop1" aria-expanded="true" aria-controls="coladrop1">
               Related Categories
@@ -36,17 +36,50 @@
               <a class="dropdown-item" href="#">RIS Steel</a>
               <a class="dropdown-item" href="#">Kirloskar Power</a>
               <a class="dropdown-item" href="#">Adani</a>
-              <!-- <a class="dropdown-item" href="#">HDPE Coil Pipes</a>
+              <a class="dropdown-item" href="#">HDPE Coil Pipes</a>
               <a class="dropdown-item" href="#">Lateral Pipes</a>
               <a class="dropdown-item" href="#">MDPE Pipes</a>
               <a class="dropdown-item" href="#">HDPE Sprinkler Pipes</a>
               <a class="dropdown-item" href="#">UPVC Pressure Pipes</a>
               <a class="dropdown-item" href="#">Grey Pipes</a>
               <a class="dropdown-item" href="#">LDPE Lay Flat Pipes</a>
-              <a class="dropdown-item" href="#">Hdpe Tube</a> -->
+              <a class="dropdown-item" href="#">Hdpe Tube</a>
             </div>
           </li>
-        </ul>
+        </ul> -->
+      
+        <p-accordion>
+          <p-accordionTab header="Related Categories" [selected]="true">
+            <a class="dropdown-item active" href="#maindiv">Agricultural Implements</a>
+            <a class="dropdown-item" href="#">Agricultural Machinery</a>
+            <a class="dropdown-item" href="#">Agricultural Machine Parts</a>
+            <a class="dropdown-item" href="#">Agricultural Tools</a>
+            <a class="dropdown-item" href="#">Farm Equipment</a>
+            <a class="dropdown-item" href="#">Agricultural Tray</a>
+            <a class="dropdown-item" href="#">Agricultural Ridger</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Agricultural Gyrovator</a>
+            <a class="dropdown-item" href="#">Agricultural Wire</a>
+            <a class="dropdown-item" href="#">Agricultural Tanks</a>
+            <a class="dropdown-item" href="#">Sugarcane stubble shaver</a>
+            <a class="dropdown-item" href="#">Agricultural Processing Plants</a>
+          </p-accordionTab>
+          <p-accordionTab header="Brands">
+            <a class="dropdown-item" href="#">Honda</a>
+            <a class="dropdown-item" href="#">AG Champ</a>
+            <a class="dropdown-item" href="#">RIS Steel</a>
+            <a class="dropdown-item" href="#">Kirloskar Power</a>
+            <a class="dropdown-item" href="#">Adani</a>
+            <a class="dropdown-item" href="#">HDPE Coil Pipes</a>
+            <a class="dropdown-item" href="#">Lateral Pipes</a>
+            <a class="dropdown-item" href="#">MDPE Pipes</a>
+            <a class="dropdown-item" href="#">HDPE Sprinkler Pipes</a>
+            <a class="dropdown-item" href="#">UPVC Pressure Pipes</a>
+            <a class="dropdown-item" href="#">Grey Pipes</a>
+            <a class="dropdown-item" href="#">LDPE Lay Flat Pipes</a>
+            <a class="dropdown-item" href="#">Hdpe Tube</a>
+          </p-accordionTab>
+        </p-accordion>
       </div>
     </div>
 
