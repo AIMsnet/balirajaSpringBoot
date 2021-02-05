@@ -9,7 +9,7 @@ import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
+// import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
 import { HostListener } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 @Component({
@@ -32,7 +32,7 @@ export class SupplierComponent implements OnInit {
   @ViewChild('editphotoModal') editphotoModal: ModalDirective;
   @ViewChild('productGridTable') productGridTable: AgGridAngular;
 
-  @ViewChild('productTableContext') productTableContext: ContextMenuComponent;
+  // @ViewChild('productTableContext') productTableContext: ContextMenuComponent;
 
   // Instances
   personalDetailName: String
@@ -105,7 +105,9 @@ export class SupplierComponent implements OnInit {
   constructor(private router: Router, public supplierServices: SupplierServiceService,
     private categoryService: CategroyService, private productService: ProductService,
     private tosterService: ToastrService,
-    private contextMenuService: ContextMenuService) { }
+    ) { }
+
+    // private contextMenuService: ContextMenuService
 
   @HostListener('window:resize')
   onResize() {
@@ -412,18 +414,18 @@ export class SupplierComponent implements OnInit {
     editspecificationForm.reset();
   }
 
-  cellRightClickProduct($event) {
-    var mouseevent: MouseEvent = $event.event;
-    this.contextRow = JSON.parse(JSON.stringify($event.data));
-    // this.selectedImportedEnergy = this.contextRow;
-    this.productGridTable.api.redrawRows();
-    this.contextMenuService.show.next({
-      contextMenu: this.productTableContext,
-      event: mouseevent,
-      item: $event.data
+  // cellRightClickProduct($event) {
+  //   var mouseevent: MouseEvent = $event.event;
+  //   this.contextRow = JSON.parse(JSON.stringify($event.data));
+  //   // this.selectedImportedEnergy = this.contextRow;
+  //   this.productGridTable.api.redrawRows();
+  //   this.contextMenuService.show.next({
+  //     contextMenu: this.productTableContext,
+  //     event: mouseevent,
+  //     item: $event.data
 
-    });
-  }
+  //   });
+  // }
 
   editProduct() {
     this.updateProductModal.show();

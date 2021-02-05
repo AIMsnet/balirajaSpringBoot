@@ -54,7 +54,8 @@ import {ContextMenuModule} from 'primeng/contextmenu';
     DividerModule,
     CarouselModule,
     TabViewModule,
-    TableModule
+    TableModule,
+    ContextMenuModule
 
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],
