@@ -25,6 +25,8 @@ import {DividerModule} from 'primeng/divider';
 import {CarouselModule} from 'primeng/carousel';
 import {TabViewModule} from 'primeng/tabview';
 import {TableModule} from 'primeng/table';
+import {AccordionModule} from 'primeng/accordion';
+
 import {ContextMenuModule} from 'primeng/contextmenu';
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import {ContextMenuModule} from 'primeng/contextmenu';
     CarouselModule,
     TabViewModule,
     TableModule,
-    ContextMenuModule
+    ContextMenuModule,
+    AccordionModule
 
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],

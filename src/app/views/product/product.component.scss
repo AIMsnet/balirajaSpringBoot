@@ -156,3 +156,33 @@
   text-transform: uppercase;
   font-weight: 600;
 }
+
+ ::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+  border: none;
+  padding: 0.7rem 0rem;
+}
+
+.relatedCustom {
+  font-size: 14px;
+}
+
+::ng-deep .p-accordion .p-accordion-content {
+  padding: 0rem;
+}
+
+::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background-color: #dee2e6;
+}
+
+::ng-deep .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+::ng-deep .p-accordion-header-link:hover {
+  text-decoration: none;
+}
+
+::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+    margin-right: 0.3rem;
+}

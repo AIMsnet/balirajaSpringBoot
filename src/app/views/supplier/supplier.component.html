@@ -17,7 +17,6 @@
     </li>
   </ul> -->
 
-
   <!-- ----------------------------List Visibled on incomplete Details -->
 
   <div *ngIf="(supplierModel.pincode && businessModel.gst) == null; else profileCompleted">
@@ -121,28 +120,28 @@
                   (gridReady)="onGridReady($event)">
                 </ag-grid-angular> -->
                 <div class="b">
-                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex" [responsive]="true" 
-                  styleClass="p-datatable-responsive-demo">
-                      <ng-template pTemplate="header">
-                          <tr>
-                              <th>Customer Name</th>
-                              <th>Customer Mobile Number</th>
-                              <th>Product Name</th>
-                              <th>Quantity</th>
-                              <th>Requirement</th>
-                          </tr>
-                      </ng-template>
-                      <ng-template pTemplate="body" let-quotesObject>
-                          <tr>
-                              <td>{{quotesObject.customerName}}</td>
-                              <td>{{quotesObject.customerMobileNumber}}</td>
-                              <td>{{quotesObject.productName}}</td>
-                              <td>{{quotesObject.quantity}}</td>
-                              <td>{{quotesObject.requirement}}</td>
-                          </tr>
-                      </ng-template>
+                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
+                    styleClass="p-datatable-responsive-demo">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Customer Name</th>
+                        <th>Customer Mobile Number</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Requirement</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-quotesObject>
+                      <tr>
+                        <td>{{quotesObject.customerName}}</td>
+                        <td>{{quotesObject.customerMobileNumber}}</td>
+                        <td>{{quotesObject.productName}}</td>
+                        <td>{{quotesObject.quantity}}</td>
+                        <td>{{quotesObject.requirement}}</td>
+                      </tr>
+                    </ng-template>
                   </p-table>
-              </div>
+                </div>
               </div>
             </div>
 
@@ -170,35 +169,35 @@
               </context-menu> -->
               <div class="b">
                 <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
-                [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm"
-                styleClass="p-datatable-responsive-demo">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Code</th>
-                            <th>Name</th>
-                            <th>Brand</th>
-                            <th>Price</th>
-                            <th>Arrival</th>
-                            <th>Unit</th>
-                            <th>Clicks</th>
-                            <th>Created Date</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-productObject>
-                        <tr [pContextMenuRow]="productObject">
-                            <td>{{productObject.code}}</td>
-                            <td>{{productObject.name}}</td>
-                            <td>{{productObject.brand}}</td>
-                            <td>{{productObject.price}}</td>
-                            <td>{{productObject.arrival}}</td>
-                            <td>{{productObject.unit}}</td>
-                            <td>{{productObject.clicks}}</td>
-                            <td>{{productObject.created_date}}</td>
-                        </tr>
-                    </ng-template>
+                  [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm"
+                  styleClass="p-datatable-responsive-demo">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>Code</th>
+                      <th>Name</th>
+                      <th>Brand</th>
+                      <th>Price</th>
+                      <th>Arrival</th>
+                      <th>Unit</th>
+                      <th>Clicks</th>
+                      <th>Created Date</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-productObject>
+                    <tr [pContextMenuRow]="productObject">
+                      <td>{{productObject.code}}</td>
+                      <td>{{productObject.name}}</td>
+                      <td>{{productObject.brand}}</td>
+                      <td>{{productObject.price}}</td>
+                      <td>{{productObject.arrival}}</td>
+                      <td>{{productObject.unit}}</td>
+                      <td>{{productObject.clicks}}</td>
+                      <td>{{productObject.created_date}}</td>
+                    </tr>
+                  </ng-template>
                 </p-table>
                 <p-contextMenu appendTo="body" #cm [model]="items"></p-contextMenu>
-            </div>
+              </div>
 
             </div>
           </div>
@@ -411,7 +410,6 @@
       </p-tabView>
     </div>
   </ng-template>
-
 
   <!-- Add Personal Details -->
   <div class="modal fade editPersonalDetail" bsModal #editPersonalDetailModal="bs-modal" [config]="{backdrop: 'static'}"
