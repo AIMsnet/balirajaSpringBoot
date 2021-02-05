@@ -168,8 +168,8 @@
                 <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
               </context-menu> -->
               <div class="b">
-                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex"
-                [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm">
+                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex">
+                <!-- [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm" -->
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Code</th>
@@ -195,7 +195,7 @@
                         </tr>
                     </ng-template>
                 </p-table>
-                <p-contextMenu appendTo="body" #cm [model]="items"></p-contextMenu>
+                <!-- <p-contextMenu appendTo="body" #cm [model]="items"></p-contextMenu> -->
             </div>
 
             </div>

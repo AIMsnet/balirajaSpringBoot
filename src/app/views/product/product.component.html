@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-2 col-md-3 col-lg-3 p-0 categoriesBelt">
       <div class="sidenav">            
-        <h5 class="m-2" style="text-decoration: underline;">Filter</h5>
+        <!-- <h5 class="m-2" style="text-decoration: underline;">Filter</h5> -->
        <!--  <ul class="navbar-nav nav flex-column">
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" role="button" data-toggle="collapse" data-target="#coladrop1" aria-expanded="true" aria-controls="coladrop1">
@@ -49,8 +49,8 @@
         </ul> -->
       
         <p-accordion>
-          <p-accordionTab header="Related Categories" [selected]="true">
-            <a class="dropdown-item active" href="#maindiv">Agricultural Implements</a>
+          <p-accordionTab header="Related Categories" [selected]="true" class="relatedCustom">
+            <a class="dropdown-item" href="#maindiv">Agricultural Implements</a>
             <a class="dropdown-item" href="#">Agricultural Machinery</a>
             <a class="dropdown-item" href="#">Agricultural Machine Parts</a>
             <a class="dropdown-item" href="#">Agricultural Tools</a>
@@ -64,7 +64,7 @@
             <a class="dropdown-item" href="#">Sugarcane stubble shaver</a>
             <a class="dropdown-item" href="#">Agricultural Processing Plants</a>
           </p-accordionTab>
-          <p-accordionTab header="Brands">
+          <p-accordionTab header="Brands" class="relatedCustom">
             <a class="dropdown-item" href="#">Honda</a>
             <a class="dropdown-item" href="#">AG Champ</a>
             <a class="dropdown-item" href="#">RIS Steel</a>
