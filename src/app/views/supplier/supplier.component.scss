@@ -225,9 +225,9 @@ th, td {
 
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
     padding: 0.5re 0.5rem;
-    // border: 1px solid #fdfdfd;
+    border: 1px solid #fdfdfd;
     border-width: 0 0 1px 0;
-    border: 1px solid black;
+    // border: 1px solid black;
 }
 
 :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td:first-child{
@@ -237,7 +237,6 @@ th, td {
 :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td:last-child{
     border-right: 0px !important;
 }
-
 
 .b{
     overflow: hidden;

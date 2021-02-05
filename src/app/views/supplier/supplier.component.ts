@@ -316,7 +316,7 @@ export class SupplierComponent implements OnInit {
         this.updateProductModal.hide();
         this.getProductBySupplier();
         updateProductForm.reset();
-        // this.editphotoModal.show();
+        // this.updateProductModal.hide();
       })
     }
 

@@ -121,7 +121,8 @@
                   (gridReady)="onGridReady($event)">
                 </ag-grid-angular> -->
                 <div class="b">
-                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex">
+                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex" [responsive]="true" 
+                  styleClass="p-datatable-responsive-demo">
                       <ng-template pTemplate="header">
                           <tr>
                               <th>Customer Name</th>
@@ -168,8 +169,9 @@
                 <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
               </context-menu> -->
               <div class="b">
-                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex"
-                [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm" [responsive]="true">
+                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
+                [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm"
+                styleClass="p-datatable-responsive-demo">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Code</th>
@@ -183,7 +185,7 @@
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-productObject>
-                        <tr>
+                        <tr [pContextMenuRow]="productObject">
                             <td>{{productObject.code}}</td>
                             <td>{{productObject.name}}</td>
                             <td>{{productObject.brand}}</td>
@@ -1173,8 +1175,8 @@
                   <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateProductModal.hide()"><i
                       class="fa fa-times mr-1"></i>Cancel</button>
                   <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "updateProductModal.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button> -->
-                  <button type="submit" class="btn btn-sm btn-success" [disabled]="addProduct.invalid"
-                    [class.disable]="addProduct.invalid"><i class="fa fa-save mr-1"></i>Save</button>
+                  <button type="submit" class="btn btn-sm btn-success" [disabled]="updateProductForm.invalid"
+                    [class.disable]="updateProductForm.invalid"><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
               </div>
             </div>
