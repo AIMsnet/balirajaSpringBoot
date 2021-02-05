@@ -80,16 +80,16 @@ export class SupplierComponent implements OnInit {
   private gridColumnApi;
   contextRow: any;
   //Table Elements
-  columnDefsProduct = [
-    { field: 'code', headerName: 'Code' },
-    { field: 'name', headerName: 'Name' },
-    { field: 'brand', headerName: 'Brand' },
-    { field: 'price', headerName: 'Price' },
-    { field: 'arrival', headerName: 'Arrival' },
-    { field: 'unit', headerName: 'Unit' },
-    { field: 'clicks', headerName: 'Clicks' },
-    { field: 'created_date', headerName: 'Created Date' }
-  ]
+  // columnDefsProduct = [
+  //   { field: 'code', headerName: 'Code' },
+  //   { field: 'name', headerName: 'Name' },
+  //   { field: 'brand', headerName: 'Brand' },
+  //   { field: 'price', headerName: 'Price' },
+  //   { field: 'arrival', headerName: 'Arrival' },
+  //   { field: 'unit', headerName: 'Unit' },
+  //   { field: 'clicks', headerName: 'Clicks' },
+  //   { field: 'created_date', headerName: 'Created Date' }
+  // ]
 
   // columnDefsQuotes = [
   //   { field: 'customerName', headerName: 'Customer Name' },
