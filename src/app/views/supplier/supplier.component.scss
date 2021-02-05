@@ -212,6 +212,17 @@ th, td {
     margin: 0;
 }
 
+::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  padding: 0.7rem;
+}
+
+/* :host ::ng-deep .tabview-custom {
+  p {
+    margin-left: 41rem;
+  }
+}
+ */
+
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
     padding: 0.5re 0.5rem;
     // border: 1px solid #fdfdfd;
