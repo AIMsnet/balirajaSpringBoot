@@ -120,15 +120,16 @@
                   (gridReady)="onGridReady($event)">
                 </ag-grid-angular> -->
                 <div class="b">
-                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
-                    styleClass="p-datatable-responsive-demo">
-                    <ng-template pTemplate="header">
+                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex" [resizableColumns]="true" columnResizeMode="expand"
+                  styleClass="p-datatable-responsive-demo p-datatable-gridlines"
+                  class="p-datatable-gridlines p-datatable p-component p-datatable-resizable">
+                  <ng-template pTemplate="header">
                       <tr>
-                        <th>Customer Name</th>
-                        <th>Customer Mobile Number</th>
-                        <th>Product Name</th>
-                        <th>Quantity</th>
-                        <th>Requirement</th>
+                        <th pResizableColumn>Customer Name</th>
+                        <th pResizableColumn>Customer Mobile Number</th>
+                        <th pResizableColumn>Product Name</th>
+                        <th pResizableColumn>Quantity</th>
+                        <th pResizableColumn>Requirement</th>
                       </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-quotesObject>
@@ -168,19 +169,21 @@
                 <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
               </context-menu> -->
               <div class="b">
-                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
+                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex"
                   [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm"
-                  styleClass="p-datatable-responsive-demo">
+                  [resizableColumns]="true" columnResizeMode="expand"
+                  styleClass="p-datatable-responsive-demo p-datatable-gridlines"
+                  class="p-datatable-gridlines p-datatable p-component p-datatable-resizable">
                   <ng-template pTemplate="header">
                     <tr>
-                      <th>Code</th>
-                      <th>Name</th>
-                      <th>Brand</th>
-                      <th>Price</th>
-                      <th>Arrival</th>
-                      <th>Unit</th>
-                      <th>Clicks</th>
-                      <th>Created Date</th>
+                      <th pResizableColumn>Code</th>
+                      <th pResizableColumn>Name</th>
+                      <th pResizableColumn>Brand</th>
+                      <th pResizableColumn>Price</th>
+                      <th pResizableColumn>Arrival</th>
+                      <th pResizableColumn>Unit</th>
+                      <th pResizableColumn>Clicks</th>
+                      <th pResizableColumn>Created Date</th>
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-productObject>

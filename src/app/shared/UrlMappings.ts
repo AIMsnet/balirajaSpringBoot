@@ -25,6 +25,7 @@ export class UrlMappings{
     public static createProduct = "product/createProduct"
     public static getAllProductByBusiness =  "product/getAllProductByBusiness/"
     public static getSearchedProduct = "product/getListSearchedProduct/"
+    public static updateProduct = "product/updateProduct"
 
     //Product Image
     public static uploadProductImage = "productImage/uploadImage"
