@@ -20,6 +20,10 @@ export class ProductService {
     return this.httpClient.post(environment.baseUrl + UrlMappings.createProduct, product, {headers : new HttpHeaders().set('sessionId', localStorage.getItem('sessionId'))})
   }
 
+  updateProduct(product : Product) : Observable<any>{
+    return this.httpClient.post(environment.baseUrl + UrlMappings.createProduct, product, {headers : new HttpHeaders().set('sessionId', localStorage.getItem('sessionId'))})
+  }
+
   saveProductImage(productImage, productId : Number){
     var formData = new FormData()
     formData.append('image', productImage)

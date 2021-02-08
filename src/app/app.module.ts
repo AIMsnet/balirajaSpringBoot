@@ -27,6 +27,19 @@ import {TabViewModule} from 'primeng/tabview';
 import {TableModule} from 'primeng/table';
 import {AccordionModule} from 'primeng/accordion';
 
+//primeng modules
+//import { MegaMenuModule } from 'primeng/megamenu';
+//import {MegaMenuItem} from 'primeng/api'; 
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import {ToolbarModule} from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { DialogModule } from 'primeng/dialog';
+import {RippleModule} from 'primeng/ripple';
+
+
+
 import {ContextMenuModule} from 'primeng/contextmenu';
 @NgModule({
   declarations: [
@@ -52,8 +65,17 @@ import {ContextMenuModule} from 'primeng/contextmenu';
     ToastrModule.forRoot(),
     NgImageSliderModule,
     AgGridModule.withComponents([]),
-    // ContextMenuModule.forRoot(),
+    //ContextMenuModule.forRoot(),
     DividerModule,
+    // primng modules
+   // MegaMenuModule,
+    DialogModule,
+    ToolbarModule,
+    ButtonModule,
+    SplitButtonModule,
+    InputTextModule,
+    PasswordModule,
+    RippleModule,
     CarouselModule,
     TabViewModule,
     TableModule,

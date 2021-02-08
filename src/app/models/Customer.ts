@@ -17,3 +17,4 @@ export class CreateCustomer{
 	taluka: String;
 	pincode: String;
 }
+
