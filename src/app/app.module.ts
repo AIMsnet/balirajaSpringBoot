@@ -24,6 +24,18 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import {DividerModule} from 'primeng/divider';
 
+//primeng modules
+//import { MegaMenuModule } from 'primeng/megamenu';
+//import {MegaMenuItem} from 'primeng/api'; 
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
+import {ToolbarModule} from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { DialogModule } from 'primeng/dialog';
+import {RippleModule} from 'primeng/ripple';
+
+
 
 @NgModule({
   declarations: [
@@ -50,8 +62,16 @@ import {DividerModule} from 'primeng/divider';
     NgImageSliderModule,
     AgGridModule.withComponents([]),
     ContextMenuModule.forRoot(),
-    DividerModule
-
+    DividerModule,
+    // primng modules
+   // MegaMenuModule,
+    DialogModule,
+    ToolbarModule,
+    ButtonModule,
+    SplitButtonModule,
+    InputTextModule,
+    PasswordModule,
+    RippleModule
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],
   bootstrap: [AppComponent]

@@ -6,6 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { Supplier, CreateSupplier } from '../../models/Supplier'
 import { CreateCustomer } from 'src/app/models/Customer';
 
+//primng
+//import { MegaMenuItem } from "primeng/api";
+
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -23,6 +28,15 @@ export class NavbarComponent implements OnInit {
   
   @ViewChild('customerSignInModal', { static: false }) customerSignInModal: ModalDirective;
   //Variables
+ // items: MegaMenuItem[];
+
+
+  displayModal: boolean;
+  displaySellerSignIn: boolean;
+  displaysupplierSignUp:boolean;
+  position: string;
+
+
   supplierLoginEmailId : String
   supplierLoginpassword : String
 
@@ -52,11 +66,54 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router, public navBarService : NavbarService, private tosterService : ToastrService) { }
 
   ngOnInit(): void {
+
+    //navbarBelt
+    // this.items = [
+    //   {
+    //     label: "Home",
+    //    // icon: "pi pi-fw pi-home"
+    //   },
+    //   {
+    //     label: "List Business",
+    //     //icon: "pi pi-fw pi-globe"
+    //   },
+    //   {
+    //     label: "Government Links",
+    //     //icon: "pi pi-fw pi-link"
+    //   },
+    //   {
+    //     label: "Login",
+    //   //  icon: "pi pi-fw pi-user",
+    //     items: [
+    //       [
+    //         { label: "Seller" }, {label: "Customer"  } 
+            
+    //       ]
+    //     ]
+    //   }
+    // ];
+
+
+
    this.login = false
    if(localStorage.getItem('sessionId') != null){
     this.login = true
    }
   }
+
+  showModalDialog() {
+    this.displayModal = true;
+}
+
+showSellerSignIn() {
+    this.displaySellerSignIn = true;
+}
+
+supplierSignUpshow(){
+  this.displaySellerSignIn = false;
+  this.displaysupplierSignUp = true;
+
+}
 
   openhome(){
     this.router.navigateByUrl('/home')
@@ -84,7 +141,7 @@ export class NavbarComponent implements OnInit {
       this.createSupplierModel.full_name = this.suppplierSignUpfullname
       this.createSupplierModel.email = this.suppplierSignUpEmail
       this.createSupplierModel.password = this.suppplierSignUpPassword
-      this.supplierSignUpModal.hide()
+      this.displaysupplierSignUp = false;
       this.navBarService.createNewSupplier(this.createSupplierModel).subscribe(response => {
         this.tosterService.success("Account Created Sucessfully.", "Baliraja", {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
@@ -141,6 +198,7 @@ export class NavbarComponent implements OnInit {
   }
 
   loginSupplier(){
+    console.log("Bihaari")
     this.navBarService.supplierLogin(this.supplierLoginEmailId, this.supplierLoginpassword).subscribe(resp =>{
       this.sessionId = resp['sessionId']
       if(this.sessionId == "Invalid"){
@@ -155,7 +213,7 @@ export class NavbarComponent implements OnInit {
           timeOut : 2000, progressBar : true, easing : 'ease-in'
         })
         this.login = true
-        this.supplierSignInModal.hide();
+        this.displaySellerSignIn = false;
       }
     })
   }

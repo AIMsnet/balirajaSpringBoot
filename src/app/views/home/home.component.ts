@@ -3,16 +3,36 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ProductService } from 'src/app/services/product/product.service';
+//primeng
+import { PrimeNGConfig } from 'primeng/api';
+import {AccordionModule} from 'primeng/accordion'; 
+
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  styles: [`
+  :host ::ng-deep .p-dialog .product-image {
+      width: 150px;
+      margin: 0 auto 2rem auto;
+      display: block;
+  }
+`],
+providers: [MessageService,ConfirmationService]
 })
+
+
+
 export class HomeComponent implements OnInit {
 
   @ViewChild('supplierSignUpModal') supplierSignUpModal : ModalDirective;
   @ViewChild('customerSignUpModal') customerSignUpModal : ModalDirective;
+
 
   image : any
   imageByte
@@ -20,11 +40,14 @@ export class HomeComponent implements OnInit {
   base64Data: any;
   retrieveResponse: any;
   imageUrl
-  constructor(private productService : ProductService, private domSanitizer: DomSanitizer) { }
+  constructor(private productService : ProductService, private domSanitizer: DomSanitizer, private primengConfig: PrimeNGConfig, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
+
   }
+
 
   openSupplierSignUp(){
     this.supplierSignUpModal.show();

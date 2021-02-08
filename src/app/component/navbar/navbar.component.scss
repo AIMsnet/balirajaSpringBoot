@@ -1,91 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Amita:wght@700&display=swap");
+
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .navbar-toggler {
-  color: rgba(0,0,0,.5);
-  border-color: rgba(0,0,0,.1);
+  color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
   background-color: white;
 }
 
-.nav-item {
-  padding: 0px 8px 0px 8px;
+// .nav-item {
+//   padding: 10px 0px 10px 0px;
+// }
+.nav-link {
+  padding: 10px 5px 5px 5px;
+  color: white;
+  font-size: 17px;
+  border-radius: 0px;
+  border: 0;
 }
 .navbar {
-  background-color: #303a52;
+  background-color: #3e4a61;
   color: white;
   padding: 3vh 0px 1vh;
 }
 
 #navBeltTwo {
-  padding: 0px 5vw 0px;
+  padding: 1.5vw 10px 10px;
+
+  // ::ng-deep .p-inputgroup-addon:first-child,
+  // .p-inputgroup button:first-child,
+  // .p-inputgroup input:first-child {
+  //   border-top-left-radius: 0px;
+  //   border-bottom-left-radius: 0px;
+  // }
+  // ::ng-deep .p-inputgroup-addon {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+  // ::ng-deep .p-inputgroup-addon {
+  //   background: #fdfdfd;
+  //   color: #6c757d;
+  //   border-top: 1px solid #ced4da;
+  //   border-left: 1px solid #ced4da;
+  //   border-bottom: 1px solid #ced4da;
+  //   padding: 6px 0px 0px 0px;
+  //   min-width: 2.357rem;
+  // }
+  ::ng-deep .p-inputgroup-addon:first-child,
+  .p-inputgroup button:first-child,
+  .p-inputgroup input:first-child {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  ::ng-deep .p-inputtext {
+    border: 0px;
+  }
+
+  ::ng-deep .p-fluid .p-inputgroup .p-button.p-button-icon-only {
+    width: 2.357rem;
+    background-color: #9e579d;
+    border: 0;
+  }
 }
 
-.navBarBelt{
-  font-family: 'Kalam', cursive;
-  font-size: 7vh;
+.navBarBelt {
+  font-family: "Amita", cursive;
+  font-size: 22px;
   padding: 1vh 0px 0px;
+  color: #ffffff;
 }
 
-.navBeltTwoInputGroup{
-  background-color: white;
-  border-radius: 2px;
-}
+// .navBeltTwoInputGroup {
+//   border-radius: 1px;
+// }
 
-.navBarBeltThree ul {
+.navBarBeltThreeA ul {
   font-size: 2.5vh;
 }
 
-.navBarBeltThree ul li a{
-  color: white;
-}
+// .navBarBeltThreeA ul li a {
+
+// }
 
 #row {
   justify-content: center;
 }
 
-.dropDownContainer {
-  width: 76vw;
-}
+// .dropDownContainer {
+//   width: 76vw;
+// }
 
-.dropDownColumn {
-  padding: 0px;
-}
+// .dropDownColumn {
+//   padding: 0px;
+// }
 
-#navBeltTwo > div > div.input-group-prepend.navBeltCategory.show > div{
-  width: 53vw;
-}
+// #navBeltTwo > div > div.input-group-prepend.navBeltCategory.show > div {
+//   width: 53vw;
+// }
 
-.navBeltCategory .btn{
-  color: dimgrey;
+.navBeltCategory .btn {
+  padding-top: 10px;
+  color: #ffffff;
   border-radius: 0px;
-  border: 0px;
+  border: 0;
+  margin: 0;
 }
 
-.navBeltCategory .btn:hover {
-  color: white;
+.navBeltCategory .btn:hover,
+.navBarBeltThreeA ul li a:hover {
+  color: #000000;
+  background-color: #ffffff96;
 }
 
-.categoriesList{
+.navBarBeltThreeB .nav-link {
+  color: #ffffff;
+}
+.navBarBeltThreeA .nav-link.active,
+.navBarBeltThreeB .nav-link.active {
+  background-color: #ffffff9a;
+  color: #000000;
+  border: 0;
+  outline: 0;
+}
+.categoriesList {
   list-style-type: none;
   padding: 0px;
 }
 
-.categoriesList li{
+.categoriesList li {
   padding: 10px;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: #071a52;
   color: white;
 }
 
-#btnNavBarSearch{
-  border: none;
-  border-radius: 0px;
-}
+// #btnNavBarSearch {
+//   border: none;
+//   border-radius: 0px;
+// }
 
-.btn.disable:hover {     
+.btn.disable:hover {
   cursor: not-allowed;
 }
 
@@ -98,5 +157,45 @@
 }
 
 .checkboxform {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
+}
+
+//for seller login Dialog
+
+// .SellerHead {
+//   background-color: #071a52;
+//   color: #fff;
+// }
+
+.p-formgroup-inline {
+  .p-field {
+    margin: 1rem !important;
+  }
+  .p-field input,
+  label {
+    font-size: 12px;
+  }
+}
+
+::ng-deep .p-dialog .p-dialog-header {
+  background-color: #7989b9;
+  color: #fff;
+}
+
+// ::ng-deep .customSignup {
+//   width: 100%;
+// }
+
+//sm
+@media only screen and (max-width: 600px) {
+  .navBarBeltThreeA {
+    display: none;
+  }
+}
+
+//lg
+@media only screen and (min-width: 600px) {
+  .navBarBeltThreeB {
+    display: none;
+  }
 }
