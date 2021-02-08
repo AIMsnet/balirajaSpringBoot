@@ -1,5 +1,5 @@
-<div class = "container-fluid p-0 mainFrame">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">     
+<div class="container-fluid p-0 mainFrame">
+  <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">     
       <li class="nav-item">
         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dashboard</a>
       </li>
@@ -15,703 +15,816 @@
       <li class="nav-item ml-auto">
         <a class="nav-link" style="color: #303A52;">Hello {{supplierModel.full_name}} !</a>
     </li>
-  </ul>
+  </ul> -->
 
   <!-- ----------------------------List Visibled on incomplete Details -->
-  
+
   <div *ngIf="(supplierModel.pincode && businessModel.gst) == null; else profileCompleted">
     <div class="container-fluid">
-      <div class="container"  style="padding-bottom: 15%; padding-top: 15%; text-align: center;">
+      <div class="container" style="padding-bottom: 15%; padding-top: 15%; text-align: center;">
         <h3>Your profile is incomplete please add following details</h3>
         <ul style="list-style: none;">
-  
-          <li *ngIf = "supplierModel.designation == null"><button class="p-1 btn-primary" data-toggle="modal" data-target = ".editPersonalDetail">Add Personal Information</button>
-            <span class = "updateStatus" id = "personalUpdateStatus"></span>
+
+          <li *ngIf="supplierModel.designation == null"><button class="p-1 btn-primary" data-toggle="modal"
+              data-target=".editPersonalDetail">Add Personal Information</button>
+            <span class="updateStatus" id="personalUpdateStatus"></span>
           </li>
-          
-          <li *ngIf = "businessModel.gst == null">
+
+          <li *ngIf="businessModel.gst == null">
             <button class="btn btn-primary" (click)="updateBusinessDetailModal.show()">Add Business Information</button>
             <!-- <button class=" p-1 mt-2 btn-primary" data-toggle="modal" data-target = ".updateBusinessDetail">Add Business Information</button> -->
-            <span class = "updateStatus" id = "businessUpdateStatus"></span>
+            <span class="updateStatus" id="businessUpdateStatus"></span>
           </li>
-        
+
         </ul>
       </div>
     </div>
   </div>
-<ng-template #profileCompleted>
+
+  <ng-template #profileCompleted>
     <!-- --------------------------  --Tab Content -->
-    <div class="tab-content" id="myTabContent">
-    
-      <!-- Tab One -->
-      <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">    
-        <!-- Comapny  Card -->
-        <div class="container comapnyCard">
-          <div class="row comapnyCardParent">
-            <div class="col-md-3 companyLogo">
-              <img src="https://5.imimg.com/data5/HK/QU/MY-47419749/agriconic-machineries-private-limited-120x120.png" alt="Comapny Logo">
-            </div>
-            <div class="col-md-9 comapnyDescription">
-              <h4 class="text-center">{{businessModel.name}}</h4>
-              <span></span>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <!-- Identification Information -->
+    <div class="card">
+      <p-tabView styleClass="tabview-custom">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <i class="pi pi-desktop"></i>
+            <span>Dashboard</span>
+          </ng-template>
+          <div class="container-fluid dashboardMainFrame" style="background-color: #EDF1F5;">
+            <h6>Application / Dashboard</h6>
 
-        <div class="container IdentificationInfo">
-          <h4 class="text-center">Identification Number</h4>
-
-          <div class="row">
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">GST</h6>
-              <h6 class="text-center">{{businessModel.gst}}</h6>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">PAN</h6>
-              <h6 class="text-center">{{businessModel.pan}}</h6>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">CIN</h6>
-              <h6 class="text-center">{{businessModel.cin}}</h6>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <h6 class="text-center">DGFT</h6>
-              <h6 class="text-center">{{businessModel.dgft}}</h6>
-            </div>
-          </div>
-        </div>
-
-        <!-- Business Information -->
-        <div class="container-fluid organizationInfo mt-3">
-
-          <div class="text-center">
-            <span class="infomationTitle">
-              Business Details
-            </span>
-            <button class="float-right btn-primary" data-toggle="modal" data-target = ".editBusinessDetail">Edit</button>
-          </div>
-
-          <div class="row pt-3">
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>Business Type</td>
-                  <td class="tableData" id = "BusinessType">{{businessModel.businessType}}</td>
-                </tr>
-
-                <tr>
-                  <td>Business Email</td>
-                  <td class="tableData" id = "BusinessEmail">{{businessModel.businessEmail}}</td>
-                </tr>
-
-                <tr>
-                  <td>Organization Type</td>
-                  <td class="tableData" id = "OrganisationType">{{businessModel.organisationType}}</td>
-                </tr>
-
-                <tr>
-                  <td>Ownership Type</td>
-                  <td class="tableData" id = "OwnershipType">{{businessModel.ownershipType}}</td>
-                </tr>
-              </table>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>Website Link</td>
-                  <td class="tableData" id = "WebsiteLink">{{businessModel.websiteLink}}</td>
-                </tr>
-
-                <tr>
-                  <td>Address</td>
-                  <td class="tableData" id = "Address">{{businessModel.address}}</td>
-                </tr>
-
-                <tr>
-                  <td>Year Of Establishment</td>
-                  <td class="tableData">{{businessModel.yearOfEstablishment}}</td>
-                </tr>
-
-                <tr>
-                  <td>Description</td>
-                  <td class="tableData">{{businessModel.description}}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-         <!-- Personal Information -->
-        <div class="container-fluid personalInfo mt-3">
-          <div class="text-center">
-            <span class="infomationTitle">
-              Personal Details
-            </span>
-            <button class="float-right btn-primary" data-toggle="modal" data-target = ".editPersonalDetail">Edit</button>
-          </div>
-
-          <div class="row pt-3">
-            <div class="col-sm col-md col-lg">
-             <table>
-               <tr>
-                 <td>Name</td>
-                 <td class="tableData" id = "supplierFullName">{{supplierModel.full_name}}</td>
-               </tr>
-
-                <tr>
-                  <td>Phone Number</td>
-                  <td class="tableData">{{supplierModel.phone_number}}</td>
-                </tr>
-
-                <tr>
-                  <td>Mobile Number</td>
-                  <td class="tableData">{{supplierModel.mobile_number}}</td>
-                </tr>
-
-                <tr>
-                  <td>Email</td>
-                  <td class="tableData">{{supplierModel.email}}</td>
-                </tr>
-             </table>
-            </div>
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>Optional Email</td>
-                  <td id = "supplierEmailOptional">{{supplierModel.email_optional}}</td>
-                </tr>
-
-                <tr>
-                  <td>Address</td>
-                  <td id = "supplieraddress">{{supplierModel.address}}</td>
-                </tr>
-
-                <tr>
-                  <td>Area</td>
-                  <td id = "supplierArea">{{supplierModel.area_street}}</td>
-                </tr>
-
-                <tr>
-                  <td>City</td>
-                  <td id = "supplierCity">{{supplierModel.city}}</td>
-                </tr>
-
-              </table>
-            </div>
-
-            <div class="col-sm col-md col-lg">
-              <table>
-                <tr>
-                  <td>District</td>
-                  <td id = "supplierDistrict">{{supplierModel.district}}</td>
-                </tr>
-
-                <tr>
-                  <td>Taluka</td>
-                  <td id = "supplierTaluka">{{supplierModel.taluka}}</td>
-                </tr>
-
-                <tr>
-                  <td>State</td>
-                  <td id = "supplierState"> {{supplierModel.state}} </td>
-                </tr>
-
-                <tr>
-                  <td>Pincode</td>
-                  <td id = "supplierPincode">{{supplierModel.pincode}}</td>
-                </tr>
-              </table>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Tab Two -->
-      <div class="tab-pane fade active show p-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="container-fluid dashboardMainFrame">
-          <h6>Application / Dashboard</h6>
-
-          <!-- Cards -->
-          <div class="container">
-            <div class="row">
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #02ABC0">
-                  <div class="card-body">
-                    <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{totalLeads}}</h5>
-                    <h5>Leads</h5>
+            <!-- Cards -->
+            <div class="container">
+              <div class="row">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                  <div class="card" style="background-color: #02ABC0">
+                    <div class="card-body">
+                      <img src="assets/ArrowUp.svg" alt="Shovel icon" class="img-fluid imgCard">
+                      <h5>{{totalLeads}}</h5>
+                      <h5>Leads</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #DC1B5E;">
-                  <div class="card-body">
-                    <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{totalClicks}}</h5>
-                    <h5>Clicks</h5>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                  <div class="card" style="background-color: #DC1B5E;">
+                    <div class="card-body">
+                      <img src="assets/click.svg" alt="Shovel icon" class="img-fluid imgCard">
+                      <h5>{{totalClicks}}</h5>
+                      <h5>Clicks</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #FB8B0D;">
-                  <div class="card-body">
-                    <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{totalProducts}}</h5>
-                    <h5 style="display: inline-block;">Total Prodcuts</h5>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                  <div class="card" style="background-color: #FB8B0D;">
+                    <div class="card-body">
+                      <img src="assets/quotes.svg" alt="Shovel icon" class="img-fluid imgCard">
+                      <h5>{{totalProducts}}</h5>
+                      <h5 style="display: inline-block;">Total Prodcuts</h5>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
-                <div class="card" style="background-color: #8E24A8;">
-                  <div class="card-body">
-                    <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
-                    <h5>{{businessModel.profileViews}}</h5>
-                    <h5 style="display: inline-block;">Profile Views</h5>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 px-4 my-1">
+                  <div class="card" style="background-color: #8E24A8;">
+                    <div class="card-body">
+                      <img src="assets/person.svg" alt="Shovel icon" class="img-fluid imgCard">
+                      <h5>{{businessModel.profileViews}}</h5>
+                      <h5 style="display: inline-block;">Profile Views</h5>
+                    </div>
                   </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Chart.js -->
+
+            <div class="container-fluid mt-5">
+              <div class="row">
+                <div class="col-sm -col-md col-lg clickChart">
+                  <h5 class="p-3">Clicks</h5>
+                  <!-- <img src="https://s3.amazonaws.com/assets.fullstack.io/n/20200309095518221_react-chartjs.png" alt="Graph Will be Here" style="padding: 12px;"> -->
+                </div>
+                <div class="col-sm -col-md col-lg quotesChart">
+                  <h5 class="p-3">Quotes</h5>
+                  <!-- <img src="https://cdn.october.codes/images/dataviz-1.png" alt="" style="height: 15vw;"> -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Quotes Table -->
+            <div class="container-fluid quotesTable mt-5 p-0">
+              <h6 style="padding: 1rem 0.8rem 0.3rem 0.8rem;">Quotes Requested By </h6>
+              <div class="table-responsive mb-2 tabeleQuotes">
+                <!-- <ag-grid-angular #productGridTable style="width: 100%; height: 500px;" class="ag-theme-balham"
+                  [gridOptions]="gridOptions" [rowData]="quotesObject" [columnDefs]="columnDefsQuotes"
+                  (gridReady)="onGridReady($event)">
+                </ag-grid-angular> -->
+                <div class="b">
+                  <p-table [value]="quotesObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
+                    styleClass="p-datatable-responsive-demo">
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th>Customer Name</th>
+                        <th>Customer Mobile Number</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Requirement</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-quotesObject>
+                      <tr>
+                        <td>{{quotesObject.customerName}}</td>
+                        <td>{{quotesObject.customerMobileNumber}}</td>
+                        <td>{{quotesObject.productName}}</td>
+                        <td>{{quotesObject.quantity}}</td>
+                        <td>{{quotesObject.requirement}}</td>
+                      </tr>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Header II">
+          <ng-template pTemplate="header">
+            <i class="pi pi-inbox"></i>
+            <span>Product</span>
+          </ng-template>
+          <div class="container-fluid productManagement">
+            <div class="row m-0 mb-4 d-flex justify-content-between">
+              <h5>Product Management</h5>
+              <button class="btn btn-primary" (click)="addProductModal.show()"> New Product </button>
+            </div>
+            <div class="table-responsive mt-2 productTable">
+              <!-- <ag-grid-angular #productGridTable style="width: 100%; height: 500px;" class="ag-theme-balham"
+                [gridOptions]="gridOptions" [rowData]="productObject" [columnDefs]="columnDefsProduct"
+                (gridReady)="onGridReady($event)" [suppressScrollOnNewData]="true"
+                [allowContextMenuWithControlKey]="true" (cellContextMenu)="cellRightClickProduct($event)">
+              </ag-grid-angular>
+              <context-menu #productTableContext>
+                <ng-template contextMenuItem (execute)="editProduct()">Edit</ng-template>
+                <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
+              </context-menu> -->
+              <div class="b">
+                <p-table [value]="productObject" [scrollable]="true" scrollHeight="flex" [responsive]="true"
+                  [(contextMenuSelection)]="selectedProduct" [contextMenu]="cm"
+                  styleClass="p-datatable-responsive-demo">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>Code</th>
+                      <th>Name</th>
+                      <th>Brand</th>
+                      <th>Price</th>
+                      <th>Arrival</th>
+                      <th>Unit</th>
+                      <th>Clicks</th>
+                      <th>Created Date</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-productObject>
+                    <tr [pContextMenuRow]="productObject">
+                      <td>{{productObject.code}}</td>
+                      <td>{{productObject.name}}</td>
+                      <td>{{productObject.brand}}</td>
+                      <td>{{productObject.price}}</td>
+                      <td>{{productObject.arrival}}</td>
+                      <td>{{productObject.unit}}</td>
+                      <td>{{productObject.clicks}}</td>
+                      <td>{{productObject.created_date}}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                <p-contextMenu appendTo="body" #cm [model]="items"></p-contextMenu>
+              </div>
+
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Header III">
+          <ng-template pTemplate="header">
+            <i class="pi pi-user"></i>
+            <span>Profile</span>
+          </ng-template>
+          <div style="background-color: #EDF1F5;">
+            <!-- Comapny  Card -->
+            <div class="container comapnyCard">
+              <div class="row comapnyCardParent">
+                <div class="col-md-3 companyLogo">
+                  <img
+                    src="https://5.imimg.com/data5/HK/QU/MY-47419749/agriconic-machineries-private-limited-120x120.png"
+                    alt="Comapny Logo">
+                </div>
+                <div class="col-md-9 comapnyDescription">
+                  <h4 class="text-center">{{businessModel.name}}</h4>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Identification Information -->
+
+            <div class="container IdentificationInfo">
+              <h4 class="text-center">Identification Number</h4>
+
+              <div class="row">
+                <div class="col-sm col-md col-lg">
+                  <h6 class="text-center">GST</h6>
+                  <h6 class="text-center">{{businessModel.gst}}</h6>
+                </div>
+                <div class="col-sm col-md col-lg">
+                  <h6 class="text-center">PAN</h6>
+                  <h6 class="text-center">{{businessModel.pan}}</h6>
+                </div>
+                <div class="col-sm col-md col-lg">
+                  <h6 class="text-center">CIN</h6>
+                  <h6 class="text-center">{{businessModel.cin}}</h6>
+                </div>
+                <div class="col-sm col-md col-lg">
+                  <h6 class="text-center">DGFT</h6>
+                  <h6 class="text-center">{{businessModel.dgft}}</h6>
+                </div>
+              </div>
+            </div>
+
+            <!-- Business Information -->
+            <div class="container-fluid organizationInfo mt-3">
+
+              <div class="text-center">
+                <span class="infomationTitle">
+                  Business Details
+                </span>
+                <button class="float-right btn-primary" data-toggle="modal"
+                  data-target=".editBusinessDetail">Edit</button>
+              </div>
+
+              <div class="row pt-3">
+                <div class="col-sm col-md col-lg">
+                  <table>
+                    <tr>
+                      <td>Business Type</td>
+                      <td class="tableData" id="BusinessType">{{businessModel.businessType}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Business Email</td>
+                      <td class="tableData" id="BusinessEmail">{{businessModel.businessEmail}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Organization Type</td>
+                      <td class="tableData" id="OrganisationType">{{businessModel.organisationType}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Ownership Type</td>
+                      <td class="tableData" id="OwnershipType">{{businessModel.ownershipType}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-sm col-md col-lg">
+                  <table>
+                    <tr>
+                      <td>Website Link</td>
+                      <td class="tableData" id="WebsiteLink">{{businessModel.websiteLink}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Address</td>
+                      <td class="tableData" id="Address">{{businessModel.address}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Year Of Establishment</td>
+                      <td class="tableData">{{businessModel.yearOfEstablishment}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Description</td>
+                      <td class="tableData">{{businessModel.description}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="container-fluid personalInfo mt-3">
+              <div class="text-center">
+                <span class="infomationTitle">
+                  Personal Details
+                </span>
+                <button class="float-right btn-primary" data-toggle="modal"
+                  data-target=".editPersonalDetail">Edit</button>
+              </div>
+
+              <div class="row pt-3">
+                <div class="col-sm col-md col-lg">
+                  <table>
+                    <tr>
+                      <td>Name</td>
+                      <td class="tableData" id="supplierFullName">{{supplierModel.full_name}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Phone Number</td>
+                      <td class="tableData">{{supplierModel.phone_number}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Mobile Number</td>
+                      <td class="tableData">{{supplierModel.mobile_number}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Email</td>
+                      <td class="tableData">{{supplierModel.email}}</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-sm col-md col-lg">
+                  <table>
+                    <tr>
+                      <td>Optional Email</td>
+                      <td id="supplierEmailOptional">{{supplierModel.email_optional}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Address</td>
+                      <td id="supplieraddress">{{supplierModel.address}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Area</td>
+                      <td id="supplierArea">{{supplierModel.area_street}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>City</td>
+                      <td id="supplierCity">{{supplierModel.city}}</td>
+                    </tr>
+
+                  </table>
+                </div>
+
+                <div class="col-sm col-md col-lg">
+                  <table>
+                    <tr>
+                      <td>District</td>
+                      <td id="supplierDistrict">{{supplierModel.district}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Taluka</td>
+                      <td id="supplierTaluka">{{supplierModel.taluka}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>State</td>
+                      <td id="supplierState"> {{supplierModel.state}} </td>
+                    </tr>
+
+                    <tr>
+                      <td>Pincode</td>
+                      <td id="supplierPincode">{{supplierModel.pincode}}</td>
+                    </tr>
+                  </table>
                 </div>
 
               </div>
             </div>
-
-
           </div>
-
-          <!-- Chart.js -->
-
-          <div class="container-fluid mt-5">
-            <div class="row">
-              <div class="col-sm -col-md col-lg clickChart">
-                <h5 class="p-3">Clicks</h5>
-                <!-- <img src="https://s3.amazonaws.com/assets.fullstack.io/n/20200309095518221_react-chartjs.png" alt="Graph Will be Here" style="padding: 12px;"> -->
-              </div>
-              <div class="col-sm -col-md col-lg quotesChart">
-                <h5 class="p-3">Quotes</h5>
-                <!-- <img src="https://cdn.october.codes/images/dataviz-1.png" alt="" style="height: 15vw;"> -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Quotes Table -->
-          <div class="container-fluid quotesTable mt-5 p-0">
-            <h6 style="padding: 1rem 0.8rem 0.3rem 0.8rem;">Quotes Requested By </h6>
-            <div class="table-responsive mb-2 tabeleQuotes">
-              <ag-grid-angular #productGridTable
-              style="width: 100%; height: 500px;" 
-              class="ag-theme-balham"
-              [gridOptions] = "gridOptions"
-              [rowData]="quotesObject"
-              [columnDefs]="columnDefsQuotes"
-              (gridReady)="onGridReady($event)">
-            </ag-grid-angular>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-       <!-- Tab Three -->
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <div class="container-fluid productManagement">
-          <div class="row m-0 mb-4 d-flex justify-content-between"> 
-            <h5>Product Management</h5>
-            <button class="btn btn-primary" (click)="addProductModal.show()"> New Product </button>
-          </div>
-          <div class="table-responsive mt-2 mb-2 productTable">
-            <ag-grid-angular #productGridTable
-            style="width: 100%; height: 500px;" 
-            class="ag-theme-balham"
-            [gridOptions] = "gridOptions"
-            [rowData]="productObject"
-            [columnDefs]="columnDefsProduct"
-            (gridReady)="onGridReady($event)"
-            [suppressScrollOnNewData]="true" 
-            [allowContextMenuWithControlKey]="true"
-            (cellContextMenu)= "cellRightClickProduct($event)">
-          </ag-grid-angular>
-          <context-menu #productTableContext>
-            <ng-template contextMenuItem (execute)="editProduct()" >Edit</ng-template>
-            <ng-template contextMenuItem (execute)="addImage()">Add Image</ng-template>
-          </context-menu>
-
-          </div>
-        </div>
-      </div>  
-  </div>
-</ng-template>
-
-
-<!-- Add Personal Details -->
-<div class="modal fade editPersonalDetail" bsModal #editPersonalDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Personal Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <form id = "personalDetail" #personalDetail = "ngForm" (ngSubmit) = "personalDetailFormSubmit()">
-          <div class="form-group">
-            <label for="personalDetailName">First Name</label>          
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.full_name" name="personalDetailName" id="personalDetailName" readonly>
-          </div>
-
-          <div class="form-group">
-            
-            <label for="personalDetailDesignation">Designation</label>
-            <input type="text"  class="form-control form-control-sm" [(ngModel)] = "supplierModel.designation" name="personalDetailDesignation" id="personalDetailDesignation">
-
-          </div>
-
-          <div class="form-group">
-            
-            <label for="personalDetailPhoneNumber">Phone Number</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.phone_number" name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailMobileNumber">Mobile Number</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.mobile_number" name="personalDetailMobileNumber" id="personalDetailMobileNumber">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailEmail">Email ID</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.email" name="personalDetailEmail" id="personalDetailEmail" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailEmailOptional">Optional Email ID</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.email_optional" name="personalDetailEmailOptional" id="personalDetailEmailOptional">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailAddress">Address</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.address" name="personalDetailAddress" id="personalDetailAddress">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailAreaStreet">Area/Street</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.area_street" name="personalDetailAreaStreet" id="personalDetailAreaStreet">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailCity">City</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.city" name="personalDetailCity" id="personalDetailCity">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailDistrict">District</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.district" name="personalDetailDistrict" id="personalDetailDistrict">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailTaluka">Taluka</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.taluka" name="personalDetailTaluka" id="personalDetailTaluka">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailState">State</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.state" name="personalDetailState" id="personalDetailState">
-          </div>
-
-          <div class="form-group">
-            <label for="personalDetailPincode">Pincode</label>
-            <input type="text" class="form-control form-control-sm" [(ngModel)] = "supplierModel.pincode" name="personalDetailPincode" id="personalDetailPincode">
-          </div>
-
-          <div class="form-group text-center">
-            <input type="submit" value="Save" class="btn btn-primary">
-          </div>
-
-        </form>
-      </div>
-
+        </p-tabPanel>
+        <p-tabPanel [disabled]="true" header="Header IV">
+          <ng-template pTemplate="header">
+            <i class="pi pi-id-card"></i>
+            <span>Subscription</span>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel header="Header V">
+          <ng-template pTemplate="header">
+            <span style="flex: auto;">Hello {{supplierModel.full_name}} !</span>
+          </ng-template>
+        </p-tabPanel>
+      </p-tabView>
     </div>
-  </div>
-</div>
+  </ng-template>
 
-<!-- Add Business Details -->
-<div class="modal fade editBusinessDetail" bsModal #editBusinessDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Business Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id = "businessDetail" #businessDetailForm = "ngForm" (ngSubmit) = "businessDetailFormSubmit(businessDetailForm)">
+  <!-- Add Personal Details -->
+  <div class="modal fade editPersonalDetail" bsModal #editPersonalDetailModal="bs-modal" [config]="{backdrop: 'static'}"
+    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Personal Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-          <div class="form-group">
-            <label for="name">Business Name</label>
-            <input id="name" [(ngModel)] = "editBusinessModel.name" name="name" class="form-control form-control-sm">
-          </div>
-
-          <div class="form-group">
-            <label for="organisationtype">Organisation Type</label>
-            <input id="organisationtype" [(ngModel)] = "editBusinessModel.organisationType" name="organisationtype" class="form-control form-control-sm">
-            
-          </div>
-
-          <div class="form-group">
-            <label for="ownershiptype">Ownership Type</label>
-            <input id="ownershiptype"  [(ngModel)] = "editBusinessModel.ownershipType" name="ownershiptype" class="form-control form-control-sm">
-            
-          </div>
-
-          <div class="form-group">
-            <label for="businesstype">Business Type</label>
-            <input id="businesstype" [(ngModel)] = "editBusinessModel.businessType" name="businesstype" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.business_type}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="businessemail">Business Email</label>
-            <input id="businessemail" [(ngModel)] = "editBusinessModel.businessEmail" name="businessemail" class="form-control form-control-sm">
-            <!-- {{ businessProfileForm.business_email}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="websitelink">Website Link</label>
-            <input id="websitelink" [(ngModel)] = "editBusinessModel.websiteLink" name="websitelink" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.website_link}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="Address">Address</label>
-            <input id="Address" [(ngModel)] = "editBusinessModel.address" name="Address" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.address}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="yearofestablishment">Year of Establishment</label>
-            <input id="yearofestablishment" type = "date" [(ngModel)] = "editBusinessModel.yearOfEstablishment" name="yearofestablishment" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.year_of_establishment}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="Description">Description</label>
-            <input id="Description"  [(ngModel)] = "editBusinessModel.description" name="Description" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.description}} -->
-          </div>
-
-          <div *ngIf="(supplierModel.pincode && businessModel.gst) == null">
+        <div class="modal-body">
+          <form id="personalDetail" #personalDetail="ngForm" (ngSubmit)="personalDetailFormSubmit()">
             <div class="form-group">
-              <label for="GST">GST</label>
-              <input id="GST" name="GST" [(ngModel)] = "editBusinessModel.gst" class="form-control form-control-sm">
-            </div>
-  
-            <div class="form-group">
-              <label for="PAN">PAN</label>
-              <input id="PAN" name="PAN" [(ngModel)] = "editBusinessModel.pan" class="form-control form-control-sm">
-            </div>
-  
-            <div class="form-group">
-              <label for="CIN">CIN</label>
-              <input id="CIN" name="CIN" [(ngModel)] = "editBusinessModel.cin" class="form-control form-control-sm">
-  
-            </div>
-  
-            <div class="form-group">
-              <label for="DGFT">DGFT</label>
-              <input id="DGFT" name="DGFT" [(ngModel)] = "editBusinessModel.dgft" class="form-control form-control-sm">
+              <label for="personalDetailName">First Name</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.full_name"
+                name="personalDetailName" id="personalDetailName" readonly>
             </div>
 
-          </div>
-
-          <div class="form-group text-center">
-            <input type="submit" value="Save" class="btn btn-primary">
-          </div>
-
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" bsModal  #updateBusinessDetailModal="bs-modal"  [config]="{backdrop: 'static'}"
-tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" id="updateBusinessDetailModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Business Details</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="updateBusinessDetailModal.hide()" onkeydown="return false">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id = "updateBusinessDetail" #updateBusinessDetail = "ngForm" (ngSubmit) = "updateBusinessDetailSubmit(updateBusinessDetail)">
-
-          <div class="form-group">
-            <label for="name">Business Name</label>
-            <input id="name" [(ngModel)] = "editBusinessModel.name" name="name" class="form-control form-control-sm">
-          </div>
-
-          <div class="form-group">
-            <label for="organisationtype">Organisation Type</label>
-            <input id="organisationtype" [(ngModel)] = "editBusinessModel.organisationType" name="organisationtype" class="form-control form-control-sm">
-            
-          </div>
-
-          <div class="form-group">
-            <label for="ownershiptype">Ownership Type</label>
-            <input id="ownershiptype"  [(ngModel)] = "editBusinessModel.ownershipType" name="ownershiptype" class="form-control form-control-sm">
-            
-          </div>
-
-          <div class="form-group">
-            <label for="businesstype">Business Type</label>
-            <input id="businesstype" [(ngModel)] = "editBusinessModel.businessType" name="businesstype" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.business_type}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="businessemail">Business Email</label>
-            <input id="businessemail" [(ngModel)] = "editBusinessModel.businessEmail" name="businessemail" class="form-control form-control-sm">
-            <!-- {{ businessProfileForm.business_email}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="websitelink">Website Link</label>
-            <input id="websitelink" [(ngModel)] = "editBusinessModel.websiteLink" name="websitelink" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.website_link}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="Address">Address</label>
-            <input id="Address" [(ngModel)] = "editBusinessModel.address" name="Address" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.address}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="yearofestablishment">Year of Establishment</label>
-            <input id="yearofestablishment" type = "date" [(ngModel)] = "editBusinessModel.yearOfEstablishment" name="yearofestablishment" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.year_of_establishment}} -->
-          </div>
-
-          <div class="form-group">
-            <label for="Description">Description</label>
-            <input id="Description"  [(ngModel)] = "editBusinessModel.description" name="Description" class="form-control form-control-sm">
-            <!-- {{businessProfileForm.description}} -->
-          </div>
-
-          <div *ngIf="(supplierModel.pincode && businessModel.gst) == null">
             <div class="form-group">
-              <label for="GST">GST</label>
-              <input id="GST" name="GST" [(ngModel)] = "editBusinessModel.gst" class="form-control form-control-sm">
+
+              <label for="personalDetailDesignation">Designation</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.designation"
+                name="personalDetailDesignation" id="personalDetailDesignation">
+
             </div>
-  
+
             <div class="form-group">
-              <label for="PAN">PAN</label>
-              <input id="PAN" name="PAN" [(ngModel)] = "editBusinessModel.pan" class="form-control form-control-sm">
+
+              <label for="personalDetailPhoneNumber">Phone Number</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.phone_number"
+                name="personalDetailPhoneNumber" id="personalDetailPhoneNumber">
             </div>
-  
+
             <div class="form-group">
-              <label for="CIN">CIN</label>
-              <input id="CIN" name="CIN" [(ngModel)] = "editBusinessModel.cin" class="form-control form-control-sm">
-  
+              <label for="personalDetailMobileNumber">Mobile Number</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.mobile_number"
+                name="personalDetailMobileNumber" id="personalDetailMobileNumber">
             </div>
-  
+
             <div class="form-group">
-              <label for="DGFT">DGFT</label>
-              <input id="DGFT" name="DGFT" [(ngModel)] = "editBusinessModel.dgft" class="form-control form-control-sm">
+              <label for="personalDetailEmail">Email ID</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.email"
+                name="personalDetailEmail" id="personalDetailEmail" readonly>
             </div>
-          </div>
-          <div class="form-group text-center">
-            <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateBusinessDetailModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-            <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "updateBusinessDetail.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-            <button type="submit" class="btn btn-sm btn-success" ><i class="fa fa-save mr-1"></i>Save</button>
-          </div>
-        </form>
+
+            <div class="form-group">
+              <label for="personalDetailEmailOptional">Optional Email ID</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.email_optional"
+                name="personalDetailEmailOptional" id="personalDetailEmailOptional">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailAddress">Address</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.address"
+                name="personalDetailAddress" id="personalDetailAddress">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailAreaStreet">Area/Street</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.area_street"
+                name="personalDetailAreaStreet" id="personalDetailAreaStreet">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailCity">City</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.city"
+                name="personalDetailCity" id="personalDetailCity">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailDistrict">District</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.district"
+                name="personalDetailDistrict" id="personalDetailDistrict">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailTaluka">Taluka</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.taluka"
+                name="personalDetailTaluka" id="personalDetailTaluka">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailState">State</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.state"
+                name="personalDetailState" id="personalDetailState">
+            </div>
+
+            <div class="form-group">
+              <label for="personalDetailPincode">Pincode</label>
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="supplierModel.pincode"
+                name="personalDetailPincode" id="personalDetailPincode">
+            </div>
+
+            <div class="form-group text-center">
+              <input type="submit" value="Save" class="btn btn-primary">
+            </div>
+
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
 
-<!-- Add Logo -->
-<div bsModal #logoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-sizes-name2">
-  <div class="modal-dialog modal-xs">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="dialog-sizes-name2" class="modal-title pull-left">Add Logo</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="logoModal.hide()">
-          <span aria-hidden="true" class="">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <form #logoUpload="ngForm" (ngSubmit) = "saveLogo(logoUpload)">
-        <div class="form-group">
-          <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png" required>
+  <!-- Add Business Details -->
+  <div class="modal fade editBusinessDetail" bsModal #editBusinessDetailModal="bs-modal" [config]="{backdrop: 'static'}"
+    tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Business Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <input [disabled]="product_image" type="submit" value="Upload Image">
-       </form>
+        <div class="modal-body">
+          <form id="businessDetail" #businessDetailForm="ngForm"
+            (ngSubmit)="businessDetailFormSubmit(businessDetailForm)">
+
+            <div class="form-group">
+              <label for="name">Business Name</label>
+              <input id="name" [(ngModel)]="editBusinessModel.name" name="name" class="form-control form-control-sm">
+            </div>
+
+            <div class="form-group">
+              <label for="organisationtype">Organisation Type</label>
+              <input id="organisationtype" [(ngModel)]="editBusinessModel.organisationType" name="organisationtype"
+                class="form-control form-control-sm">
+
+            </div>
+
+            <div class="form-group">
+              <label for="ownershiptype">Ownership Type</label>
+              <input id="ownershiptype" [(ngModel)]="editBusinessModel.ownershipType" name="ownershiptype"
+                class="form-control form-control-sm">
+
+            </div>
+
+            <div class="form-group">
+              <label for="businesstype">Business Type</label>
+              <input id="businesstype" [(ngModel)]="editBusinessModel.businessType" name="businesstype"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.business_type}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="businessemail">Business Email</label>
+              <input id="businessemail" [(ngModel)]="editBusinessModel.businessEmail" name="businessemail"
+                class="form-control form-control-sm">
+              <!-- {{ businessProfileForm.business_email}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="websitelink">Website Link</label>
+              <input id="websitelink" [(ngModel)]="editBusinessModel.websiteLink" name="websitelink"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.website_link}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="Address">Address</label>
+              <input id="Address" [(ngModel)]="editBusinessModel.address" name="Address"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.address}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="yearofestablishment">Year of Establishment</label>
+              <input id="yearofestablishment" type="date" [(ngModel)]="editBusinessModel.yearOfEstablishment"
+                name="yearofestablishment" class="form-control form-control-sm">
+              <!-- {{businessProfileForm.year_of_establishment}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="Description">Description</label>
+              <input id="Description" [(ngModel)]="editBusinessModel.description" name="Description"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.description}} -->
+            </div>
+
+            <div *ngIf="(supplierModel.pincode && businessModel.gst) == null">
+              <div class="form-group">
+                <label for="GST">GST</label>
+                <input id="GST" name="GST" [(ngModel)]="editBusinessModel.gst" class="form-control form-control-sm">
+              </div>
+
+              <div class="form-group">
+                <label for="PAN">PAN</label>
+                <input id="PAN" name="PAN" [(ngModel)]="editBusinessModel.pan" class="form-control form-control-sm">
+              </div>
+
+              <div class="form-group">
+                <label for="CIN">CIN</label>
+                <input id="CIN" name="CIN" [(ngModel)]="editBusinessModel.cin" class="form-control form-control-sm">
+
+              </div>
+
+              <div class="form-group">
+                <label for="DGFT">DGFT</label>
+                <input id="DGFT" name="DGFT" [(ngModel)]="editBusinessModel.dgft" class="form-control form-control-sm">
+              </div>
+
+            </div>
+
+            <div class="form-group text-center">
+              <input type="submit" value="Save" class="btn btn-primary">
+            </div>
+
+          </form>
+        </div>
+
       </div>
     </div>
   </div>
-</div>
 
-<!-- ------------Add Product -->
-<div class="modal fade" bsModal  #addProductModal="bs-modal"  [config]="{backdrop: 'static'}"
-tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="addProductModal.hide()" onkeydown="return false">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal fade" bsModal #updateBusinessDetailModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name" id="updateBusinessDetailModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Business Details</h5>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="updateBusinessDetailModal.hide()"
+            onkeydown="return false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="updateBusinessDetail" #updateBusinessDetail="ngForm"
+            (ngSubmit)="updateBusinessDetailSubmit(updateBusinessDetail)">
+
+            <div class="form-group">
+              <label for="name">Business Name</label>
+              <input id="name" [(ngModel)]="editBusinessModel.name" name="name" class="form-control form-control-sm">
+            </div>
+
+            <div class="form-group">
+              <label for="organisationtype">Organisation Type</label>
+              <input id="organisationtype" [(ngModel)]="editBusinessModel.organisationType" name="organisationtype"
+                class="form-control form-control-sm">
+
+            </div>
+
+            <div class="form-group">
+              <label for="ownershiptype">Ownership Type</label>
+              <input id="ownershiptype" [(ngModel)]="editBusinessModel.ownershipType" name="ownershiptype"
+                class="form-control form-control-sm">
+
+            </div>
+
+            <div class="form-group">
+              <label for="businesstype">Business Type</label>
+              <input id="businesstype" [(ngModel)]="editBusinessModel.businessType" name="businesstype"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.business_type}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="businessemail">Business Email</label>
+              <input id="businessemail" [(ngModel)]="editBusinessModel.businessEmail" name="businessemail"
+                class="form-control form-control-sm">
+              <!-- {{ businessProfileForm.business_email}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="websitelink">Website Link</label>
+              <input id="websitelink" [(ngModel)]="editBusinessModel.websiteLink" name="websitelink"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.website_link}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="Address">Address</label>
+              <input id="Address" [(ngModel)]="editBusinessModel.address" name="Address"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.address}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="yearofestablishment">Year of Establishment</label>
+              <input id="yearofestablishment" type="date" [(ngModel)]="editBusinessModel.yearOfEstablishment"
+                name="yearofestablishment" class="form-control form-control-sm">
+              <!-- {{businessProfileForm.year_of_establishment}} -->
+            </div>
+
+            <div class="form-group">
+              <label for="Description">Description</label>
+              <input id="Description" [(ngModel)]="editBusinessModel.description" name="Description"
+                class="form-control form-control-sm">
+              <!-- {{businessProfileForm.description}} -->
+            </div>
+
+            <div *ngIf="(supplierModel.pincode && businessModel.gst) == null">
+              <div class="form-group">
+                <label for="GST">GST</label>
+                <input id="GST" name="GST" [(ngModel)]="editBusinessModel.gst" class="form-control form-control-sm">
+              </div>
+
+              <div class="form-group">
+                <label for="PAN">PAN</label>
+                <input id="PAN" name="PAN" [(ngModel)]="editBusinessModel.pan" class="form-control form-control-sm">
+              </div>
+
+              <div class="form-group">
+                <label for="CIN">CIN</label>
+                <input id="CIN" name="CIN" [(ngModel)]="editBusinessModel.cin" class="form-control form-control-sm">
+
+              </div>
+
+              <div class="form-group">
+                <label for="DGFT">DGFT</label>
+                <input id="DGFT" name="DGFT" [(ngModel)]="editBusinessModel.dgft" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateBusinessDetailModal.hide()"><i
+                  class="fa fa-times mr-1"></i>Cancel</button>
+              <button type="button" class="btn btn-sm btn-primary mr-2" (click)="updateBusinessDetail.resetForm()"><i
+                  class="fa fa-refresh mr-1"></i>Reset</button>
+              <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save mr-1"></i>Save</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="modal-body">
-        <form #addProduct = "ngForm" (ngSubmit) = "newProduct(addProduct)">
+    </div>
+  </div>
+
+  <!-- Add Logo -->
+  <div bsModal #logoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name2">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name2" class="modal-title pull-left">Add Logo</h5>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="logoModal.hide()">
+            <span aria-hidden="true" class="">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #logoUpload="ngForm" (ngSubmit)="saveLogo(logoUpload)">
+            <div class="form-group">
+              <label>Add Image</label>
+              <input type="file" name="product_image" id="product_image" [(ngModel)]="productImage"
+                (change)="onFileChanged($event)" style="display: flex;" accept=".jpg,.jpeg,.png" required>
+            </div>
+            <input [disabled]="product_image" type="submit" value="Upload Image">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ------------Add Product -->
+  <div class="modal fade" bsModal #addProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="addProductModal.hide()"
+            onkeydown="return false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #addProduct="ngForm" (ngSubmit)="newProduct(addProduct)">
 
             <div class="form-row">
               <div class="form-group col-5">
                 <label for="product_name">Product Name</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.name" type="text" name="product_name" id="product_name" required>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.name" type="text"
+                  name="product_name" id="product_name" required>
               </div>
               <div class="form-group col-5">
                 <label for="brand">Brand</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.brand" type="text" name="product_brand" id="product_brand" required>
-              </div> 
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.brand" type="text"
+                  name="product_brand" id="product_brand" required>
+              </div>
               <div class="form-group col-2">
                 <label for="code">Code</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.code" type="text" name="product_code" id="product_code" required>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.code" type="text"
+                  name="product_code" id="product_code" required>
               </div>
               <div class="form-group col-4">
                 <label for="price">Price</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.price" type="number" min="0" name="prodcut_price" id="prodcut_price" required>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.price" type="number" min="0"
+                  name="prodcut_price" id="prodcut_price" required>
               </div>
-               <div class="form-group col-4">
+              <div class="form-group col-4">
                 <label for="prodcut_arrival">Offer on this product</label>
-                <select class="form-control form-control-sm" id="prodcut_arrival" name = "prodcut_arrival" (change) = "offerField()" required>
+                <select class="form-control form-control-sm" id="prodcut_arrival" name="prodcut_arrival"
+                  (change)="offerField()" required>
                   <option value="false">No</option>
                   <option value="true">Yes</option>
                 </select>
               </div>
-              <div class="form-group col-4" *ngIf = "offer">
-                  <label for="price">Offer</label>
-                  <input class="form-control form-control-sm" [(ngModel)] = "productModel.offer" type="number" name="prodcut_offer" id="prodcut_offer" min="0">
+              <div class="form-group col-4" *ngIf="offer">
+                <label for="price">Offer</label>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.offer" type="number"
+                  name="prodcut_offer" id="prodcut_offer" min="0">
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_arrival">New Arrival</label>
-                <select class="form-control form-control-sm" id="prodcut_arrival" [(ngModel)] = "productModel.arrival" name = "prodcut_arrival" required>
+                <select class="form-control form-control-sm" id="prodcut_arrival" [(ngModel)]="productModel.arrival"
+                  name="prodcut_arrival" required>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_unit">Unit</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "productModel.unit" id="prodcut_unit" name = "prodcut_unit" required>
+                <select class="form-control form-control-sm" [(ngModel)]="productModel.unit" id="prodcut_unit"
+                  name="prodcut_unit" required>
                   <option value="Kg">Kg</option>
                   <option value="Pack">pack</option>
                   <option value="Unit">Unit</option>
@@ -724,7 +837,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                 <div class="row col-12 justify-content-between mx-0 p-0">
                   <label for="specifications">Specifications</label>
                   <!-- <button class="btn btn-primary" (click)="addSpecificationModal.show()"> Add Specifications </button> -->
-                  <label class="btn btn-sm btn-primary add_field_button" (click)="addSpecificationModal.show()">Add Specifications</label>
+                  <label class="btn btn-sm btn-primary add_field_button" (click)="addSpecificationModal.show()">Add
+                    Specifications</label>
                 </div>
                 <div class="input_fields_wrap row col-12">
                   <div class="d-flex col-9">
@@ -733,14 +847,16 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               </div>
               <div class="form-group col-12">
                 <label for="description">Description</label>
-                <textarea class="form-control form-control-sm" [(ngModel)] = "productModel.additional_information" id = "product_description" name="product_description" cols="20" rows="3" required></textarea>
+                <textarea class="form-control form-control-sm" [(ngModel)]="productModel.additional_information"
+                  id="product_description" name="product_description" cols="20" rows="3" required></textarea>
               </div>
               <div class="form-group col-12 m-0">
                 <h5 class="category-head text-center border-bottom border-top border-light py-2"> Select Category</h5>
               </div>
               <div class="form-group col-4">
                 <label for="main_category">Main Category</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "mainCategory" name="main_category" id="main_category" (change) = "getSubCategory()" required>
+                <select class="form-control form-control-sm" [(ngModel)]="mainCategory" name="main_category"
+                  id="main_category" (change)="getSubCategory()" required>
                   <option value="" selected>----------------------------</option>
                   <option value="1">Farming Tools, Equipment & Machines</option>
                   <option value="2">Flowers, Plants & Trees</option>
@@ -758,198 +874,237 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               </div>
               <div class="form-group col-4">
                 <label for="sub_main_category">Sub Category</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "subCategory" name="sub_main_category" id="sub_main_category" (change) = "getCategory()" required>
-                  <option *ngFor = "let subCat of subCategoryObject; let i = index" value={{i}}> {{subCat.name}} </option>
+                <select class="form-control form-control-sm" [(ngModel)]="subCategory" name="sub_main_category"
+                  id="sub_main_category" (change)="getCategory()" required>
+                  <option *ngFor="let subCat of subCategoryObject; let i = index" value={{i}}> {{subCat.name}} </option>
                 </select>
-              </div> 
+              </div>
               <div class="form-group col-4">
                 <label for="category">Category</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "productModel.categoryId" name="category" id="category" required>
+                <select class="form-control form-control-sm" [(ngModel)]="productModel.categoryId" name="category"
+                  id="category" required>
 
-                  <option *ngFor = "let cat of categroyObject" value = {{cat.id}}> {{cat.name}} </option>
+                  <option *ngFor="let cat of categroyObject" value={{cat.id}}> {{cat.name}} </option>
                 </select>
 
               </div>
               <div class="row justify-content-center col-12 mx-0">
                 <div class=" text-center">
-                  <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "addProduct.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-                  <button type="submit" class="btn btn-sm btn-success" [disabled] = "addProduct.invalid" [class.disable] = "addProduct.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
+                  <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addProductModal.hide()"><i
+                      class="fa fa-times mr-1"></i>Cancel</button>
+                  <button type="button" class="btn btn-sm btn-primary mr-2" (click)="addProduct.resetForm()"><i
+                      class="fa fa-refresh mr-1"></i>Reset</button>
+                  <button type="submit" class="btn btn-sm btn-success" [disabled]="addProduct.invalid"
+                    [class.disable]="addProduct.invalid"><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
               </div>
             </div>
 
-        </form>
-      </div>
-     
-    </div>
-  </div>
-</div>
-
-<!-- Add Specification -->
-<div class="modal fade" bsModal #addSpecificationModal="bs-modal"   [config]="{backdrop: 'static'}"
-tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()" onkeydown="return false">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #specificationForm = "ngForm" (ngsubmit)="onSpecification(specificationForm)">
-          <div class="form-group">
-            <label >Add Specifications</label>
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_1" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_1" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_2" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_2" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_3" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_3" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_4" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_4" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_5" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_5" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_6" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_6" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-            
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_7" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_7" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_8" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_8" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_9" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_9" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_10" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_10" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-          </div>
-          <div class="row justify-content-center col-12 mx-0">
-            <div class=" text-center">
-              <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-              <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "specificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-              <button type="button" class="btn btn-sm btn-success" (click)="addSpecificationModal.hide()"><i class="fa fa-save mr-1"></i>Add</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Add photo -->
-<div bsModal #photoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-sizes-name2">
-  <div class="modal-dialog modal-xs">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="dialog-sizes-name2" class="modal-title pull-left">Photo</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="photoModal.hide()">
-          <span aria-hidden="true" class="">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <form #productImageUpload="ngForm" (ngSubmit) = "saveImage(productImageUpload)">
-        <div class="form-group">
-          <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png" required>
+          </form>
         </div>
-        <input [disabled]="product_image" type="submit" value="Upload Image">
-       </form>
+
       </div>
     </div>
   </div>
-</div>
 
-<!-- Update Product -->
-<div class="modal fade" bsModal  #updateProductModal="bs-modal"  [config]="{backdrop: 'static'}"
-tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="updateProductModal.hide()" onkeydown="return false">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <!-- Add Specification -->
+  <div class="modal fade" bsModal #addSpecificationModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name2" class="modal-title pull-left">Confirm</h5>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="addSpecificationModal.hide()"
+            onkeydown="return false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #specificationForm="ngForm" (ngsubmit)="onSpecification(specificationForm)">
+            <div class="form-group">
+              <label>Add Specifications</label>
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_1"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_1"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_2"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_2"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_3"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_3"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_4"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_4"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_5"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_5"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_6"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_6"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_7"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_7"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_8"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_8"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_9"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_9"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_10"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_10"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+            </div>
+            <div class="row justify-content-center col-12 mx-0">
+              <div class=" text-center">
+                <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="addSpecificationModal.hide()"><i
+                    class="fa fa-times mr-1"></i>Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary mr-2" (click)="specificationForm.resetForm()"><i
+                    class="fa fa-refresh mr-1"></i>Reset</button>
+                <button type="button" class="btn btn-sm btn-success" (click)="addSpecificationModal.hide()"><i
+                    class="fa fa-save mr-1"></i>Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="modal-body">
-        <form #updateProductForm = "ngForm" (ngSubmit) = "updateProduct(updateProductForm)">
+    </div>
+  </div>
+
+  <!-- Add photo -->
+  <div bsModal #photoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name2">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name2" class="modal-title pull-left">Photo</h5>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="photoModal.hide()">
+            <span aria-hidden="true" class="">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #productImageUpload="ngForm" (ngSubmit)="saveImage(productImageUpload)">
+            <div class="form-group">
+              <label>Add Image</label>
+              <input type="file" name="product_image" id="product_image" [(ngModel)]="productImage"
+                (change)="onFileChanged($event)" style="display: flex;" accept=".jpg,.jpeg,.png" required>
+            </div>
+            <input [disabled]="product_image" type="submit" value="Upload Image">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Product -->
+  <div class="modal fade" bsModal #updateProductModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle">Add New Product</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="updateProductModal.hide()"
+            onkeydown="return false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #updateProductForm="ngForm" (ngSubmit)="updateProduct(updateProductForm)">
 
             <div class="form-row">
               <div class="form-group col-5">
                 <label for="product_name">Product Name</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.name" type="text" name="product_name" id="product_name" required>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.name" type="text"
+                  name="product_name" id="product_name" required>
               </div>
               <div class="form-group col-5">
                 <label for="brand">Brand</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.brand" type="text" name="product_brand" id="product_brand" required>
-              </div> 
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.brand" type="text"
+                  name="product_brand" id="product_brand" required>
+              </div>
               <div class="form-group col-2">
                 <label for="code">Code</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.code" type="text" name="product_code" id="product_code" required>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.code" type="text"
+                  name="product_code" id="product_code" required>
               </div>
               <div class="form-group col-4">
                 <label for="price">Price</label>
-                <input class="form-control form-control-sm" [(ngModel)] = "productModel.price" type="number" min="0" name="prodcut_price" id="prodcut_price" required>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.price" type="number" min="0"
+                  name="prodcut_price" id="prodcut_price" required>
               </div>
-               <div class="form-group col-4">
+              <div class="form-group col-4">
                 <label for="prodcut_arrival">Offer on this product</label>
-                <select class="form-control form-control-sm" id="prodcut_arrival" name = "prodcut_arrival" (change) = "offerField()" required>
+                <select class="form-control form-control-sm" id="prodcut_arrival" name="prodcut_arrival"
+                  (change)="offerField()" required>
                   <option value="false">No</option>
                   <option value="true">Yes</option>
                 </select>
               </div>
-              <div class="form-group col-4" *ngIf = "offer">
-                  <label for="price">Offer</label>
-                  <input class="form-control form-control-sm" [(ngModel)] = "productModel.offer" type="number" name="prodcut_offer" id="prodcut_offer" min="0">
+              <div class="form-group col-4" *ngIf="offer">
+                <label for="price">Offer</label>
+                <input class="form-control form-control-sm" [(ngModel)]="productModel.offer" type="number"
+                  name="prodcut_offer" id="prodcut_offer" min="0">
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_arrival">New Arrival</label>
-                <select class="form-control form-control-sm" id="prodcut_arrival" [(ngModel)] = "productModel.arrival" name = "prodcut_arrival" required>
+                <select class="form-control form-control-sm" id="prodcut_arrival" [(ngModel)]="productModel.arrival"
+                  name="prodcut_arrival" required>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
               </div>
               <div class="form-group col-4">
                 <label for="prodcut_unit">Unit</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "productModel.unit" id="prodcut_unit" name = "prodcut_unit" required>
+                <select class="form-control form-control-sm" [(ngModel)]="productModel.unit" id="prodcut_unit"
+                  name="prodcut_unit" required>
                   <option value="Kg">Kg</option>
                   <option value="Pack">pack</option>
                   <option value="Unit">Unit</option>
@@ -962,7 +1117,8 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
                 <div class="row col-12 justify-content-between mx-0 p-0">
                   <label for="specifications">Specifications</label>
                   <!-- <button class="btn btn-primary" (click)="addSpecificationModal.show()"> Add Specifications </button> -->
-                  <label class="btn btn-sm btn-primary add_field_button" (click)="EditSpecificationModal.show()">Edit Specifications</label>
+                  <label class="btn btn-sm btn-primary add_field_button" (click)="EditSpecificationModal.show()">Edit
+                    Specifications</label>
                 </div>
                 <div class="input_fields_wrap row col-12">
                   <div class="d-flex col-9">
@@ -971,14 +1127,16 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               </div>
               <div class="form-group col-12">
                 <label for="description">Description</label>
-                <textarea class="form-control form-control-sm" [(ngModel)] = "productModel.additional_information" id = "product_description" name="product_description" cols="20" rows="3" required></textarea>
+                <textarea class="form-control form-control-sm" [(ngModel)]="productModel.additional_information"
+                  id="product_description" name="product_description" cols="20" rows="3" required></textarea>
               </div>
               <div class="form-group col-12 m-0">
                 <h5 class="category-head text-center border-bottom border-top border-light py-2"> Select Category</h5>
               </div>
               <div class="form-group col-4">
                 <label for="main_category">Main Category</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "mainCategory" name="main_category" id="main_category" (change) = "getSubCategory()" required>
+                <select class="form-control form-control-sm" [(ngModel)]="mainCategory" name="main_category"
+                  id="main_category" (change)="getSubCategory()" required>
                   <option value="" selected>----------------------------</option>
                   <option value="1">Farming Tools, Equipment & Machines</option>
                   <option value="2">Flowers, Plants & Trees</option>
@@ -996,140 +1154,169 @@ tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
               </div>
               <div class="form-group col-4">
                 <label for="sub_main_category">Sub Category</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "subCategory" name="sub_main_category" id="sub_main_category" (change) = "getCategory()" required>
-                  <option *ngFor = "let subCat of subCategoryObject; let i = index" value={{i}}> {{subCat.name}} </option>
+                <select class="form-control form-control-sm" [(ngModel)]="subCategory" name="sub_main_category"
+                  id="sub_main_category" (change)="getCategory()" required>
+                  <option *ngFor="let subCat of subCategoryObject; let i = index" value={{i}}> {{subCat.name}} </option>
                 </select>
-              </div> 
+              </div>
               <div class="form-group col-4">
                 <label for="category">Category</label>
-                <select class="form-control form-control-sm" [(ngModel)] = "productModel.categoryId" name="category" id="category" required>
+                <select class="form-control form-control-sm" [(ngModel)]="productModel.categoryId" name="category"
+                  id="category" required>
 
-                  <option *ngFor = "let cat of categroyObject" value = {{cat.id}}> {{cat.name}} </option>
+                  <option *ngFor="let cat of categroyObject" value={{cat.id}}> {{cat.name}} </option>
                 </select>
 
               </div>
               <div class="row justify-content-center col-12 mx-0">
                 <div class=" text-center">
-                  <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateProductModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-                  <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "updateProductForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-                  <button type="submit" class="btn btn-sm btn-success" [disabled] = "updateProductForm.invalid" [class.disable] = "updateProductForm.invalid" ><i class="fa fa-save mr-1"></i>Save</button>
+                  <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateProductModal.hide()"><i
+                      class="fa fa-times mr-1"></i>Cancel</button>
+                  <!-- <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "updateProductModal.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button> -->
+                  <button type="submit" class="btn btn-sm btn-success" [disabled]="updateProductForm.invalid"
+                    [class.disable]="updateProductForm.invalid"><i class="fa fa-save mr-1"></i>Save</button>
                 </div>
               </div>
             </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Update Specification -->
-<div class="modal fade" bsModal #EditSpecificationModal="bs-modal"   [config]="{backdrop: 'static'}"
-tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="dialog-sizes-name2" class="modal-title pull-left" >Confirm</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="EditSpecificationModal.hide()" onkeydown="return false">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #editspecificationForm = "ngForm" (ngsubmit)="onEditSpecification(editspecificationForm)">
-          <div class="form-group">
-            <label >Add Specifications</label>
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_1" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_1" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_2" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_2" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_3" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_3" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_4" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_4" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_5" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_5" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_6" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_6" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-            
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_7" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_7" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_8" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_8" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_9" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_9" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-
-            <div class="row mx-0">
-              <input type="text" [(ngModel)] = "productModel.specification_10" class="form-control form-control-sm col-4 mx-2" name="addspec">:
-              <input type="text" [(ngModel)] = "productModel.description_10" class="form-control form-control-sm col-4 mx-2" name="addspec">
-              
-            </div>
-          </div>
-          <div class="row justify-content-center col-12 mx-0">
-            <div class=" text-center">
-              <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="EditSpecificationModal.hide()"><i class="fa fa-times mr-1"></i>Cancel</button>
-              <button type="button" class="btn btn-sm btn-primary mr-2" (click) = "editspecificationForm.resetForm()" ><i class="fa fa-refresh mr-1"></i>Reset</button>
-              <button type="button" class="btn btn-sm btn-success" (click)="EditSpecificationModal.hide()"><i class="fa fa-save mr-1"></i>Add</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- update image -->
-<div bsModal #editphotoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
-  aria-labelledby="dialog-sizes-name2">
-  <div class="modal-dialog modal-xs">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="dialog-sizes-name2" class="modal-title pull-left">Edit Photo</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="editphotoModal.hide()">
-          <span aria-hidden="true" class="">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <form #productImageUpload="ngForm" (ngSubmit) = "saveImage(productImageUpload)">
-        <div class="form-group">
-          <label >Add Image</label>
-          <input type="file" name="product_image" id="product_image" [(ngModel)] = "productImage" (change) = "onFileChanged($event)"  style="display: flex;" accept=".jpg,.jpeg,.png" required>
+          </form>
         </div>
-        <input [disabled]="product_image" type="submit" value="Upload Image">
-       </form>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Update Specification -->
+  <div class="modal fade" bsModal #EditSpecificationModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+    role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name2" class="modal-title pull-left">Confirm</h5>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="EditSpecificationModal.hide()"
+            onkeydown="return false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editspecificationForm="ngForm" (ngsubmit)="onEditSpecification(editspecificationForm)">
+            <div class="form-group">
+              <label>Add Specifications</label>
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_1"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_1"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_2"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_2"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_3"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_3"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_4"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_4"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_5"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_5"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_6"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_6"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_7"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_7"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_8"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_8"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_9"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_9"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+
+              <div class="row mx-0">
+                <input type="text" [(ngModel)]="productModel.specification_10"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">:
+                <input type="text" [(ngModel)]="productModel.description_10"
+                  class="form-control form-control-sm col-4 mx-2" name="addspec">
+
+              </div>
+            </div>
+            <div class="row justify-content-center col-12 mx-0">
+              <div class=" text-center">
+                <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="EditSpecificationModal.hide()"><i
+                    class="fa fa-times mr-1"></i>Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary mr-2" (click)="editspecificationForm.resetForm()"><i
+                    class="fa fa-refresh mr-1"></i>Reset</button>
+                <button type="button" class="btn btn-sm btn-success" (click)="EditSpecificationModal.hide()"><i
+                    class="fa fa-save mr-1"></i>Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- update image -->
+  <div bsModal #editphotoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name2">
+    <div class="modal-dialog modal-xs">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name2" class="modal-title pull-left">Edit Photo</h5>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="editphotoModal.hide()">
+            <span aria-hidden="true" class="">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #productImageUpload="ngForm" (ngSubmit)="saveImage(productImageUpload)">
+            <div class="form-group">
+              <label>Add Image</label>
+              <input type="file" name="product_image" id="product_image" [(ngModel)]="productImage"
+                (change)="onFileChanged($event)" style="display: flex;" accept=".jpg,.jpeg,.png" required>
+            </div>
+            <input [disabled]="product_image" type="submit" value="Upload Image">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

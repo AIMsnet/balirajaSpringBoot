@@ -39,8 +39,28 @@ export class HomeComponent implements OnInit {
   retrievedImage: any;
   base64Data: any;
   retrieveResponse: any;
-  imageUrl
-  constructor(private productService : ProductService, private domSanitizer: DomSanitizer, private primengConfig: PrimeNGConfig, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  imageUrl;
+
+  responsiveOptions;
+  constructor(private productService : ProductService, private domSanitizer: DomSanitizer, private primengConfig: PrimeNGConfig, private messageService: MessageService, private confirmationService: ConfirmationService) { 
+    this.responsiveOptions = [
+      {
+          breakpoint: '1024px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
+  }
 
 
   ngOnInit(): void {
@@ -83,5 +103,5 @@ export class HomeComponent implements OnInit {
     title : 'Irrigation & Harvesting Machine'
 
 }];
-
+ 
 }

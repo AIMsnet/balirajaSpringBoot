@@ -9,9 +9,9 @@ import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
+// import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
 import { HostListener } from '@angular/core';
-
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-supplier',
   templateUrl: './supplier.component.html',
@@ -32,7 +32,7 @@ export class SupplierComponent implements OnInit {
   @ViewChild('editphotoModal') editphotoModal: ModalDirective;
   @ViewChild('productGridTable') productGridTable: AgGridAngular;
 
-  @ViewChild('productTableContext') productTableContext: ContextMenuComponent;
+  // @ViewChild('productTableContext') productTableContext: ContextMenuComponent;
 
   // Instances
   personalDetailName: String
@@ -73,37 +73,41 @@ export class SupplierComponent implements OnInit {
   product_image: boolean = true;
   productImage
   savedProductId: Number
-  gridOptions: GridOptions = {
-  }
+  selectedProduct: Product;
+  items: MenuItem[];
+  // gridOptions: GridOptions = {
+  // }
 
   private gridApi;
   private gridColumnApi;
   contextRow: any;
   //Table Elements
-  columnDefsProduct = [
-    { field: 'code', headerName: 'Code' },
-    { field: 'name', headerName: 'Name' },
-    { field: 'brand', headerName: 'Brand' },
-    { field: 'price', headerName: 'Price' },
-    { field: 'arrival', headerName: 'Arrival' },
-    { field: 'unit', headerName: 'Unit' },
-    { field: 'clicks', headerName: 'Clicks' },
-    { field: 'created_date', headerName: 'Created Date' }
-  ]
+  // columnDefsProduct = [
+  //   { field: 'code', headerName: 'Code' },
+  //   { field: 'name', headerName: 'Name' },
+  //   { field: 'brand', headerName: 'Brand' },
+  //   { field: 'price', headerName: 'Price' },
+  //   { field: 'arrival', headerName: 'Arrival' },
+  //   { field: 'unit', headerName: 'Unit' },
+  //   { field: 'clicks', headerName: 'Clicks' },
+  //   { field: 'created_date', headerName: 'Created Date' }
+  // ]
 
-  columnDefsQuotes = [
-    { field: 'customerName', headerName: 'Customer Name' },
-    { field: 'customerMobileNumber', headerName: 'Customer Mobile Number' },
-    { field: 'productName', headerName: 'Product Name' },
-    { field: 'quantity', headerName: 'Quantity' },
-    { field: 'requirement', headerName: 'Requirement' }
-  ]
+  // columnDefsQuotes = [
+  //   { field: 'customerName', headerName: 'Customer Name' },
+  //   { field: 'customerMobileNumber', headerName: 'Customer Mobile Number' },
+  //   { field: 'productName', headerName: 'Product Name' },
+  //   { field: 'quantity', headerName: 'Quantity' },
+  //   { field: 'requirement', headerName: 'Requirement' }
+  // ]
 
 
   constructor(private router: Router, public supplierServices: SupplierServiceService,
     private categoryService: CategroyService, private productService: ProductService,
     private tosterService: ToastrService,
-    private contextMenuService: ContextMenuService) { }
+    ) { }
+
+    // private contextMenuService: ContextMenuService
 
   @HostListener('window:resize')
   onResize() {
@@ -164,7 +168,9 @@ export class SupplierComponent implements OnInit {
         // Fetching Quotes
         this.supplierServices.getQuotesBySessionId().subscribe(response => {
           this.quotesObject = response
+          console.log("table response"+ this.quotesObject.length);
           this.totalLeads = this.quotesObject.length
+          console.log("table response1"+ this.totalLeads);
         })
 
       }// End of this.login
@@ -175,6 +181,11 @@ export class SupplierComponent implements OnInit {
     this.productObject.forEach(function () {
       this.totalClicks = this.productObject['clicks'] + this.totalClicks
     })
+
+    this.items = [
+      { label: 'Edit Product', command: () => this.updateProductModal.show() },
+      { label: 'Edit Image', command: () => this.editphotoModal.show() }
+    ];
   }// End of ngOnInit
 
   onGridReady(params) {
@@ -305,7 +316,7 @@ export class SupplierComponent implements OnInit {
         this.updateProductModal.hide();
         this.getProductBySupplier();
         updateProductForm.reset();
-        // this.editphotoModal.show();
+        // this.updateProductModal.hide();
       })
     }
 
@@ -403,18 +414,18 @@ export class SupplierComponent implements OnInit {
     editspecificationForm.reset();
   }
 
-  cellRightClickProduct($event) {
-    var mouseevent: MouseEvent = $event.event;
-    this.contextRow = JSON.parse(JSON.stringify($event.data));
-    // this.selectedImportedEnergy = this.contextRow;
-    this.productGridTable.api.redrawRows();
-    this.contextMenuService.show.next({
-      contextMenu: this.productTableContext,
-      event: mouseevent,
-      item: $event.data
+  // cellRightClickProduct($event) {
+  //   var mouseevent: MouseEvent = $event.event;
+  //   this.contextRow = JSON.parse(JSON.stringify($event.data));
+  //   // this.selectedImportedEnergy = this.contextRow;
+  //   this.productGridTable.api.redrawRows();
+  //   this.contextMenuService.show.next({
+  //     contextMenu: this.productTableContext,
+  //     event: mouseevent,
+  //     item: $event.data
 
-    });
-  }
+  //   });
+  // }
 
   editProduct() {
     this.updateProductModal.show();

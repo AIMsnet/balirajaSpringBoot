@@ -21,21 +21,30 @@ export class ProductComponent implements OnInit {
   productList : any
   prodcutQuoteId : Number = 0
   productQuoteName : String= ""
+  totalPage = 0
+  pageCounter = 0 
+  productAr
+  productListAll : any[] = [];
+
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private supplierService: SupplierServiceService, private productService: ProductService, private tosterService: ToastrService) { }
 
   ngOnInit(): void {
     this.searchedProduct = this.activatedRoute.snapshot.paramMap.get("searchedProduct")
-    this.productService.getSearchedProduct(this.searchedProduct).subscribe(response => {
-      console.log(response)
+    this.productService.getSearchedProduct(this.searchedProduct, this.totalPage).subscribe(response => {
+     
       this.productList = response
+      this.totalPage = response[0]['length']
+      this.productListAll.push(this.productList)
+     
+      
     })
+    
   }
 
   openGetQuote(id : Number, productName : String){
     this.prodcutQuoteId = id
     this.productQuoteName = productName
-    console.log(this.prodcutQuoteId)
     this.modalGetQuote.show();
   }
 
@@ -60,7 +69,6 @@ export class ProductComponent implements OnInit {
         }
       },
         error => {
-          console.log(error)
           this.tosterService.error("Failed to save quote please try again.", "Baliraja", {
             timeOut: 2000, progressBar: true, easing: 'ease-in'
           })
@@ -73,4 +81,25 @@ export class ProductComponent implements OnInit {
     }
   }
 
+
+  nextPage(pageCounter){
+    this.pageCounter = pageCounter
+    if (this.productListAll[this.pageCounter] != null){
+      this.productList =  this.productListAll[this.pageCounter]
+    }
+    else{
+      this.productService.getSearchedProduct(this.searchedProduct, this.pageCounter).subscribe(response => {
+        this.productList = response
+        this.productListAll.push(this.productList)
+      })
+    }
+  }
+
+
+
+
+  // Just for counter
+  counter(i : number){
+    return new Array(i)
+  }
 }

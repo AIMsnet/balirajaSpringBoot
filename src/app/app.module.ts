@@ -21,8 +21,11 @@ import { ProductComponent } from './views/product/product.component';
 import { ProductdescriptionComponent } from './views/productdescription/productdescription.component';
 import { ContactsupplierComponent } from './views/contactsupplier/contactsupplier.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { ContextMenuModule } from 'ngx-contextmenu';
 import {DividerModule} from 'primeng/divider';
+import {CarouselModule} from 'primeng/carousel';
+import {TabViewModule} from 'primeng/tabview';
+import {TableModule} from 'primeng/table';
+import {AccordionModule} from 'primeng/accordion';
 
 //primeng modules
 //import { MegaMenuModule } from 'primeng/megamenu';
@@ -37,6 +40,7 @@ import {RippleModule} from 'primeng/ripple';
 
 
 
+import {ContextMenuModule} from 'primeng/contextmenu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +65,7 @@ import {RippleModule} from 'primeng/ripple';
     ToastrModule.forRoot(),
     NgImageSliderModule,
     AgGridModule.withComponents([]),
-    ContextMenuModule.forRoot(),
+    //ContextMenuModule.forRoot(),
     DividerModule,
     // primng modules
    // MegaMenuModule,
@@ -71,7 +75,13 @@ import {RippleModule} from 'primeng/ripple';
     SplitButtonModule,
     InputTextModule,
     PasswordModule,
-    RippleModule
+    RippleModule,
+    CarouselModule,
+    TabViewModule,
+    TableModule,
+    ContextMenuModule,
+    AccordionModule
+
   ],
   providers: [ɵBROWSER_SANITIZATION_PROVIDERS],
   bootstrap: [AppComponent]
