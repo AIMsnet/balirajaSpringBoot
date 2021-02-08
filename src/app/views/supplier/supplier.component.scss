@@ -247,3 +247,7 @@ th, td {
 ::ng-deep .p-tabview .p-tabview-nav li {
 	margin-left: auto;
 } */
+
+::ng-deep .p-tabview-nav-link:hover {
+    text-decoration: none;
+}
